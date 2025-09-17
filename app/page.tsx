@@ -19,6 +19,7 @@ import {
   Calendar,
 } from "lucide-react";
 import ReactECharts from "echarts-for-react";
+import { InteractiveBodyDiagram } from "./body-composition/components/InteractiveBodyDiagram";
 
 // Wrestling-themed colors
 const WRESTLING_BLUE = "#1e40af";
@@ -162,6 +163,22 @@ export default function Home() {
           <CardContent>
             <div className="text-2xl font-bold text-purple-600">28</div>
             <p className="text-xs text-gray-500">days away</p>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Interactive Body Performance Section */}
+      <div className="mb-8">
+        <Card>
+          <CardHeader>
+            <CardTitle className="text-xl">Body Performance Analysis</CardTitle>
+            <CardDescription>
+              Interactive muscle group analysis for wrestling performance
+              optimization
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <InteractiveBodyDiagram />
           </CardContent>
         </Card>
       </div>
