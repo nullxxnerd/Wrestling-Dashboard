@@ -3,11 +3,12 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { Activity, BarChart3, Droplets, Home } from "lucide-react";
+import { Activity, BarChart3, Droplets, Home, Scale } from "lucide-react";
 
 const navigation = [
   { name: "Dashboard", href: "/", icon: Home },
   { name: "Blood Work", href: "/bloodwork", icon: Activity },
+  { name: "Body Composition", href: "/body-composition", icon: Scale },
   { name: "Lifting Metrics", href: "/lifting", icon: BarChart3 },
   { name: "Supplements", href: "/supplements", icon: Droplets },
 ];
