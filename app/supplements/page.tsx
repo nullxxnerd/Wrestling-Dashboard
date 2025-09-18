@@ -2,14 +2,14 @@
 
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
-import { 
-  Pill, 
-  TrendingUp, 
-  Target, 
+import {
+  Pill,
+  TrendingUp,
+  Target,
   Activity,
   Calendar,
   Award,
-  Zap
+  Zap,
 } from "lucide-react";
 import {
   CreatineIntakeChart,
@@ -17,14 +17,14 @@ import {
   SupplementAdherenceChart,
   HydrationTimingChart,
   SupplementStackOverview,
-  PerformanceCorrelationChart
-} from './components';
+  PerformanceCorrelationChart,
+} from "./components";
 
 export default function SupplementsPage() {
   // Calculate overall metrics for the header
   const overallMetrics = {
     adherenceRate: 92,
-    monthlyProgress: '+8%',
+    monthlyProgress: "+8%",
     performanceCorrelation: 0.85,
     totalSupplements: 8,
   };
@@ -40,15 +40,22 @@ export default function SupplementsPage() {
               Professional Athletic Supplements
             </h1>
             <p className="text-gray-600 mt-2">
-              Comprehensive supplement tracking and optimization for elite wrestling performance
+              Comprehensive supplement tracking and optimization for elite
+              wrestling performance
             </p>
           </div>
           <div className="flex gap-2">
-            <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
+            <Badge
+              variant="outline"
+              className="bg-green-50 text-green-700 border-green-200"
+            >
               <TrendingUp className="h-3 w-3 mr-1" />
               {overallMetrics.adherenceRate}% Adherence
             </Badge>
-            <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">
+            <Badge
+              variant="outline"
+              className="bg-blue-50 text-blue-700 border-blue-200"
+            >
               <Activity className="h-3 w-3 mr-1" />
               Competition Ready
             </Badge>
@@ -64,8 +71,12 @@ export default function SupplementsPage() {
                   <Pill className="h-5 w-5 text-purple-600" />
                 </div>
                 <div>
-                  <div className="text-2xl font-bold text-purple-700">{overallMetrics.totalSupplements}</div>
-                  <div className="text-sm text-purple-600">Active Supplements</div>
+                  <div className="text-2xl font-bold text-purple-700">
+                    {overallMetrics.totalSupplements}
+                  </div>
+                  <div className="text-sm text-purple-600">
+                    Active Supplements
+                  </div>
                 </div>
               </div>
             </CardContent>
@@ -78,7 +89,9 @@ export default function SupplementsPage() {
                   <Target className="h-5 w-5 text-green-600" />
                 </div>
                 <div>
-                  <div className="text-2xl font-bold text-green-700">{overallMetrics.adherenceRate}%</div>
+                  <div className="text-2xl font-bold text-green-700">
+                    {overallMetrics.adherenceRate}%
+                  </div>
                   <div className="text-sm text-green-600">Weekly Adherence</div>
                 </div>
               </div>
@@ -92,7 +105,9 @@ export default function SupplementsPage() {
                   <Activity className="h-5 w-5 text-blue-600" />
                 </div>
                 <div>
-                  <div className="text-2xl font-bold text-blue-700">{overallMetrics.performanceCorrelation}</div>
+                  <div className="text-2xl font-bold text-blue-700">
+                    {overallMetrics.performanceCorrelation}
+                  </div>
                   <div className="text-sm text-blue-600">Performance Link</div>
                 </div>
               </div>
@@ -106,8 +121,12 @@ export default function SupplementsPage() {
                   <TrendingUp className="h-5 w-5 text-orange-600" />
                 </div>
                 <div>
-                  <div className="text-2xl font-bold text-orange-700">{overallMetrics.monthlyProgress}</div>
-                  <div className="text-sm text-orange-600">Monthly Progress</div>
+                  <div className="text-2xl font-bold text-orange-700">
+                    {overallMetrics.monthlyProgress}
+                  </div>
+                  <div className="text-sm text-orange-600">
+                    Monthly Progress
+                  </div>
                 </div>
               </div>
             </CardContent>
@@ -120,8 +139,13 @@ export default function SupplementsPage() {
         <section>
           <div className="flex items-center gap-2 mb-4">
             <Zap className="h-5 w-5 text-blue-600" />
-            <h2 className="text-xl font-semibold text-gray-900">Core Supplement Tracking</h2>
-            <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">
+            <h2 className="text-xl font-semibold text-gray-900">
+              Core Supplement Tracking
+            </h2>
+            <Badge
+              variant="outline"
+              className="bg-blue-50 text-blue-700 border-blue-200"
+            >
               Essential Performance
             </Badge>
           </div>
@@ -135,8 +159,13 @@ export default function SupplementsPage() {
         <section>
           <div className="flex items-center gap-2 mb-4">
             <Award className="h-5 w-5 text-purple-600" />
-            <h2 className="text-xl font-semibold text-gray-900">Performance & Adherence Analysis</h2>
-            <Badge variant="outline" className="bg-purple-50 text-purple-700 border-purple-200">
+            <h2 className="text-xl font-semibold text-gray-900">
+              Performance & Adherence Analysis
+            </h2>
+            <Badge
+              variant="outline"
+              className="bg-purple-50 text-purple-700 border-purple-200"
+            >
               Advanced Analytics
             </Badge>
           </div>
@@ -150,8 +179,13 @@ export default function SupplementsPage() {
         <section>
           <div className="flex items-center gap-2 mb-4">
             <Target className="h-5 w-5 text-cyan-600" />
-            <h2 className="text-xl font-semibold text-gray-900">Hydration & Timing Optimization</h2>
-            <Badge variant="outline" className="bg-cyan-50 text-cyan-700 border-cyan-200">
+            <h2 className="text-xl font-semibold text-gray-900">
+              Hydration & Timing Optimization
+            </h2>
+            <Badge
+              variant="outline"
+              className="bg-cyan-50 text-cyan-700 border-cyan-200"
+            >
               Recovery Focus
             </Badge>
           </div>
@@ -162,8 +196,13 @@ export default function SupplementsPage() {
         <section>
           <div className="flex items-center gap-2 mb-4">
             <Calendar className="h-5 w-5 text-green-600" />
-            <h2 className="text-xl font-semibold text-gray-900">Complete Supplement Stack</h2>
-            <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
+            <h2 className="text-xl font-semibold text-gray-900">
+              Complete Supplement Stack
+            </h2>
+            <Badge
+              variant="outline"
+              className="bg-green-50 text-green-700 border-green-200"
+            >
               Cost Optimized
             </Badge>
           </div>
@@ -179,9 +218,11 @@ export default function SupplementsPage() {
             Professional Athletic Excellence
           </h3>
           <p className="text-gray-700 max-w-3xl mx-auto">
-            Your supplement regimen is designed for peak wrestling performance. The advanced analytics above track 
-            every aspect of your intake, timing, and correlation with performance metrics. Use the AI insights to 
-            continuously optimize your stack for competitive advantage.
+            Your supplement regimen is designed for peak wrestling performance.
+            The advanced analytics above track every aspect of your intake,
+            timing, and correlation with performance metrics. Use the AI
+            insights to continuously optimize your stack for competitive
+            advantage.
           </p>
           <div className="flex items-center justify-center gap-6 mt-4 text-sm text-gray-600">
             <div className="flex items-center gap-1">

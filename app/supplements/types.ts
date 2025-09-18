@@ -1,7 +1,7 @@
 export interface SupplementData {
   id: string;
   name: string;
-  category: 'core' | 'performance' | 'recovery' | 'health';
+  category: "core" | "performance" | "recovery" | "health";
   targetAmount: number;
   unit: string;
   currentAmount?: number;
@@ -26,10 +26,10 @@ export interface PerformanceMetric {
 }
 
 export interface AIInsight {
-  type: 'recommendation' | 'warning' | 'optimization' | 'achievement';
+  type: "recommendation" | "warning" | "optimization" | "achievement";
   title: string;
   content: string;
-  priority: 'low' | 'medium' | 'high';
+  priority: "low" | "medium" | "high";
   actionable: boolean;
   relatedMetrics?: string[];
 }

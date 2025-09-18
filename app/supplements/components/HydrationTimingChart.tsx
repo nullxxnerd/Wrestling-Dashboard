@@ -1,14 +1,31 @@
 "use client";
 
-import React, { useMemo } from 'react';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import React, { useMemo } from "react";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import ReactECharts from "echarts-for-react";
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
+import {
+  LineChart,
+  Line,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+  PieChart,
+  Pie,
+  Cell,
+} from "recharts";
 import { Droplets, Clock, Target, Timer, TrendingUp } from "lucide-react";
-import { AIInsightPanel } from './AIInsightPanel';
-import { AIInsight } from '../types';
-import { CHART_COLORS } from '../utils';
+import { AIInsightPanel } from "./AIInsightPanel";
+import { AIInsight } from "../types";
+import { CHART_COLORS } from "../utils";
 
 interface HydrationTimingData {
   date: string;
@@ -33,7 +50,7 @@ export const HydrationTimingChart: React.FC<HydrationTimingChartProps> = ({
   // Generate sample data if not provided
   const chartData: HydrationTimingData[] = useMemo(() => {
     if (data) return data;
-    
+
     return Array.from({ length: 7 }, (_, i) => {
       const date = new Date();
       date.setDate(date.getDate() - (6 - i));
@@ -52,14 +69,23 @@ export const HydrationTimingChart: React.FC<HydrationTimingChartProps> = ({
 
   // Calculate metrics
   const metrics = useMemo(() => {
-    const avgWaterIntake = chartData.reduce((sum, d) => sum + d.waterIntake, 0) / chartData.length;
-    const avgSupplementTiming = chartData.reduce((sum, d) => sum + d.supplementTiming, 0) / chartData.length;
-    const avgMealSpacing = chartData.reduce((sum, d) => sum + d.mealSpacing, 0) / chartData.length;
-    const avgSleepQuality = chartData.reduce((sum, d) => sum + d.sleepQuality, 0) / chartData.length;
-    
-    const hydrationConsistency = chartData.filter(d => d.waterIntake >= 3.0).length;
-    const timingConsistency = chartData.filter(d => d.supplementTiming >= 20 && d.supplementTiming <= 45).length;
-    
+    const avgWaterIntake =
+      chartData.reduce((sum, d) => sum + d.waterIntake, 0) / chartData.length;
+    const avgSupplementTiming =
+      chartData.reduce((sum, d) => sum + d.supplementTiming, 0) /
+      chartData.length;
+    const avgMealSpacing =
+      chartData.reduce((sum, d) => sum + d.mealSpacing, 0) / chartData.length;
+    const avgSleepQuality =
+      chartData.reduce((sum, d) => sum + d.sleepQuality, 0) / chartData.length;
+
+    const hydrationConsistency = chartData.filter(
+      (d) => d.waterIntake >= 3.0
+    ).length;
+    const timingConsistency = chartData.filter(
+      (d) => d.supplementTiming >= 20 && d.supplementTiming <= 45
+    ).length;
+
     return {
       avgWaterIntake: Math.round(avgWaterIntake * 10) / 10,
       avgSupplementTiming: Math.round(avgSupplementTiming),
@@ -67,137 +93,174 @@ export const HydrationTimingChart: React.FC<HydrationTimingChartProps> = ({
       avgSleepQuality: Math.round(avgSleepQuality * 10) / 10,
       hydrationConsistency,
       timingConsistency,
-      overallScore: Math.round(((avgWaterIntake / 4) + (avgSleepQuality / 10) + (timingConsistency / 7) * 100) / 3),
+      overallScore: Math.round(
+        (avgWaterIntake / 4 +
+          avgSleepQuality / 10 +
+          (timingConsistency / 7) * 100) /
+          3
+      ),
     };
   }, [chartData]);
 
   // Radar chart data
-  const radarData = useMemo(() => ({
-    title: {
-      text: "Hydration & Timing Optimization",
-      textStyle: { fontSize: 16, fontWeight: "normal" },
-    },
-    tooltip: { trigger: "item" },
-    radar: {
-      indicator: [
-        { name: "Water Intake", max: 5 },
-        { name: "Pre-workout Hydration", max: 10 },
-        { name: "During Workout", max: 10 },
-        { name: "Post-workout Recovery", max: 10 },
-        { name: "Supplement Timing", max: 60 },
-        { name: "Sleep Quality", max: 10 },
-      ],
-      radius: "70%",
-    },
-    series: [
-      {
-        type: "radar",
-        data: [
-          {
-            value: [
-              metrics.avgWaterIntake,
-              chartData.reduce((sum, d) => sum + d.preWorkoutHydration, 0) / chartData.length,
-              chartData.reduce((sum, d) => sum + d.duringWorkoutHydration, 0) / chartData.length,
-              chartData.reduce((sum, d) => sum + d.postWorkoutHydration, 0) / chartData.length,
-              metrics.avgSupplementTiming,
-              metrics.avgSleepQuality,
-            ],
-            name: "Current Week",
-            itemStyle: { color: CHART_COLORS.primaryBlue },
-            areaStyle: { color: `${CHART_COLORS.primaryBlue}30` },
-          },
-          {
-            value: [4.0, 8.5, 8.0, 9.0, 30, 8.0], // Optimal targets
-            name: "Optimal Targets",
-            itemStyle: { color: CHART_COLORS.successGreen },
-            areaStyle: { color: `${CHART_COLORS.successGreen}20` },
-            lineStyle: { type: 'dashed' },
-          },
-        ],
+  const radarData = useMemo(
+    () => ({
+      title: {
+        text: "Hydration & Timing Optimization",
+        textStyle: { fontSize: 16, fontWeight: "normal" },
       },
-    ],
-  }), [chartData, metrics]);
+      tooltip: { trigger: "item" },
+      radar: {
+        indicator: [
+          { name: "Water Intake", max: 5 },
+          { name: "Pre-workout Hydration", max: 10 },
+          { name: "During Workout", max: 10 },
+          { name: "Post-workout Recovery", max: 10 },
+          { name: "Supplement Timing", max: 60 },
+          { name: "Sleep Quality", max: 10 },
+        ],
+        radius: "70%",
+      },
+      series: [
+        {
+          type: "radar",
+          data: [
+            {
+              value: [
+                metrics.avgWaterIntake,
+                chartData.reduce((sum, d) => sum + d.preWorkoutHydration, 0) /
+                  chartData.length,
+                chartData.reduce(
+                  (sum, d) => sum + d.duringWorkoutHydration,
+                  0
+                ) / chartData.length,
+                chartData.reduce((sum, d) => sum + d.postWorkoutHydration, 0) /
+                  chartData.length,
+                metrics.avgSupplementTiming,
+                metrics.avgSleepQuality,
+              ],
+              name: "Current Week",
+              itemStyle: { color: CHART_COLORS.primaryBlue },
+              areaStyle: { color: `${CHART_COLORS.primaryBlue}30` },
+            },
+            {
+              value: [4.0, 8.5, 8.0, 9.0, 30, 8.0], // Optimal targets
+              name: "Optimal Targets",
+              itemStyle: { color: CHART_COLORS.successGreen },
+              areaStyle: { color: `${CHART_COLORS.successGreen}20` },
+              lineStyle: { type: "dashed" },
+            },
+          ],
+        },
+      ],
+    }),
+    [chartData, metrics]
+  );
 
   // Timing distribution data
-  const timingDistribution = useMemo(() => [
-    { name: 'Pre-workout (20-30 min)', value: chartData.filter(d => d.supplementTiming >= 20 && d.supplementTiming <= 30).length },
-    { name: 'Pre-workout (30-45 min)', value: chartData.filter(d => d.supplementTiming > 30 && d.supplementTiming <= 45).length },
-    { name: 'Too Early (>45 min)', value: chartData.filter(d => d.supplementTiming > 45).length },
-    { name: 'Too Late (<20 min)', value: chartData.filter(d => d.supplementTiming < 20).length },
-  ], [chartData]);
+  const timingDistribution = useMemo(
+    () => [
+      {
+        name: "Pre-workout (20-30 min)",
+        value: chartData.filter(
+          (d) => d.supplementTiming >= 20 && d.supplementTiming <= 30
+        ).length,
+      },
+      {
+        name: "Pre-workout (30-45 min)",
+        value: chartData.filter(
+          (d) => d.supplementTiming > 30 && d.supplementTiming <= 45
+        ).length,
+      },
+      {
+        name: "Too Early (>45 min)",
+        value: chartData.filter((d) => d.supplementTiming > 45).length,
+      },
+      {
+        name: "Too Late (<20 min)",
+        value: chartData.filter((d) => d.supplementTiming < 20).length,
+      },
+    ],
+    [chartData]
+  );
 
-  const TIMING_COLORS = [CHART_COLORS.successGreen, CHART_COLORS.primaryBlue, CHART_COLORS.warningOrange, CHART_COLORS.dangerRed];
+  const TIMING_COLORS = [
+    CHART_COLORS.successGreen,
+    CHART_COLORS.primaryBlue,
+    CHART_COLORS.warningOrange,
+    CHART_COLORS.dangerRed,
+  ];
 
   // Generate AI insights
   const aiInsights: AIInsight[] = useMemo(() => {
     const insights: AIInsight[] = [];
-    
+
     // Hydration insights
     if (metrics.avgWaterIntake < 3.0) {
       insights.push({
-        type: 'warning',
-        title: 'Hydration Deficit Alert',
+        type: "warning",
+        title: "Hydration Deficit Alert",
         content: `Average water intake of ${metrics.avgWaterIntake}L is below the recommended 3-4L for athletes. Dehydration can significantly impact performance and recovery.`,
-        priority: 'high',
+        priority: "high",
         actionable: true,
-        relatedMetrics: ['Water Intake', 'Performance', 'Recovery'],
+        relatedMetrics: ["Water Intake", "Performance", "Recovery"],
       });
     } else if (metrics.avgWaterIntake > 4.5) {
       insights.push({
-        type: 'optimization',
-        title: 'Excellent Hydration! 💧',
+        type: "optimization",
+        title: "Excellent Hydration! 💧",
         content: `Outstanding water intake at ${metrics.avgWaterIntake}L daily. Your hydration supports optimal performance and recovery.`,
-        priority: 'low',
+        priority: "low",
         actionable: false,
       });
     }
-    
+
     // Timing insights
     if (metrics.timingConsistency < 5) {
       insights.push({
-        type: 'recommendation',
-        title: 'Supplement Timing Optimization',
+        type: "recommendation",
+        title: "Supplement Timing Optimization",
         content: `Only ${metrics.timingConsistency}/7 days had optimal supplement timing. Aim for 20-45 minutes pre-workout for maximum absorption and effectiveness.`,
-        priority: 'medium',
+        priority: "medium",
         actionable: true,
-        relatedMetrics: ['Supplement Timing', 'Absorption', 'Performance'],
+        relatedMetrics: ["Supplement Timing", "Absorption", "Performance"],
       });
     }
-    
+
     // Sleep quality insights
     if (metrics.avgSleepQuality < 7) {
       insights.push({
-        type: 'warning',
-        title: 'Sleep Quality Impact',
+        type: "warning",
+        title: "Sleep Quality Impact",
         content: `Sleep quality averaging ${metrics.avgSleepQuality}/10 may be limiting recovery. Poor sleep affects supplement absorption and performance gains.`,
-        priority: 'high',
+        priority: "high",
         actionable: true,
-        relatedMetrics: ['Sleep Quality', 'Recovery', 'Hormone Balance'],
+        relatedMetrics: ["Sleep Quality", "Recovery", "Hormone Balance"],
       });
     }
-    
+
     // Meal spacing insights
     if (metrics.avgMealSpacing > 5) {
       insights.push({
-        type: 'recommendation',
-        title: 'Meal Timing Adjustment',
+        type: "recommendation",
+        title: "Meal Timing Adjustment",
         content: `Meal spacing of ${metrics.avgMealSpacing} hours may be too long. Consider 3-4 hour intervals for optimal nutrient absorption and energy stability.`,
-        priority: 'medium',
+        priority: "medium",
         actionable: true,
       });
     }
-    
+
     // Overall performance insights
     if (metrics.overallScore > 85) {
       insights.push({
-        type: 'achievement',
-        title: 'Timing Mastery Achieved! 🎯',
+        type: "achievement",
+        title: "Timing Mastery Achieved! 🎯",
         content: `Your hydration and timing score of ${metrics.overallScore}% indicates excellent optimization. This foundation supports peak wrestling performance.`,
-        priority: 'low',
+        priority: "low",
         actionable: false,
       });
     }
-    
+
     return insights;
   }, [metrics]);
 
@@ -216,10 +279,22 @@ export const HydrationTimingChart: React.FC<HydrationTimingChartProps> = ({
               </CardDescription>
             </div>
             <div className="flex gap-2">
-              <Badge variant="outline" className="bg-blue-50 text-blue-700 border-blue-200">
+              <Badge
+                variant="outline"
+                className="bg-blue-50 text-blue-700 border-blue-200"
+              >
                 {metrics.avgWaterIntake}L daily
               </Badge>
-              <Badge variant="outline" className={`${metrics.overallScore > 80 ? 'bg-green-50 text-green-700 border-green-200' : metrics.overallScore > 60 ? 'bg-yellow-50 text-yellow-700 border-yellow-200' : 'bg-red-50 text-red-700 border-red-200'}`}>
+              <Badge
+                variant="outline"
+                className={`${
+                  metrics.overallScore > 80
+                    ? "bg-green-50 text-green-700 border-green-200"
+                    : metrics.overallScore > 60
+                    ? "bg-yellow-50 text-yellow-700 border-yellow-200"
+                    : "bg-red-50 text-red-700 border-red-200"
+                }`}
+              >
                 {metrics.overallScore}% optimized
               </Badge>
             </div>
@@ -231,36 +306,54 @@ export const HydrationTimingChart: React.FC<HydrationTimingChartProps> = ({
             <div className="bg-blue-50 p-3 rounded-lg">
               <div className="flex items-center gap-2 mb-1">
                 <Droplets className="h-4 w-4 text-blue-600" />
-                <span className="text-sm font-medium text-gray-700">Water Intake</span>
+                <span className="text-sm font-medium text-gray-700">
+                  Water Intake
+                </span>
               </div>
-              <div className="text-xl font-bold text-blue-600">{metrics.avgWaterIntake}L</div>
-              <div className="text-xs text-gray-600">{metrics.hydrationConsistency}/7 days optimal</div>
+              <div className="text-xl font-bold text-blue-600">
+                {metrics.avgWaterIntake}L
+              </div>
+              <div className="text-xs text-gray-600">
+                {metrics.hydrationConsistency}/7 days optimal
+              </div>
             </div>
-            
+
             <div className="bg-purple-50 p-3 rounded-lg">
               <div className="flex items-center gap-2 mb-1">
                 <Clock className="h-4 w-4 text-purple-600" />
-                <span className="text-sm font-medium text-gray-700">Supplement Timing</span>
+                <span className="text-sm font-medium text-gray-700">
+                  Supplement Timing
+                </span>
               </div>
-              <div className="text-xl font-bold text-purple-600">{metrics.avgSupplementTiming}min</div>
+              <div className="text-xl font-bold text-purple-600">
+                {metrics.avgSupplementTiming}min
+              </div>
               <div className="text-xs text-gray-600">Before workout</div>
             </div>
-            
+
             <div className="bg-green-50 p-3 rounded-lg">
               <div className="flex items-center gap-2 mb-1">
                 <Timer className="h-4 w-4 text-green-600" />
-                <span className="text-sm font-medium text-gray-700">Meal Spacing</span>
+                <span className="text-sm font-medium text-gray-700">
+                  Meal Spacing
+                </span>
               </div>
-              <div className="text-xl font-bold text-green-600">{metrics.avgMealSpacing}h</div>
+              <div className="text-xl font-bold text-green-600">
+                {metrics.avgMealSpacing}h
+              </div>
               <div className="text-xs text-gray-600">Between meals</div>
             </div>
-            
+
             <div className="bg-orange-50 p-3 rounded-lg">
               <div className="flex items-center gap-2 mb-1">
                 <Target className="h-4 w-4 text-orange-600" />
-                <span className="text-sm font-medium text-gray-700">Sleep Quality</span>
+                <span className="text-sm font-medium text-gray-700">
+                  Sleep Quality
+                </span>
               </div>
-              <div className="text-xl font-bold text-orange-600">{metrics.avgSleepQuality}/10</div>
+              <div className="text-xl font-bold text-orange-600">
+                {metrics.avgSleepQuality}/10
+              </div>
               <div className="text-xs text-gray-600">Recovery factor</div>
             </div>
           </div>
@@ -273,13 +366,10 @@ export const HydrationTimingChart: React.FC<HydrationTimingChartProps> = ({
                 Weekly Performance Radar
               </h4>
               <div className="h-80">
-                <ReactECharts
-                  option={radarData}
-                  style={{ height: "100%" }}
-                />
+                <ReactECharts option={radarData} style={{ height: "100%" }} />
               </div>
             </div>
-            
+
             <div>
               <h4 className="font-medium text-gray-900 mb-3 flex items-center gap-2">
                 <Clock className="h-4 w-4" />
@@ -297,7 +387,10 @@ export const HydrationTimingChart: React.FC<HydrationTimingChartProps> = ({
                       label={({ name, value }) => `${name}: ${value}`}
                     >
                       {timingDistribution.map((_, index) => (
-                        <Cell key={`cell-${index}`} fill={TIMING_COLORS[index % TIMING_COLORS.length]} />
+                        <Cell
+                          key={`cell-${index}`}
+                          fill={TIMING_COLORS[index % TIMING_COLORS.length]}
+                        />
                       ))}
                     </Pie>
                     <Tooltip />
@@ -315,28 +408,35 @@ export const HydrationTimingChart: React.FC<HydrationTimingChartProps> = ({
             </h4>
             <div className="h-40">
               <ResponsiveContainer width="100%" height="100%">
-                <LineChart data={chartData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+                <LineChart
+                  data={chartData}
+                  margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+                >
                   <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
-                  <XAxis 
-                    dataKey="date" 
+                  <XAxis
+                    dataKey="date"
                     fontSize={10}
-                    tick={{ fill: '#6b7280' }}
+                    tick={{ fill: "#6b7280" }}
                   />
-                  <YAxis 
+                  <YAxis
                     fontSize={10}
-                    tick={{ fill: '#6b7280' }}
+                    tick={{ fill: "#6b7280" }}
                     domain={[0, 5]}
                   />
-                  <Tooltip 
-                    formatter={(value: number) => [`${value}L`, 'Water Intake']}
+                  <Tooltip
+                    formatter={(value: number) => [`${value}L`, "Water Intake"]}
                     labelFormatter={(label) => `Day: ${label}`}
                   />
-                  <Line 
-                    type="monotone" 
-                    dataKey="waterIntake" 
+                  <Line
+                    type="monotone"
+                    dataKey="waterIntake"
                     stroke={CHART_COLORS.primaryBlue}
                     strokeWidth={3}
-                    dot={{ fill: CHART_COLORS.primaryBlue, strokeWidth: 2, r: 4 }}
+                    dot={{
+                      fill: CHART_COLORS.primaryBlue,
+                      strokeWidth: 2,
+                      r: 4,
+                    }}
                   />
                 </LineChart>
               </ResponsiveContainer>
@@ -348,30 +448,37 @@ export const HydrationTimingChart: React.FC<HydrationTimingChartProps> = ({
             <div className="bg-blue-50 p-3 rounded-lg border border-blue-200">
               <div className="flex items-center gap-2 mb-2">
                 <Droplets className="h-4 w-4 text-blue-600" />
-                <span className="font-medium text-blue-900">Hydration Tips</span>
+                <span className="font-medium text-blue-900">
+                  Hydration Tips
+                </span>
               </div>
               <p className="text-xs text-blue-700">
-                Aim for 3-4L daily, with 500ml 2 hours before training and 150-250ml every 15-20 minutes during exercise.
+                Aim for 3-4L daily, with 500ml 2 hours before training and
+                150-250ml every 15-20 minutes during exercise.
               </p>
             </div>
-            
+
             <div className="bg-purple-50 p-3 rounded-lg border border-purple-200">
               <div className="flex items-center gap-2 mb-2">
                 <Clock className="h-4 w-4 text-purple-600" />
                 <span className="font-medium text-purple-900">Timing Tips</span>
               </div>
               <p className="text-xs text-purple-700">
-                Take creatine 30 minutes pre-workout for optimal absorption. Post-workout protein within 30 minutes maximizes recovery.
+                Take creatine 30 minutes pre-workout for optimal absorption.
+                Post-workout protein within 30 minutes maximizes recovery.
               </p>
             </div>
-            
+
             <div className="bg-green-50 p-3 rounded-lg border border-green-200">
               <div className="flex items-center gap-2 mb-2">
                 <Target className="h-4 w-4 text-green-600" />
-                <span className="font-medium text-green-900">Recovery Tips</span>
+                <span className="font-medium text-green-900">
+                  Recovery Tips
+                </span>
               </div>
               <p className="text-xs text-green-700">
-                Maintain 7-9 hours sleep, space meals 3-4 hours apart, and stay hydrated for optimal nutrient absorption.
+                Maintain 7-9 hours sleep, space meals 3-4 hours apart, and stay
+                hydrated for optimal nutrient absorption.
               </p>
             </div>
           </div>
@@ -379,7 +486,7 @@ export const HydrationTimingChart: React.FC<HydrationTimingChartProps> = ({
       </Card>
 
       {/* AI Insights */}
-      <AIInsightPanel 
+      <AIInsightPanel
         insights={aiInsights}
         title="Hydration & Timing Insights"
       />
