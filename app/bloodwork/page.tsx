@@ -10,10 +10,29 @@ import {
 import { Badge } from "@/components/ui/badge";
 import ReactECharts from "echarts-for-react";
 import RedBloodCellsChart from "./components/RedBloodCellsChart";
+import { useMemo } from "react";
 
 // Wrestling-themed colors (typical blue and red from wrestling suits)
 const WRESTLING_BLUE = "#1e40af"; // Deep blue
 const WRESTLING_RED = "#dc2626"; // Classic red
+
+// Shared chart style: responsive height (mobile→desktop)
+const chartStyle = { height: "clamp(260px, 56vw, 360px)" } as const;
+
+// Common chart UX extras for better exploration on mobile
+const commonChartUX = {
+  toolbox: {
+    right: 10,
+    feature: {
+      saveAsImage: {},
+      dataZoom: {},
+    },
+  },
+  dataZoom: [
+    { type: "inside" },
+    { type: "slider", height: 12, bottom: 0 },
+  ],
+};
 
 export default function BloodworkPage() {
   // Individual Blood Cell Count Charts
@@ -74,6 +93,7 @@ export default function BloodworkPage() {
         smooth: true,
       },
     ],
+    ...commonChartUX,
   };
 
   const hemoglobinData = {
@@ -133,6 +153,7 @@ export default function BloodworkPage() {
         smooth: true,
       },
     ],
+    ...commonChartUX,
   };
 
   const hematocritData = {
@@ -192,6 +213,7 @@ export default function BloodworkPage() {
         smooth: true,
       },
     ],
+    ...commonChartUX,
   };
 
   // Individual Metabolic Panel Charts
@@ -252,7 +274,39 @@ export default function BloodworkPage() {
         smooth: true,
       },
     ],
+    ...commonChartUX,
   };
+
+  // Lightweight insights from visible series
+  const getTrend = (arr: number[]) => (arr.at(-1)! - arr[0]) || 0;
+  const getAvg = (arr: number[]) => (arr.reduce((a, b) => a + b, 0) / arr.length);
+  const toPct = (delta: number, base: number) => (base ? (delta / base) * 100 : 0);
+
+  const insights = useMemo(() => {
+    const wbc = wbcData.series[0].data as number[];
+    const hgb = hemoglobinData.series[0].data as number[];
+    const hct = hematocritData.series[0].data as number[];
+    const glu = glucoseData.series[0].data as number[];
+
+    const wbcDelta = getTrend(wbc);
+    const hgbDelta = getTrend(hgb);
+    const hctDelta = getTrend(hct);
+    const gluDelta = getTrend(glu);
+
+    const messages: { label: string; tone: "good" | "warn" | "info" }[] = [];
+    if (Math.abs(hgbDelta) < 0.6) messages.push({ label: "Hemoglobin stable (oxygen delivery steady)", tone: "good" });
+    if (gluDelta < 0) messages.push({ label: "Glucose trending down (good glycemic control)", tone: "good" });
+    if (wbcDelta > 0.5) messages.push({ label: "WBC trending up (monitor recovery/inflammation)", tone: "warn" });
+    if (hctDelta > 0.8) messages.push({ label: "Hematocrit slightly rising (watch hydration)", tone: "warn" });
+
+    return {
+      wbc: { last: wbc.at(-1), avg: getAvg(wbc), delta: wbcDelta },
+      hgb: { last: hgb.at(-1), avg: getAvg(hgb), delta: hgbDelta },
+      hct: { last: hct.at(-1), avg: getAvg(hct), delta: hctDelta },
+      glu: { last: glu.at(-1), avg: getAvg(glu), delta: gluDelta },
+      messages,
+    };
+  }, []);
 
   const bunData = {
     tooltip: {
@@ -1856,9 +1910,9 @@ export default function BloodworkPage() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="max-w-screen-2xl mx-auto px-3 sm:px-6 py-6 sm:py-8">
       <div className="flex items-center justify-between mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">
+        <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">
           Comprehensive Lab Analysis
         </h1>
         <div className="flex gap-2">
@@ -1877,28 +1931,104 @@ export default function BloodworkPage() {
         </div>
       </div>
 
+      {/* Insights & AI Coach */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 mb-10">
+        <Card className="lg:col-span-2">
+          <CardHeader className="pb-3">
+            <CardTitle className="text-xl">Quick Insights</CardTitle>
+            <CardDescription>Auto-summarized from recent trends</CardDescription>
+          </CardHeader>
+          <CardContent className="min-h-[200px]">
+            <div className="flex flex-wrap gap-2 mb-3">
+              {insights.messages.map((m, i) => (
+                <Badge
+                  key={i}
+                  variant="outline"
+                  className={
+                    m.tone === "good"
+                      ? "bg-green-50 text-green-700 border-green-200"
+                      : m.tone === "warn"
+                      ? "bg-amber-50 text-amber-700 border-amber-200"
+                      : "bg-blue-50 text-blue-700 border-blue-200"
+                  }
+                >
+                  {m.label}
+                </Badge>
+              ))}
+            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              <div>
+                <div className="text-xs text-gray-500">WBC</div>
+                <div className="text-lg font-semibold">
+                  {insights.wbc.last} <span className="text-xs text-gray-500">x10³/µL</span>
+                </div>
+              </div>
+              <div>
+                <div className="text-xs text-gray-500">Hemoglobin</div>
+                <div className="text-lg font-semibold">
+                  {insights.hgb.last} <span className="text-xs text-gray-500">g/dL</span>
+                </div>
+              </div>
+              <div>
+                <div className="text-xs text-gray-500">Hematocrit</div>
+                <div className="text-lg font-semibold">
+                  {insights.hct.last}%
+                </div>
+              </div>
+              <div>
+                <div className="text-xs text-gray-500">Glucose</div>
+                <div className="text-lg font-semibold">
+                  {insights.glu.last} <span className="text-xs text-gray-500">mg/dL</span>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader className="pb-3">
+            <CardTitle className="text-xl">AI Coach</CardTitle>
+            <CardDescription>Personalized next steps</CardDescription>
+          </CardHeader>
+          <CardContent className="min-h-[200px]">
+            <ul className="list-disc pl-5 space-y-2 text-sm">
+              <li>
+                Prioritize hydration today to stabilize hematocrit; target +0.5–1L water
+                with electrolytes across sessions.
+              </li>
+              <li>
+                Keep pre-practice carbs ~25–35g; fasting glucose looks well managed.
+              </li>
+              <li>
+                Add vitamin C + omega-3 on high-volume days to moderate WBC uptick.
+              </li>
+            </ul>
+          </CardContent>
+        </Card>
+      </div>
+
       {/* Complete Blood Count (CBC) Section */}
       <div className="mb-12">
         <div className="mb-6">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-2">
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 tracking-tight mb-2">
             Complete Blood Count (CBC)
           </h2>
           <div className="h-0.5 bg-gradient-to-r from-blue-500 to-transparent w-full"></div>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">White Blood Cells</CardTitle>
+              <CardTitle className="text-xl font-semibold">White Blood Cells</CardTitle>
               <CardDescription>Immune system cell count</CardDescription>
             </CardHeader>
             <CardContent>
-              <ReactECharts option={wbcData} style={{ height: "280px" }} />
+              <ReactECharts option={wbcData} style={chartStyle} />
             </CardContent>
           </Card>
 
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">Red Blood Cells</CardTitle>
+              <CardTitle className="text-xl font-semibold">Red Blood Cells</CardTitle>
               <CardDescription>Oxygen transport cell count</CardDescription>
             </CardHeader>
             <CardContent>
@@ -1908,33 +2038,27 @@ export default function BloodworkPage() {
 
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">Hemoglobin</CardTitle>
+              <CardTitle className="text-xl font-semibold">Hemoglobin</CardTitle>
               <CardDescription>Oxygen-carrying protein</CardDescription>
             </CardHeader>
             <CardContent>
-              <ReactECharts
-                option={hemoglobinData}
-                style={{ height: "280px" }}
-              />
+              <ReactECharts option={hemoglobinData} style={chartStyle} />
             </CardContent>
           </Card>
 
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">Hematocrit</CardTitle>
+              <CardTitle className="text-xl font-semibold">Hematocrit</CardTitle>
               <CardDescription>Blood volume percentage</CardDescription>
             </CardHeader>
             <CardContent>
-              <ReactECharts
-                option={hematocritData}
-                style={{ height: "280px" }}
-              />
+              <ReactECharts option={hematocritData} style={chartStyle} />
             </CardContent>
           </Card>
 
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">Platelet Count</CardTitle>
+              <CardTitle className="text-xl font-semibold">Platelet Count</CardTitle>
               <CardDescription>Blood clotting capability</CardDescription>
             </CardHeader>
             <CardContent>
@@ -1947,19 +2071,19 @@ export default function BloodworkPage() {
       {/* Comprehensive Metabolic Panel (CMP) Section */}
       <div className="mb-12">
         <div className="mb-6">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-2">
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 tracking-tight mb-2">
             Comprehensive Metabolic Panel (CMP)
           </h2>
           <div className="h-0.5 bg-gradient-to-r from-green-500 to-transparent w-full"></div>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">Glucose</CardTitle>
+              <CardTitle className="text-xl font-semibold">Glucose</CardTitle>
               <CardDescription>Blood sugar levels</CardDescription>
             </CardHeader>
             <CardContent>
-              <ReactECharts option={glucoseData} style={{ height: "280px" }} />
+              <ReactECharts option={glucoseData} style={chartStyle} />
             </CardContent>
           </Card>
 
@@ -2066,15 +2190,15 @@ export default function BloodworkPage() {
       {/* Lipid Panel Section */}
       <div className="mb-12">
         <div className="mb-6">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-2">
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 tracking-tight mb-2">
             Lipid Panel
           </h2>
           <div className="h-0.5 bg-gradient-to-r from-purple-500 to-transparent w-full"></div>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">Total Cholesterol</CardTitle>
+              <CardTitle className="text-xl font-semibold">Total Cholesterol</CardTitle>
               <CardDescription>Overall cholesterol levels</CardDescription>
             </CardHeader>
             <CardContent>
@@ -2087,7 +2211,7 @@ export default function BloodworkPage() {
 
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">LDL Cholesterol</CardTitle>
+              <CardTitle className="text-xl font-semibold">LDL Cholesterol</CardTitle>
               <CardDescription>
                 &ldquo;Bad&rdquo; cholesterol levels
               </CardDescription>
@@ -2099,7 +2223,7 @@ export default function BloodworkPage() {
 
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">HDL Cholesterol</CardTitle>
+              <CardTitle className="text-xl font-semibold">HDL Cholesterol</CardTitle>
               <CardDescription>
                 &ldquo;Good&rdquo; cholesterol levels
               </CardDescription>
@@ -2111,7 +2235,7 @@ export default function BloodworkPage() {
 
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">Triglycerides</CardTitle>
+              <CardTitle className="text-xl font-semibold">Triglycerides</CardTitle>
               <CardDescription>Blood fat levels</CardDescription>
             </CardHeader>
             <CardContent>
@@ -2127,15 +2251,15 @@ export default function BloodworkPage() {
       {/* Thyroid Function Section */}
       <div className="mb-12">
         <div className="mb-6">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-2">
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 tracking-tight mb-2">
             Thyroid Function Panel
           </h2>
           <div className="h-0.5 bg-gradient-to-r from-indigo-500 to-transparent w-full"></div>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">TSH</CardTitle>
+              <CardTitle className="text-xl font-semibold">TSH</CardTitle>
               <CardDescription>Thyroid stimulating hormone</CardDescription>
             </CardHeader>
             <CardContent>
@@ -2145,7 +2269,7 @@ export default function BloodworkPage() {
 
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">T3 (Triiodothyronine)</CardTitle>
+              <CardTitle className="text-xl font-semibold">T3 (Triiodothyronine)</CardTitle>
               <CardDescription>Active thyroid hormone</CardDescription>
             </CardHeader>
             <CardContent>
@@ -2155,7 +2279,7 @@ export default function BloodworkPage() {
 
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">Free T4</CardTitle>
+              <CardTitle className="text-xl font-semibold">Free T4</CardTitle>
               <CardDescription>Unbound thyroid hormone</CardDescription>
             </CardHeader>
             <CardContent>
@@ -2168,15 +2292,15 @@ export default function BloodworkPage() {
       {/* Vitamins & Minerals Section */}
       <div className="mb-12">
         <div className="mb-6">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-2">
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 tracking-tight mb-2">
             Vitamins & Minerals Panel
           </h2>
           <div className="h-0.5 bg-gradient-to-r from-yellow-500 to-transparent w-full"></div>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">Vitamin D</CardTitle>
+              <CardTitle className="text-xl font-semibold">Vitamin D</CardTitle>
               <CardDescription>Bone health and immunity</CardDescription>
             </CardHeader>
             <CardContent>
@@ -2186,7 +2310,7 @@ export default function BloodworkPage() {
 
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">Vitamin B12</CardTitle>
+              <CardTitle className="text-xl font-semibold">Vitamin B12</CardTitle>
               <CardDescription>Energy metabolism support</CardDescription>
             </CardHeader>
             <CardContent>
@@ -2199,7 +2323,7 @@ export default function BloodworkPage() {
 
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">Folate</CardTitle>
+              <CardTitle className="text-xl font-semibold">Folate</CardTitle>
               <CardDescription>Cell division and DNA synthesis</CardDescription>
             </CardHeader>
             <CardContent>
@@ -2209,7 +2333,7 @@ export default function BloodworkPage() {
 
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">Iron</CardTitle>
+              <CardTitle className="text-xl font-semibold">Iron</CardTitle>
               <CardDescription>Oxygen transport mineral</CardDescription>
             </CardHeader>
             <CardContent>
@@ -2219,7 +2343,7 @@ export default function BloodworkPage() {
 
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">Ferritin</CardTitle>
+              <CardTitle className="text-xl font-semibold">Ferritin</CardTitle>
               <CardDescription>Iron storage protein</CardDescription>
             </CardHeader>
             <CardContent>
@@ -2232,12 +2356,12 @@ export default function BloodworkPage() {
       {/* Inflammatory Markers Section */}
       <div className="mb-12">
         <div className="mb-6">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-2">
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 tracking-tight mb-2">
             Inflammatory Markers
           </h2>
           <div className="h-0.5 bg-gradient-to-r from-orange-500 to-transparent w-full"></div>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <Card>
             <CardHeader>
               <CardTitle className="text-lg">
@@ -2287,15 +2411,15 @@ export default function BloodworkPage() {
       {/* Urine Analysis Section */}
       <div className="mb-12">
         <div className="mb-6">
-          <h2 className="text-2xl font-semibold text-gray-800 mb-2">
+          <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 tracking-tight mb-2">
             Urine Analysis
           </h2>
           <div className="h-0.5 bg-gradient-to-r from-cyan-500 to-transparent w-full"></div>
         </div>
-        <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">Specific Gravity</CardTitle>
+              <CardTitle className="text-xl font-semibold">Specific Gravity</CardTitle>
               <CardDescription>Hydration status indicator</CardDescription>
             </CardHeader>
             <CardContent>
@@ -2308,7 +2432,7 @@ export default function BloodworkPage() {
 
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">Protein</CardTitle>
+              <CardTitle className="text-xl font-semibold">Protein</CardTitle>
               <CardDescription>Kidney function marker</CardDescription>
             </CardHeader>
             <CardContent>
@@ -2321,7 +2445,7 @@ export default function BloodworkPage() {
 
           <Card>
             <CardHeader>
-              <CardTitle className="text-lg">Creatinine (Urine)</CardTitle>
+              <CardTitle className="text-xl font-semibold">Creatinine (Urine)</CardTitle>
               <CardDescription>Muscle metabolism waste product</CardDescription>
             </CardHeader>
             <CardContent>
@@ -2335,10 +2459,10 @@ export default function BloodworkPage() {
       </div>
 
       {/* Summary Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium">
+            <CardTitle className="text-sm font-semibold tracking-wide">
               Overall Health Score
             </CardTitle>
           </CardHeader>
@@ -2350,7 +2474,7 @@ export default function BloodworkPage() {
 
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium">
+            <CardTitle className="text-sm font-semibold tracking-wide">
               Testosterone Status
             </CardTitle>
           </CardHeader>
@@ -2362,7 +2486,7 @@ export default function BloodworkPage() {
 
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium">
+            <CardTitle className="text-sm font-semibold tracking-wide">
               Recovery Index
             </CardTitle>
           </CardHeader>
@@ -2374,7 +2498,7 @@ export default function BloodworkPage() {
 
         <Card>
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium">
+            <CardTitle className="text-sm font-semibold tracking-wide">
               Hydration Level
             </CardTitle>
           </CardHeader>

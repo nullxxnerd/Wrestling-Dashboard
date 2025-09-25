@@ -3,14 +3,16 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { Activity, BarChart3, Droplets, Home, Scale } from "lucide-react";
+import { BarChart3, Home, Scale, Heart, Pill, Target } from "lucide-react";
+import { MobileSidebar } from "@/components/mobile-sidebar";
 
 const navigation = [
   { name: "Dashboard", href: "/", icon: Home },
-  { name: "Blood Work", href: "/bloodwork", icon: Activity },
+  { name: "Blood Work", href: "/bloodwork", icon: Target },
   { name: "Body Composition", href: "/body-composition", icon: Scale },
   { name: "Lifting Metrics", href: "/lifting", icon: BarChart3 },
-  { name: "Supplements", href: "/supplements", icon: Droplets },
+  { name: "Recovery", href: "/recovery", icon: Heart },
+  { name: "Supplements", href: "/supplements", icon: Pill },
 ];
 
 export default function Navbar() {
@@ -18,7 +20,7 @@ export default function Navbar() {
 
   return (
     <nav className="bg-white border-b border-gray-200 shadow-sm">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4">
         <div className="flex justify-between h-16">
           <div className="flex">
             <div className="flex-shrink-0 flex items-center">
@@ -26,72 +28,47 @@ export default function Navbar() {
                 Wrestling MVP Dashboard
               </h1>
             </div>
-            <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
+            <div className="hidden md:ml-6 md:flex md:space-x-2">
               {navigation.map((item) => {
                 const Icon = item.icon;
-                const isActive = pathname === item.href;
+                const isActive =
+                  pathname === item.href ||
+                  (item.href !== "/" && pathname.startsWith(item.href));
                 return (
                   <Link
                     key={item.name}
                     href={item.href}
                     className={cn(
-                      "inline-flex items-center px-1 pt-1 border-b-2 text-sm font-medium gap-2",
+                      "inline-flex items-center px-3 py-2 rounded-t-lg text-sm font-medium gap-2 transition-all duration-200 relative",
                       isActive
-                        ? "border-blue-500 text-gray-900"
-                        : "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700"
+                        ? "bg-blue-50 text-blue-700 shadow-sm border-b-2 border-blue-600 dark:bg-blue-950 dark:text-blue-100 dark:border-blue-400"
+                        : "text-gray-600 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-800 dark:hover:text-gray-100"
                     )}
                   >
-                    <Icon className="h-4 w-4" />
-                    {item.name}
+                    <Icon
+                      className={cn(
+                        "h-4 w-4 transition-colors",
+                        isActive ? "text-blue-600 dark:text-blue-400" : ""
+                      )}
+                    />
+                    <span
+                      className={cn(
+                        "transition-colors",
+                        isActive ? "font-semibold" : ""
+                      )}
+                    >
+                      {item.name}
+                    </span>
                   </Link>
                 );
               })}
             </div>
           </div>
 
-          {/* Mobile menu button */}
-          <div className="sm:hidden flex items-center">
-            <button className="text-gray-500 hover:text-gray-700 focus:outline-none focus:text-gray-700">
-              <svg
-                className="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
-            </button>
+          {/* Mobile sidebar */}
+          <div className="md:hidden flex items-center">
+            <MobileSidebar />
           </div>
-        </div>
-      </div>
-
-      {/* Mobile navigation menu */}
-      <div className="sm:hidden">
-        <div className="pt-2 pb-3 space-y-1">
-          {navigation.map((item) => {
-            const Icon = item.icon;
-            const isActive = pathname === item.href;
-            return (
-              <Link
-                key={item.name}
-                href={item.href}
-                className={cn(
-                  "flex items-center gap-2 pl-3 pr-4 py-2 border-l-4 text-base font-medium",
-                  isActive
-                    ? "bg-blue-50 border-blue-500 text-blue-700"
-                    : "border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700"
-                )}
-              >
-                <Icon className="h-5 w-5" />
-                {item.name}
-              </Link>
-            );
-          })}
         </div>
       </div>
     </nav>
