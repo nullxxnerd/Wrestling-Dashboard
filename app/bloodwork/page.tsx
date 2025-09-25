@@ -18,57 +18,57 @@ const WRESTLING_BLUE = "#1e40af"; // Deep blue
 const WRESTLING_RED = "#dc2626"; // Classic red
 // Additional color constants for future use
 // const WRESTLING_GREEN = "#059669";
-// const WRESTLING_PURPLE = "#7c3aed"; 
+// const WRESTLING_PURPLE = "#7c3aed";
 // const WRESTLING_ORANGE = "#f59e0b";
 
 // Enhanced chart styling for better mobile experience
-const chartStyle = { 
+const chartStyle = {
   height: "clamp(300px, 45vh, 400px)",
-  width: "100%"
+  width: "100%",
 } as const;
 
 // Mobile-optimized chart style
-const mobileChartStyle = { 
+const mobileChartStyle = {
   height: "280px",
-  width: "100%"
+  width: "100%",
 } as const;
 
-  // Common chart UX extras for better exploration on mobile
+// Common chart UX extras for better exploration on mobile
 const commonChartUX = {
   toolbox: {
     right: 10,
     feature: {
-      saveAsImage: { title: 'Save Chart' },
-      dataZoom: { title: { zoom: 'Zoom', back: 'Reset Zoom' } },
-      restore: { title: 'Restore' }
+      saveAsImage: { title: "Save Chart" },
+      dataZoom: { title: { zoom: "Zoom", back: "Reset Zoom" } },
+      restore: { title: "Restore" },
     },
     iconStyle: {
       borderWidth: 0,
-      color: '#666'
-    }
+      color: "#666",
+    },
   },
   dataZoom: [
-    { 
+    {
       type: "inside",
       zoomOnMouseWheel: true,
       moveOnMouseMove: true,
-      moveOnMouseWheel: false
+      moveOnMouseWheel: false,
     },
-    { 
-      type: "slider", 
-      height: 12, 
+    {
+      type: "slider",
+      height: 12,
       bottom: 0,
-      borderColor: '#ddd',
-      fillerColor: 'rgba(30, 64, 175, 0.2)',
+      borderColor: "#ddd",
+      fillerColor: "rgba(30, 64, 175, 0.2)",
       handleStyle: {
-        color: '#1e40af'
-      }
+        color: "#1e40af",
+      },
     },
   ],
   animation: true,
   animationDuration: 750,
-  animationEasing: 'cubicOut'
-};// Enhanced mobile-first chart configuration
+  animationEasing: "cubicOut",
+}; // Enhanced mobile-first chart configuration
 const getCommonChartConfig = (isMobile = false) => ({
   responsive: true,
   maintainAspectRatio: false,
@@ -77,21 +77,21 @@ const getCommonChartConfig = (isMobile = false) => ({
     right: 10,
     top: 10,
     feature: {
-      saveAsImage: { title: 'Save' },
-      dataZoom: { title: { zoom: 'Zoom', back: 'Reset' } },
+      saveAsImage: { title: "Save" },
+      dataZoom: { title: { zoom: "Zoom", back: "Reset" } },
     },
   },
   dataZoom: [
-    { 
+    {
       type: "inside",
       start: 0,
       end: 100,
       zoomOnMouseWheel: true,
       moveOnMouseMove: true,
     },
-    { 
-      type: "slider", 
-      height: isMobile ? 8 : 12, 
+    {
+      type: "slider",
+      height: isMobile ? 8 : 12,
       bottom: 0,
       show: !isMobile,
     },
@@ -106,19 +106,23 @@ const getCommonChartConfig = (isMobile = false) => ({
 });
 
 // Section separator component
-const SectionSeparator = ({ title, description, color = "blue" }: { 
-  title: string; 
+const SectionSeparator = ({
+  title,
+  description,
+  color = "blue",
+}: {
+  title: string;
   description?: string;
   color?: "blue" | "red" | "green" | "purple" | "orange";
 }) => {
   const colorClasses = {
     blue: "from-blue-500 to-blue-300",
-    red: "from-red-500 to-red-300", 
+    red: "from-red-500 to-red-300",
     green: "from-green-500 to-green-300",
     purple: "from-purple-500 to-purple-300",
     orange: "from-orange-500 to-orange-300",
   };
-  
+
   return (
     <div className="mb-8 sm:mb-10">
       <div className="mb-4">
@@ -126,9 +130,13 @@ const SectionSeparator = ({ title, description, color = "blue" }: {
           {title}
         </h2>
         {description && (
-          <p className="text-sm sm:text-base text-gray-600 mb-3">{description}</p>
+          <p className="text-sm sm:text-base text-gray-600 mb-3">
+            {description}
+          </p>
         )}
-        <div className={`h-1 bg-gradient-to-r ${colorClasses[color]} to-transparent w-full rounded-full`}></div>
+        <div
+          className={`h-1 bg-gradient-to-r ${colorClasses[color]} to-transparent w-full rounded-full`}
+        ></div>
       </div>
     </div>
   );
@@ -143,12 +151,12 @@ export default function BloodworkPage() {
         type: "cross",
       },
       confine: true,
-      backgroundColor: 'rgba(0, 0, 0, 0.8)',
-      borderColor: '#333',
+      backgroundColor: "rgba(0, 0, 0, 0.8)",
+      borderColor: "#333",
       textStyle: {
-        color: '#fff',
-        fontSize: 12
-      }
+        color: "#fff",
+        fontSize: 12,
+      },
     },
     grid: {
       left: "8%",
@@ -385,9 +393,10 @@ export default function BloodworkPage() {
   };
 
   // Lightweight insights from visible series
-  const getTrend = (arr: number[]) => (arr.at(-1)! - arr[0]) || 0;
-  const getAvg = (arr: number[]) => (arr.reduce((a, b) => a + b, 0) / arr.length);
-  const toPct = (delta: number, base: number) => (base ? (delta / base) * 100 : 0);
+  const getTrend = (arr: number[]) => arr.at(-1)! - arr[0] || 0;
+  const getAvg = (arr: number[]) => arr.reduce((a, b) => a + b, 0) / arr.length;
+  const toPct = (delta: number, base: number) =>
+    base ? (delta / base) * 100 : 0;
 
   const insights = useMemo(() => {
     const wbc = wbcData.series[0].data as number[];
@@ -401,10 +410,26 @@ export default function BloodworkPage() {
     const gluDelta = getTrend(glu);
 
     const messages: { label: string; tone: "good" | "warn" | "info" }[] = [];
-    if (Math.abs(hgbDelta) < 0.6) messages.push({ label: "Hemoglobin stable (oxygen delivery steady)", tone: "good" });
-    if (gluDelta < 0) messages.push({ label: "Glucose trending down (good glycemic control)", tone: "good" });
-    if (wbcDelta > 0.5) messages.push({ label: "WBC trending up (monitor recovery/inflammation)", tone: "warn" });
-    if (hctDelta > 0.8) messages.push({ label: "Hematocrit slightly rising (watch hydration)", tone: "warn" });
+    if (Math.abs(hgbDelta) < 0.6)
+      messages.push({
+        label: "Hemoglobin stable (oxygen delivery steady)",
+        tone: "good",
+      });
+    if (gluDelta < 0)
+      messages.push({
+        label: "Glucose trending down (good glycemic control)",
+        tone: "good",
+      });
+    if (wbcDelta > 0.5)
+      messages.push({
+        label: "WBC trending up (monitor recovery/inflammation)",
+        tone: "warn",
+      });
+    if (hctDelta > 0.8)
+      messages.push({
+        label: "Hematocrit slightly rising (watch hydration)",
+        tone: "warn",
+      });
 
     return {
       wbc: { last: wbc.at(-1), avg: getAvg(wbc), delta: wbcDelta },
@@ -413,7 +438,12 @@ export default function BloodworkPage() {
       glu: { last: glu.at(-1), avg: getAvg(glu), delta: gluDelta },
       messages,
     };
-  }, [wbcData.series, hemoglobinData.series, hematocritData.series, glucoseData.series]);
+  }, [
+    wbcData.series,
+    hemoglobinData.series,
+    hematocritData.series,
+    glucoseData.series,
+  ]);
 
   const bunData = {
     tooltip: {
@@ -2046,7 +2076,8 @@ export default function BloodworkPage() {
         </div>
         <div className="h-1 bg-gradient-to-r from-blue-600 via-purple-500 to-green-500 w-full rounded-full mb-2"></div>
         <p className="text-sm text-gray-500 font-medium">
-          Real-time biomarker tracking for optimal performance, recovery, and health management
+          Real-time biomarker tracking for optimal performance, recovery, and
+          health management
         </p>
       </div>
 
@@ -2055,28 +2086,52 @@ export default function BloodworkPage() {
         <Card className="bg-gradient-to-r from-gray-50 to-white border-2 border-gray-200">
           <CardContent className="p-4">
             <div className="flex flex-wrap gap-2 justify-center sm:justify-start">
-              <a href="#insights" className="bg-blue-100 hover:bg-blue-200 text-blue-800 px-3 py-2 rounded-full text-sm font-medium transition-colors">
+              <a
+                href="#insights"
+                className="bg-blue-100 hover:bg-blue-200 text-blue-800 px-3 py-2 rounded-full text-sm font-medium transition-colors"
+              >
                 📊 Insights
               </a>
-              <a href="#cbc" className="bg-red-100 hover:bg-red-200 text-red-800 px-3 py-2 rounded-full text-sm font-medium transition-colors">
+              <a
+                href="#cbc"
+                className="bg-red-100 hover:bg-red-200 text-red-800 px-3 py-2 rounded-full text-sm font-medium transition-colors"
+              >
                 🩸 Blood Count
               </a>
-              <a href="#metabolic" className="bg-green-100 hover:bg-green-200 text-green-800 px-3 py-2 rounded-full text-sm font-medium transition-colors">
+              <a
+                href="#metabolic"
+                className="bg-green-100 hover:bg-green-200 text-green-800 px-3 py-2 rounded-full text-sm font-medium transition-colors"
+              >
                 🧪 Metabolic Panel
               </a>
-              <a href="#hormones" className="bg-purple-100 hover:bg-purple-200 text-purple-800 px-3 py-2 rounded-full text-sm font-medium transition-colors">
+              <a
+                href="#hormones"
+                className="bg-purple-100 hover:bg-purple-200 text-purple-800 px-3 py-2 rounded-full text-sm font-medium transition-colors"
+              >
                 💪 Hormones
               </a>
-              <a href="#lipids" className="bg-indigo-100 hover:bg-indigo-200 text-indigo-800 px-3 py-2 rounded-full text-sm font-medium transition-colors">
+              <a
+                href="#lipids"
+                className="bg-indigo-100 hover:bg-indigo-200 text-indigo-800 px-3 py-2 rounded-full text-sm font-medium transition-colors"
+              >
                 🫀 Lipids
               </a>
-              <a href="#thyroid" className="bg-yellow-100 hover:bg-yellow-200 text-yellow-800 px-3 py-2 rounded-full text-sm font-medium transition-colors">
+              <a
+                href="#thyroid"
+                className="bg-yellow-100 hover:bg-yellow-200 text-yellow-800 px-3 py-2 rounded-full text-sm font-medium transition-colors"
+              >
                 ⚡ Thyroid
               </a>
-              <a href="#vitamins" className="bg-orange-100 hover:bg-orange-200 text-orange-800 px-3 py-2 rounded-full text-sm font-medium transition-colors">
+              <a
+                href="#vitamins"
+                className="bg-orange-100 hover:bg-orange-200 text-orange-800 px-3 py-2 rounded-full text-sm font-medium transition-colors"
+              >
                 🍊 Vitamins
               </a>
-              <a href="#inflammation" className="bg-pink-100 hover:bg-pink-200 text-pink-800 px-3 py-2 rounded-full text-sm font-medium transition-colors">
+              <a
+                href="#inflammation"
+                className="bg-pink-100 hover:bg-pink-200 text-pink-800 px-3 py-2 rounded-full text-sm font-medium transition-colors"
+              >
                 🔥 Inflammation
               </a>
             </div>
@@ -2105,11 +2160,12 @@ export default function BloodworkPage() {
                     variant="outline"
                     className={`
                       text-xs font-semibold px-3 py-2 whitespace-nowrap
-                      ${m.tone === "good"
-                        ? "bg-green-50 text-green-700 border-green-300 shadow-sm"
-                        : m.tone === "warn"
-                        ? "bg-amber-50 text-amber-700 border-amber-300 shadow-sm"
-                        : "bg-blue-50 text-blue-700 border-blue-300 shadow-sm"
+                      ${
+                        m.tone === "good"
+                          ? "bg-green-50 text-green-700 border-green-300 shadow-sm"
+                          : m.tone === "warn"
+                          ? "bg-amber-50 text-amber-700 border-amber-300 shadow-sm"
+                          : "bg-blue-50 text-blue-700 border-blue-300 shadow-sm"
                       }
                     `}
                   >
@@ -2121,31 +2177,39 @@ export default function BloodworkPage() {
                 ))}
               </div>
             </div>
-            
+
             {/* Key Metrics Grid */}
             <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 pt-2">
               <div className="text-center p-3 bg-gray-50 rounded-lg">
-                <div className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">WBC</div>
+                <div className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">
+                  WBC
+                </div>
                 <div className="text-lg sm:text-xl font-bold text-gray-900">
                   {insights.wbc.last}
                 </div>
                 <div className="text-xs text-gray-500 font-medium">×10³/µL</div>
               </div>
               <div className="text-center p-3 bg-gray-50 rounded-lg">
-                <div className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">Hemoglobin</div>
+                <div className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">
+                  Hemoglobin
+                </div>
                 <div className="text-lg sm:text-xl font-bold text-gray-900">
                   {insights.hgb.last}
                 </div>
                 <div className="text-xs text-gray-500 font-medium">g/dL</div>
               </div>
               <div className="text-center p-3 bg-gray-50 rounded-lg">
-                <div className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">Hematocrit</div>
+                <div className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">
+                  Hematocrit
+                </div>
                 <div className="text-lg sm:text-xl font-bold text-gray-900">
                   {insights.hct.last}%
                 </div>
               </div>
               <div className="text-center p-3 bg-gray-50 rounded-lg">
-                <div className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">Glucose</div>
+                <div className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-1">
+                  Glucose
+                </div>
                 <div className="text-lg sm:text-xl font-bold text-gray-900">
                   {insights.glu.last}
                 </div>
@@ -2167,14 +2231,16 @@ export default function BloodworkPage() {
           <CardContent className="p-6">
             <ul className="list-disc pl-5 space-y-2 text-sm">
               <li>
-                Prioritize hydration today to stabilize hematocrit; target +0.5–1L water
-                with electrolytes across sessions.
+                Prioritize hydration today to stabilize hematocrit; target
+                +0.5–1L water with electrolytes across sessions.
               </li>
               <li>
-                Keep pre-practice carbs ~25–35g; fasting glucose looks well managed.
+                Keep pre-practice carbs ~25–35g; fasting glucose looks well
+                managed.
               </li>
               <li>
-                Add vitamin C + omega-3 on high-volume days to moderate WBC uptick.
+                Add vitamin C + omega-3 on high-volume days to moderate WBC
+                uptick.
               </li>
             </ul>
           </CardContent>
@@ -2183,12 +2249,12 @@ export default function BloodworkPage() {
 
       {/* Complete Blood Count (CBC) Section */}
       <div id="cbc" className="mb-12">
-        <SectionSeparator 
-          title="🩸 Complete Blood Count (CBC)" 
+        <SectionSeparator
+          title="🩸 Complete Blood Count (CBC)"
           description="Essential blood cell counts and immune system markers for athletic performance"
-          color="red" 
+          color="red"
         />
-        
+
         {/* CBC Key Insights */}
         <div className="mb-8">
           <Card className="bg-gradient-to-r from-red-50 to-orange-50 border-l-4 border-l-red-500">
@@ -2204,49 +2270,89 @@ export default function BloodworkPage() {
               {/* Current Values Grid */}
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
                 <div className="text-center p-3 bg-white/70 rounded-lg border border-red-200">
-                  <div className="text-xs font-semibold text-red-600 uppercase tracking-wide mb-1">WBC</div>
-                  <div className="text-lg font-bold text-gray-900">{insights.wbc.last}</div>
+                  <div className="text-xs font-semibold text-red-600 uppercase tracking-wide mb-1">
+                    WBC
+                  </div>
+                  <div className="text-lg font-bold text-gray-900">
+                    {insights.wbc.last}
+                  </div>
                   <div className="text-xs text-gray-600">×10³/µL</div>
-                  <div className="text-xs mt-1 font-medium text-green-600">Normal Range</div>
+                  <div className="text-xs mt-1 font-medium text-green-600">
+                    Normal Range
+                  </div>
                 </div>
                 <div className="text-center p-3 bg-white/70 rounded-lg border border-red-200">
-                  <div className="text-xs font-semibold text-red-600 uppercase tracking-wide mb-1">RBC</div>
+                  <div className="text-xs font-semibold text-red-600 uppercase tracking-wide mb-1">
+                    RBC
+                  </div>
                   <div className="text-lg font-bold text-gray-900">4.8</div>
                   <div className="text-xs text-gray-600">×10⁶/µL</div>
-                  <div className="text-xs mt-1 font-medium text-green-600">Optimal</div>
+                  <div className="text-xs mt-1 font-medium text-green-600">
+                    Optimal
+                  </div>
                 </div>
                 <div className="text-center p-3 bg-white/70 rounded-lg border border-red-200">
-                  <div className="text-xs font-semibold text-red-600 uppercase tracking-wide mb-1">Hemoglobin</div>
-                  <div className="text-lg font-bold text-gray-900">{insights.hgb.last}</div>
+                  <div className="text-xs font-semibold text-red-600 uppercase tracking-wide mb-1">
+                    Hemoglobin
+                  </div>
+                  <div className="text-lg font-bold text-gray-900">
+                    {insights.hgb.last}
+                  </div>
                   <div className="text-xs text-gray-600">g/dL</div>
-                  <div className="text-xs mt-1 font-medium text-green-600">Excellent</div>
+                  <div className="text-xs mt-1 font-medium text-green-600">
+                    Excellent
+                  </div>
                 </div>
                 <div className="text-center p-3 bg-white/70 rounded-lg border border-red-200">
-                  <div className="text-xs font-semibold text-red-600 uppercase tracking-wide mb-1">Hematocrit</div>
-                  <div className="text-lg font-bold text-gray-900">{insights.hct.last}%</div>
-                  <div className="text-xs mt-1 font-medium text-green-600">Good</div>
+                  <div className="text-xs font-semibold text-red-600 uppercase tracking-wide mb-1">
+                    Hematocrit
+                  </div>
+                  <div className="text-lg font-bold text-gray-900">
+                    {insights.hct.last}%
+                  </div>
+                  <div className="text-xs mt-1 font-medium text-green-600">
+                    Good
+                  </div>
                 </div>
               </div>
-              
+
               {/* CBC Insights */}
               <div className="bg-white/50 p-4 rounded-lg border border-red-200">
-                <h4 className="font-semibold text-gray-900 mb-2 text-sm">🎯 Performance Analysis:</h4>
+                <h4 className="font-semibold text-gray-900 mb-2 text-sm">
+                  🎯 Performance Analysis:
+                </h4>
                 <ul className="space-y-2 text-sm text-gray-700">
                   <li className="flex items-start gap-2">
                     <span className="text-green-500 mt-0.5">✓</span>
-                    <span><strong>Oxygen Delivery:</strong> Hemoglobin at {insights.hgb.last} g/dL indicates excellent oxygen-carrying capacity for endurance performance.</span>
+                    <span>
+                      <strong>Oxygen Delivery:</strong> Hemoglobin at{" "}
+                      {insights.hgb.last} g/dL indicates excellent
+                      oxygen-carrying capacity for endurance performance.
+                    </span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-green-500 mt-0.5">✓</span>
-                    <span><strong>Blood Volume:</strong> Hematocrit at {insights.hct.last}% suggests optimal blood thickness for circulation and performance.</span>
+                    <span>
+                      <strong>Blood Volume:</strong> Hematocrit at{" "}
+                      {insights.hct.last}% suggests optimal blood thickness for
+                      circulation and performance.
+                    </span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-blue-500 mt-0.5">ℹ</span>
-                    <span><strong>Immune Status:</strong> WBC count at {insights.wbc.last}×10³/µL indicates healthy immune function with no signs of overtraining.</span>
+                    <span>
+                      <strong>Immune Status:</strong> WBC count at{" "}
+                      {insights.wbc.last}×10³/µL indicates healthy immune
+                      function with no signs of overtraining.
+                    </span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-orange-500 mt-0.5">⚠</span>
-                    <span><strong>Recommendation:</strong> Monitor hydration closely during intense training to maintain optimal hematocrit levels.</span>
+                    <span>
+                      <strong>Recommendation:</strong> Monitor hydration closely
+                      during intense training to maintain optimal hematocrit
+                      levels.
+                    </span>
                   </li>
                 </ul>
               </div>
@@ -2257,7 +2363,9 @@ export default function BloodworkPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <Card>
             <CardHeader>
-              <CardTitle className="text-xl font-semibold">White Blood Cells</CardTitle>
+              <CardTitle className="text-xl font-semibold">
+                White Blood Cells
+              </CardTitle>
               <CardDescription>Immune system cell count</CardDescription>
             </CardHeader>
             <CardContent>
@@ -2267,7 +2375,9 @@ export default function BloodworkPage() {
 
           <Card>
             <CardHeader>
-              <CardTitle className="text-xl font-semibold">Red Blood Cells</CardTitle>
+              <CardTitle className="text-xl font-semibold">
+                Red Blood Cells
+              </CardTitle>
               <CardDescription>Oxygen transport cell count</CardDescription>
             </CardHeader>
             <CardContent>
@@ -2277,7 +2387,9 @@ export default function BloodworkPage() {
 
           <Card>
             <CardHeader>
-              <CardTitle className="text-xl font-semibold">Hemoglobin</CardTitle>
+              <CardTitle className="text-xl font-semibold">
+                Hemoglobin
+              </CardTitle>
               <CardDescription>Oxygen-carrying protein</CardDescription>
             </CardHeader>
             <CardContent>
@@ -2287,7 +2399,9 @@ export default function BloodworkPage() {
 
           <Card>
             <CardHeader>
-              <CardTitle className="text-xl font-semibold">Hematocrit</CardTitle>
+              <CardTitle className="text-xl font-semibold">
+                Hematocrit
+              </CardTitle>
               <CardDescription>Blood volume percentage</CardDescription>
             </CardHeader>
             <CardContent>
@@ -2297,7 +2411,9 @@ export default function BloodworkPage() {
 
           <Card>
             <CardHeader>
-              <CardTitle className="text-xl font-semibold">Platelet Count</CardTitle>
+              <CardTitle className="text-xl font-semibold">
+                Platelet Count
+              </CardTitle>
               <CardDescription>Blood clotting capability</CardDescription>
             </CardHeader>
             <CardContent>
@@ -2309,10 +2425,10 @@ export default function BloodworkPage() {
 
       {/* Comprehensive Metabolic Panel (CMP) Section */}
       <div id="metabolic" className="mb-12">
-        <SectionSeparator 
-          title="🧪 Comprehensive Metabolic Panel (CMP)" 
+        <SectionSeparator
+          title="🧪 Comprehensive Metabolic Panel (CMP)"
           description="Kidney function, blood sugar, and electrolyte balance assessment"
-          color="green" 
+          color="green"
         />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <Card>
@@ -2366,10 +2482,10 @@ export default function BloodworkPage() {
 
       {/* Hormone Panel Section */}
       <div id="hormones" className="mb-12">
-        <SectionSeparator 
-          title="💪 Hormone Panel" 
+        <SectionSeparator
+          title="💪 Hormone Panel"
           description="Testosterone, LH, FSH levels crucial for strength and recovery"
-          color="purple" 
+          color="purple"
         />
         <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
           <Card>
@@ -2426,15 +2542,17 @@ export default function BloodworkPage() {
 
       {/* Lipid Panel Section */}
       <div id="lipids" className="mb-12">
-        <SectionSeparator 
-          title="🫀 Lipid Panel" 
+        <SectionSeparator
+          title="🫀 Lipid Panel"
           description="Cholesterol and cardiovascular health markers for athlete wellness"
-          color="purple" 
+          color="purple"
         />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <Card>
             <CardHeader>
-              <CardTitle className="text-xl font-semibold">Total Cholesterol</CardTitle>
+              <CardTitle className="text-xl font-semibold">
+                Total Cholesterol
+              </CardTitle>
               <CardDescription>Overall cholesterol levels</CardDescription>
             </CardHeader>
             <CardContent>
@@ -2447,7 +2565,9 @@ export default function BloodworkPage() {
 
           <Card>
             <CardHeader>
-              <CardTitle className="text-xl font-semibold">LDL Cholesterol</CardTitle>
+              <CardTitle className="text-xl font-semibold">
+                LDL Cholesterol
+              </CardTitle>
               <CardDescription>
                 &ldquo;Bad&rdquo; cholesterol levels
               </CardDescription>
@@ -2459,7 +2579,9 @@ export default function BloodworkPage() {
 
           <Card>
             <CardHeader>
-              <CardTitle className="text-xl font-semibold">HDL Cholesterol</CardTitle>
+              <CardTitle className="text-xl font-semibold">
+                HDL Cholesterol
+              </CardTitle>
               <CardDescription>
                 &ldquo;Good&rdquo; cholesterol levels
               </CardDescription>
@@ -2471,7 +2593,9 @@ export default function BloodworkPage() {
 
           <Card>
             <CardHeader>
-              <CardTitle className="text-xl font-semibold">Triglycerides</CardTitle>
+              <CardTitle className="text-xl font-semibold">
+                Triglycerides
+              </CardTitle>
               <CardDescription>Blood fat levels</CardDescription>
             </CardHeader>
             <CardContent>
@@ -2486,10 +2610,10 @@ export default function BloodworkPage() {
 
       {/* Thyroid Function Section */}
       <div id="thyroid" className="mb-12">
-        <SectionSeparator 
-          title="⚡ Thyroid Function Panel" 
+        <SectionSeparator
+          title="⚡ Thyroid Function Panel"
           description="TSH, T3, T4 levels affecting metabolism and energy regulation"
-          color="purple" 
+          color="purple"
         />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <Card>
@@ -2504,7 +2628,9 @@ export default function BloodworkPage() {
 
           <Card>
             <CardHeader>
-              <CardTitle className="text-xl font-semibold">T3 (Triiodothyronine)</CardTitle>
+              <CardTitle className="text-xl font-semibold">
+                T3 (Triiodothyronine)
+              </CardTitle>
               <CardDescription>Active thyroid hormone</CardDescription>
             </CardHeader>
             <CardContent>
@@ -2526,10 +2652,10 @@ export default function BloodworkPage() {
 
       {/* Vitamins & Minerals Section */}
       <div id="vitamins" className="mb-12">
-        <SectionSeparator 
-          title="🍊 Vitamins & Minerals Panel" 
+        <SectionSeparator
+          title="🍊 Vitamins & Minerals Panel"
           description="Essential micronutrients for optimal athletic performance and recovery"
-          color="orange" 
+          color="orange"
         />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <Card>
@@ -2544,7 +2670,9 @@ export default function BloodworkPage() {
 
           <Card>
             <CardHeader>
-              <CardTitle className="text-xl font-semibold">Vitamin B12</CardTitle>
+              <CardTitle className="text-xl font-semibold">
+                Vitamin B12
+              </CardTitle>
               <CardDescription>Energy metabolism support</CardDescription>
             </CardHeader>
             <CardContent>
@@ -2589,10 +2717,10 @@ export default function BloodworkPage() {
 
       {/* Inflammatory Markers Section */}
       <div id="inflammation" className="mb-12">
-        <SectionSeparator 
-          title="🔥 Inflammatory Markers" 
+        <SectionSeparator
+          title="🔥 Inflammatory Markers"
           description="CRP, ESR, IL-6, and TNF-α levels for recovery monitoring"
-          color="red" 
+          color="red"
         />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <Card>
@@ -2652,7 +2780,9 @@ export default function BloodworkPage() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <Card>
             <CardHeader>
-              <CardTitle className="text-xl font-semibold">Specific Gravity</CardTitle>
+              <CardTitle className="text-xl font-semibold">
+                Specific Gravity
+              </CardTitle>
               <CardDescription>Hydration status indicator</CardDescription>
             </CardHeader>
             <CardContent>
@@ -2678,7 +2808,9 @@ export default function BloodworkPage() {
 
           <Card>
             <CardHeader>
-              <CardTitle className="text-xl font-semibold">Creatinine (Urine)</CardTitle>
+              <CardTitle className="text-xl font-semibold">
+                Creatinine (Urine)
+              </CardTitle>
               <CardDescription>Muscle metabolism waste product</CardDescription>
             </CardHeader>
             <CardContent>
