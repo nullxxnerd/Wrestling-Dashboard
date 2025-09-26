@@ -28,9 +28,7 @@ export const MetricCard: React.FC<MetricCardProps> = ({
       <CardContent className="p-3 sm:p-4 lg:p-6 bg-white">
         <div className="flex items-start sm:items-center gap-2 sm:gap-3">
           <div className="p-1.5 sm:p-2 rounded-lg bg-gray-100 flex-shrink-0">
-            <div className="h-4 w-4 sm:h-5 sm:w-5 text-gray-700">
-              {icon}
-            </div>
+            <div className="h-4 w-4 sm:h-5 sm:w-5 text-gray-700">{icon}</div>
           </div>
           <div className="min-w-0 flex-1">
             <p className="text-xs sm:text-sm font-medium text-gray-600 mb-1">
@@ -38,7 +36,12 @@ export const MetricCard: React.FC<MetricCardProps> = ({
             </p>
             <p className="text-lg sm:text-xl lg:text-2xl font-bold text-gray-900 break-words">
               {value}
-              {unit && <span className="text-sm sm:text-base font-normal"> {unit}</span>}
+              {unit && (
+                <span className="text-sm sm:text-base font-normal">
+                  {" "}
+                  {unit}
+                </span>
+              )}
             </p>
             {trendValue && (
               <p className="text-xs flex items-center gap-1 mt-1 text-gray-600">
