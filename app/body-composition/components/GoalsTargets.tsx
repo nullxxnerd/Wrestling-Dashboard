@@ -215,7 +215,7 @@ export const GoalsTargets: React.FC<GoalsTargetsProps> = ({
       />
 
       {/* Key Goal Metrics */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         <MetricCard
           title="Weight to Lose"
           value={weightToLose.toFixed(1)}
@@ -223,7 +223,6 @@ export const GoalsTargets: React.FC<GoalsTargetsProps> = ({
           trend="down"
           trendValue={`${estimatedWeeksToGoal} weeks estimated`}
           icon={<Scale className="h-6 w-6" />}
-          colorScheme="blue"
         />
 
         <MetricCard
@@ -233,7 +232,6 @@ export const GoalsTargets: React.FC<GoalsTargetsProps> = ({
           trend="down"
           trendValue={`${Math.ceil(goals.daysToCompetition / 7)} weeks`}
           icon={<Calendar className="h-6 w-6" />}
-          colorScheme="orange"
         />
 
         <MetricCard
@@ -243,7 +241,6 @@ export const GoalsTargets: React.FC<GoalsTargetsProps> = ({
           trend="stable"
           trendValue="Safe rate"
           icon={<TrendingDown className="h-6 w-6" />}
-          colorScheme="green"
         />
 
         <MetricCard
@@ -252,7 +249,6 @@ export const GoalsTargets: React.FC<GoalsTargetsProps> = ({
           trend="stable"
           trendValue="Target division"
           icon={<Trophy className="h-6 w-6" />}
-          colorScheme="purple"
         />
       </div>
 
@@ -269,7 +265,7 @@ export const GoalsTargets: React.FC<GoalsTargetsProps> = ({
         </CardHeader>
         <CardContent className="bg-white">
           <form onSubmit={handleSubmit} className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
               <div className="space-y-2">
                 <Label
                   htmlFor="current-weight"
@@ -417,7 +413,7 @@ export const GoalsTargets: React.FC<GoalsTargetsProps> = ({
       </Card>
 
       {/* Progress Visualization */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
         <ChartCard
           title="Weight Loss Timeline"
           description="Projected weight loss trajectory to competition date"
@@ -446,7 +442,6 @@ export const GoalsTargets: React.FC<GoalsTargetsProps> = ({
           trend="up"
           trendValue="On track"
           icon={<TrendingDown className="h-5 w-5" />}
-          colorScheme="green"
         />
 
         <MetricCard
@@ -456,7 +451,6 @@ export const GoalsTargets: React.FC<GoalsTargetsProps> = ({
           trend="stable"
           trendValue="Maintain muscle"
           icon={<Target className="h-5 w-5" />}
-          colorScheme="blue"
         />
 
         <MetricCard
@@ -467,7 +461,6 @@ export const GoalsTargets: React.FC<GoalsTargetsProps> = ({
           trend="down"
           trendValue="Until competition"
           icon={<Clock className="h-5 w-5" />}
-          colorScheme="orange"
         />
       </div>
     </div>

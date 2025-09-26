@@ -393,7 +393,7 @@ export const MuscleMassAnalysis: React.FC<MuscleMassAnalysisProps> = ({
       />
 
       {/* Key Muscle Metrics */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         <MetricCard
           title="Total Muscle Mass"
           value={totalMuscleMass.toFixed(1)}
@@ -401,7 +401,6 @@ export const MuscleMassAnalysis: React.FC<MuscleMassAnalysisProps> = ({
           trend="up"
           trendValue="+0.8 lbs this week"
           icon={<Activity className="h-6 w-6" />}
-          colorScheme="blue"
         />
 
         <MetricCard
@@ -411,7 +410,6 @@ export const MuscleMassAnalysis: React.FC<MuscleMassAnalysisProps> = ({
           trend="up"
           trendValue="+1.2 this week"
           icon={<Target className="h-6 w-6" />}
-          colorScheme="green"
         />
 
         <MetricCard
@@ -421,9 +419,6 @@ export const MuscleMassAnalysis: React.FC<MuscleMassAnalysisProps> = ({
           trend="stable"
           trendValue="Balanced"
           icon={<TrendingUp className="h-6 w-6" />}
-          colorScheme={
-            Math.abs(1 - segmentalData.armSymmetry) <= 0.02 ? "green" : "orange"
-          }
         />
 
         <MetricCard
@@ -433,14 +428,11 @@ export const MuscleMassAnalysis: React.FC<MuscleMassAnalysisProps> = ({
           trend="stable"
           trendValue="Balanced"
           icon={<Zap className="h-6 w-6" />}
-          colorScheme={
-            Math.abs(1 - segmentalData.legSymmetry) <= 0.02 ? "green" : "orange"
-          }
         />
       </div>
 
       {/* Segmental Mass Breakdown */}
-      <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
         <MetricCard
           title="Right Arm"
           value={segmentalData.rightArm.toFixed(1)}
@@ -448,7 +440,6 @@ export const MuscleMassAnalysis: React.FC<MuscleMassAnalysisProps> = ({
           trend="up"
           trendValue="+0.2 lbs"
           icon={<Activity className="h-5 w-5" />}
-          colorScheme="blue"
         />
 
         <MetricCard
@@ -458,7 +449,6 @@ export const MuscleMassAnalysis: React.FC<MuscleMassAnalysisProps> = ({
           trend="up"
           trendValue="+0.2 lbs"
           icon={<Activity className="h-5 w-5" />}
-          colorScheme="blue"
         />
 
         <MetricCard
@@ -468,7 +458,6 @@ export const MuscleMassAnalysis: React.FC<MuscleMassAnalysisProps> = ({
           trend="up"
           trendValue="+0.3 lbs"
           icon={<Activity className="h-5 w-5" />}
-          colorScheme="green"
         />
 
         <MetricCard
@@ -478,7 +467,6 @@ export const MuscleMassAnalysis: React.FC<MuscleMassAnalysisProps> = ({
           trend="up"
           trendValue="+0.2 lbs"
           icon={<Activity className="h-5 w-5" />}
-          colorScheme="orange"
         />
 
         <MetricCard
@@ -488,12 +476,11 @@ export const MuscleMassAnalysis: React.FC<MuscleMassAnalysisProps> = ({
           trend="up"
           trendValue="+0.2 lbs"
           icon={<Activity className="h-5 w-5" />}
-          colorScheme="orange"
         />
       </div>
 
       {/* Visualization Charts */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
         <ChartCard
           title="Muscle Mass Distribution"
           description="Radar view of muscle mass across body segments"

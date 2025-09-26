@@ -334,7 +334,7 @@ export const InBodyAnalysis: React.FC<InBodyAnalysisProps> = ({
       />
 
       {/* Key InBody Metrics */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         <MetricCard
           title="Total Body Water"
           value={inbodyData.totalBodyWater.toFixed(1)}
@@ -342,7 +342,6 @@ export const InBodyAnalysis: React.FC<InBodyAnalysisProps> = ({
           trend="up"
           trendValue="+0.2L this week"
           icon={<Droplets className="h-6 w-6" />}
-          colorScheme="blue"
         />
 
         <MetricCard
@@ -351,7 +350,6 @@ export const InBodyAnalysis: React.FC<InBodyAnalysisProps> = ({
           trend="down"
           trendValue="-0.3 this week"
           icon={<Activity className="h-6 w-6" />}
-          colorScheme={inbodyData.visceralFatLevel <= 9 ? "green" : "orange"}
         />
 
         <MetricCard
@@ -361,7 +359,6 @@ export const InBodyAnalysis: React.FC<InBodyAnalysisProps> = ({
           trend="up"
           trendValue="+0.2° this week"
           icon={<Zap className="h-6 w-6" />}
-          colorScheme="green"
         />
 
         <MetricCard
@@ -371,12 +368,11 @@ export const InBodyAnalysis: React.FC<InBodyAnalysisProps> = ({
           trend="up"
           trendValue="+15 cal this week"
           icon={<Heart className="h-6 w-6" />}
-          colorScheme="purple"
         />
       </div>
 
       {/* Advanced InBody Metrics */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
         <MetricCard
           title="Protein Mass"
           value={inbodyData.proteinMass.toFixed(1)}
@@ -384,7 +380,6 @@ export const InBodyAnalysis: React.FC<InBodyAnalysisProps> = ({
           trend="up"
           trendValue="+0.1 lbs"
           icon={<Activity className="h-5 w-5" />}
-          colorScheme="blue"
         />
 
         <MetricCard
@@ -393,7 +388,6 @@ export const InBodyAnalysis: React.FC<InBodyAnalysisProps> = ({
           unit="lbs"
           trend="stable"
           icon={<Activity className="h-5 w-5" />}
-          colorScheme="green"
         />
 
         <MetricCard
@@ -402,12 +396,11 @@ export const InBodyAnalysis: React.FC<InBodyAnalysisProps> = ({
           trend={inbodyData.ecwIcwRatio <= 0.38 ? "down" : "up"}
           trendValue={inbodyData.ecwIcwRatio <= 0.38 ? "Optimal" : "Monitor"}
           icon={<Droplets className="h-5 w-5" />}
-          colorScheme={inbodyData.ecwIcwRatio <= 0.38 ? "green" : "orange"}
         />
       </div>
 
       {/* Charts Section */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
         <ChartCard
           title="Body Water Distribution"
           description="Breakdown of intracellular vs extracellular water"
