@@ -27,12 +27,6 @@ const chartStyle = {
   width: "100%",
 } as const;
 
-// Mobile-optimized chart style
-const mobileChartStyle = {
-  height: "280px",
-  width: "100%",
-} as const;
-
 // Common chart UX extras for better exploration on mobile
 const commonChartUX = {
   toolbox: {
@@ -69,41 +63,6 @@ const commonChartUX = {
   animationDuration: 750,
   animationEasing: "cubicOut",
 }; // Enhanced mobile-first chart configuration
-const getCommonChartConfig = (isMobile = false) => ({
-  responsive: true,
-  maintainAspectRatio: false,
-  toolbox: {
-    show: !isMobile,
-    right: 10,
-    top: 10,
-    feature: {
-      saveAsImage: { title: "Save" },
-      dataZoom: { title: { zoom: "Zoom", back: "Reset" } },
-    },
-  },
-  dataZoom: [
-    {
-      type: "inside",
-      start: 0,
-      end: 100,
-      zoomOnMouseWheel: true,
-      moveOnMouseMove: true,
-    },
-    {
-      type: "slider",
-      height: isMobile ? 8 : 12,
-      bottom: 0,
-      show: !isMobile,
-    },
-  ],
-  grid: {
-    left: isMobile ? "10%" : "5%",
-    right: isMobile ? "10%" : "5%",
-    bottom: isMobile ? "15%" : "10%",
-    top: isMobile ? "20%" : "15%",
-    containLabel: true,
-  },
-});
 
 // Section separator component
 const SectionSeparator = ({
@@ -395,8 +354,6 @@ export default function BloodworkPage() {
   // Lightweight insights from visible series
   const getTrend = (arr: number[]) => arr.at(-1)! - arr[0] || 0;
   const getAvg = (arr: number[]) => arr.reduce((a, b) => a + b, 0) / arr.length;
-  const toPct = (delta: number, base: number) =>
-    base ? (delta / base) * 100 : 0;
 
   const insights = useMemo(() => {
     const wbc = wbcData.series[0].data as number[];
@@ -1920,66 +1877,6 @@ export default function BloodworkPage() {
         },
         itemStyle: {
           color: "#8b5cf6",
-        },
-        smooth: true,
-      },
-    ],
-  };
-
-  // Platelet count chart
-  const plateletData = {
-    tooltip: {
-      trigger: "axis",
-      axisPointer: {
-        type: "cross",
-      },
-    },
-    grid: {
-      left: "5%",
-      right: "5%",
-      bottom: "10%",
-      top: "15%",
-      containLabel: true,
-    },
-    xAxis: {
-      type: "category",
-      data: [
-        "Jan 2024",
-        "Feb 2024",
-        "Mar 2024",
-        "Apr 2024",
-        "May 2024",
-        "Jun 2024",
-      ],
-      axisLabel: {
-        fontSize: 11,
-        color: "#666",
-      },
-    },
-    yAxis: {
-      type: "value",
-      name: "Platelets (×10³/μL)",
-      axisLabel: {
-        formatter: "{value}",
-        fontSize: 11,
-        color: "#666",
-      },
-      nameTextStyle: {
-        fontSize: 11,
-        color: "#666",
-      },
-    },
-    series: [
-      {
-        name: "Platelets",
-        type: "line",
-        data: [285, 310, 295, 325, 305, 315],
-        lineStyle: {
-          color: "#f59e0b",
-          width: 3,
-        },
-        itemStyle: {
-          color: "#f59e0b",
         },
         smooth: true,
       },

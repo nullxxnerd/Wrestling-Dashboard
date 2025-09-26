@@ -18,7 +18,7 @@ import {
   Target,
   TrendingUp,
   CheckCircle,
-  AlertCircle,
+  // AlertCircle removed (unused)
 } from "lucide-react";
 
 // Professional color palette

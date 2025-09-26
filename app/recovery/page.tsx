@@ -7,7 +7,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+// Button intentionally removed — not used in this page
 import ReactECharts from "echarts-for-react";
 import {
   Moon,

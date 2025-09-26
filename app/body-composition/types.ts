@@ -163,6 +163,8 @@ export interface MetricCardProps {
   trend?: "up" | "down" | "stable";
   trendValue?: string;
   icon: React.ReactNode;
+  // optional color scheme for the metric card icon/indicator
+  colorScheme?: "green" | "orange" | "blue" | "purple" | "red";
 }
 
 export interface ChartCardProps {

@@ -16,6 +16,7 @@ export const MetricCard: React.FC<MetricCardProps> = ({
   trend = "stable",
   trendValue,
   icon,
+  colorScheme = "blue",
 }) => {
   const TrendIcon = {
     up: TrendingUp,
@@ -27,8 +28,36 @@ export const MetricCard: React.FC<MetricCardProps> = ({
     <Card className="border-gray-200 shadow-sm">
       <CardContent className="p-3 sm:p-4 lg:p-6 bg-white">
         <div className="flex items-start sm:items-center gap-2 sm:gap-3">
-          <div className="p-1.5 sm:p-2 rounded-lg bg-gray-100 flex-shrink-0">
-            <div className="h-4 w-4 sm:h-5 sm:w-5 text-gray-700">{icon}</div>
+          <div
+            className={
+              "p-1.5 sm:p-2 rounded-lg flex-shrink-0 " +
+              (colorScheme === "green"
+                ? "bg-green-100"
+                : colorScheme === "orange"
+                ? "bg-orange-100"
+                : colorScheme === "purple"
+                ? "bg-purple-100"
+                : colorScheme === "red"
+                ? "bg-red-100"
+                : "bg-blue-100")
+            }
+          >
+            <div
+              className={
+                "h-4 w-4 sm:h-5 sm:w-5 " +
+                (colorScheme === "green"
+                  ? "text-green-700"
+                  : colorScheme === "orange"
+                  ? "text-orange-700"
+                  : colorScheme === "purple"
+                  ? "text-purple-700"
+                  : colorScheme === "red"
+                  ? "text-red-700"
+                  : "text-blue-700")
+              }
+            >
+              {icon}
+            </div>
           </div>
           <div className="min-w-0 flex-1">
             <p className="text-xs sm:text-sm font-medium text-gray-600 mb-1">
