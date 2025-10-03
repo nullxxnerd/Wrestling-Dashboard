@@ -179,9 +179,17 @@ export const ProductShowcase: React.FC = () => {
 
   return (
     <section className="py-12">
-      <div className="max-w-7xl mx-auto space-y-12">
+      {" "}
+      <div className="flex justify-center py-4">
+        {" "}
+        <span className="px-3 py-1 mb-4 text-xs font-medium rounded-full border border-border text-muted-foreground bg-background/40">
+          معرفی محصول
+        </span>
+      </div>
+      <div className="max-w-7xl mx-auto space-y-8">
         {/* Overview - move to top */}
-        <div className="grid lg:grid-cols-2 gap-8 items-center bg-gray-50 rounded-xl p-6 border border-slate-200">
+
+        <div className="grid lg:grid-cols-2 gap-8 items-center bg-gray-50 rounded-xl p-6 lg:py-8 border border-slate-200">
           <div className="order-2 lg:order-1 text-right" dir="rtl">
             <Kicker>نمای کلی عملکرد</Kicker>
             <Title blue="آمادگی مسابقه" black="در یک نگاه" />
@@ -207,7 +215,7 @@ export const ProductShowcase: React.FC = () => {
           </div>
         </div>
         {/* Bloodwork (Chart left, Description right) */}
-        <div className="grid lg:grid-cols-2 gap-8 items-center bg-gray-50 rounded-xl p-6 border border-slate-200">
+        <div className="grid lg:grid-cols-2 gap-8 items-center bg-gray-50 rounded-xl p-6 lg:py-8 border border-slate-200">
           <div className="order-1 lg:order-2 text-right" dir="rtl">
             <Kicker>برای کشتی‌گیران و مربیان</Kicker>
             <Title blue="خون‌سنجی دقیق" black="برای سلامت پایدار" />
@@ -223,7 +231,7 @@ export const ProductShowcase: React.FC = () => {
                 "پشتیبانی تصمیمات تغذیه‌ای قبل/بعد از تمرین",
               ]}
             />
-            <div className="mt-4 flex items-center gap-6 justify-end" dir="rtl">
+            <div className="mt-4 flex items-center gap-6 " dir="rtl">
               <div>
                 <p className="text-2xl font-extrabold text-[#dc2626]">15+</p>
                 <p className="text-xs text-gray-500">
@@ -244,7 +252,7 @@ export const ProductShowcase: React.FC = () => {
         </div>
 
         {/* Body Composition (Description left, Chart right) */}
-        <div className="grid lg:grid-cols-2 gap-8 items-center bg-gray-50 rounded-xl p-6 border border-slate-200">
+        <div className="grid lg:grid-cols-2 gap-8 items-center bg-gray-50 rounded-xl p-6 lg:py-8 border border-slate-200">
           <div className="order-2 lg:order-2 p-4 border border-border rounded-lg bg-white">
             <ReactECharts
               option={powerToWeightPreview}
@@ -271,7 +279,7 @@ export const ProductShowcase: React.FC = () => {
         </div>
 
         {/* Lifting (Chart left, Description right) */}
-        <div className="grid lg:grid-cols-2 gap-8 items-center bg-gray-50 rounded-xl p-6 border border-slate-200">
+        <div className="grid lg:grid-cols-2 gap-8 items-center bg-gray-50 rounded-xl p-6 lg:py-8 border border-slate-200">
           <div className="order-1 lg:order-2 text-right" dir="rtl">
             <Kicker>قدرت و اجرای تمرین</Kicker>
             <Title blue="نسبت‌های قدرتی" black="برای تعادل اسکات/بنچ/ددلیفت" />
@@ -294,7 +302,7 @@ export const ProductShowcase: React.FC = () => {
         </div>
 
         {/* Supplements (Description left, Chart right) */}
-        <div className="grid lg:grid-cols-2 gap-8 items-center bg-gray-50 rounded-xl p-6 border border-slate-200">
+        <div className="grid lg:grid-cols-2 gap-8 items-center bg-gray-50 rounded-xl p-6 lg:py-8 border border-slate-200">
           <div className="order-2 lg:order-2 p-4 border border-border rounded-lg bg-white">
             {/* نسخه کوچک برای شوکیس */}
             <ReactECharts
