@@ -24,14 +24,15 @@ export default function Navbar() {
             <div className="flex-shrink-0 flex items-center">
               <Link
                 href="/"
-                className="flex items-center gap-2 text-xl font-semibold tracking-tight text-gray-900 hover:opacity-90 transition-opacity"
+                className="flex items-center gap-3 text-xl font-semibold tracking-tight text-gray-900 hover:opacity-90 transition-opacity"
               >
                 <Image
                   src="/icon.png"
                   alt="لوگو"
-                  width={40}
-                  height={40}
+                  width={30}
+                  height={30}
                   priority
+                  className=""
                 />
                 تکنواسپورت
               </Link>
