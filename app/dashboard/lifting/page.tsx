@@ -37,10 +37,15 @@ import {
 export default function LiftingPage() {
   return (
     <div className="container mx-auto px-4 py-8">
-      <div className="flex items-center justify-between mb-8">
-        <h1 className="text-3xl font-bold text-gray-900">
-          Comprehensive Lifting & Performance Analytics
-        </h1>
+      <div className="flex items-start justify-between mb-8">
+        <div>
+          <h1 className="text-3xl font-bold text-gray-900">
+            Lifting & Performance Analytics
+          </h1>
+          <p className="text-gray-600 mt-2">
+            Strength, conditioning, and training load metrics with actionable trends.
+          </p>
+        </div>
         <div className="flex gap-2">
           <Badge
             variant="outline"

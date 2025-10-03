@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, Activity, Users, Zap, Heart, Pill, Target } from "lucide-react";
+import { Menu, Activity, ArrowRight } from "lucide-react";
 import {
   Sheet,
   SheetContent,
@@ -21,40 +21,19 @@ interface MobileSidebarProps {
 
 const navigationItems = [
   {
-    title: "Dashboard",
+    title: "Home",
     href: "/",
-    icon: Activity,
-    description: "Overview and main dashboard",
+    description: "Landing page",
   },
   {
-    title: "Body Composition",
-    href: "/body-composition",
-    icon: Users,
-    description: "Track body metrics and composition",
+    title: "Features",
+    href: "/#features",
+    description: "What you get",
   },
   {
-    title: "Lifting",
-    href: "/lifting",
-    icon: Zap,
-    description: "Strength training and performance",
-  },
-  {
-    title: "Recovery",
-    href: "/recovery",
-    icon: Heart,
-    description: "Rest and recovery metrics",
-  },
-  {
-    title: "Supplements",
-    href: "/supplements",
-    icon: Pill,
-    description: "Supplement tracking and analysis",
-  },
-  {
-    title: "Bloodwork",
-    href: "/bloodwork",
-    icon: Target,
-    description: "Health biomarkers and lab results",
+    title: "Pricing",
+    href: "/#pricing",
+    description: "Plans and billing",
   },
 ];
 
@@ -63,10 +42,9 @@ export function MobileSidebar({ className }: MobileSidebarProps) {
   const pathname = usePathname();
 
   const isActive = (href: string) => {
-    if (href === "/") {
-      return pathname === "/";
-    }
-    return pathname.startsWith(href);
+    if (href.includes("#")) return false; // don't mark hash links as active
+    const basePath = href.split("#")[0] || href;
+    return pathname === basePath;
   };
 
   return (
@@ -83,12 +61,11 @@ export function MobileSidebar({ className }: MobileSidebarProps) {
       </SheetTrigger>
       <SheetContent side="left" className="w-80 p-0">
         <SheetHeader className="border-b px-6 py-4">
-          <SheetTitle className="text-left">Wrestling Dashboard</SheetTitle>
+          <SheetTitle className="text-left">Wrestling MVP</SheetTitle>
         </SheetHeader>
 
         <nav className="flex flex-col gap-2 p-4">
           {navigationItems.map((item) => {
-            const IconComponent = item.icon;
             const active = isActive(item.href);
             return (
               <SheetClose asChild key={item.href}>
@@ -97,24 +74,16 @@ export function MobileSidebar({ className }: MobileSidebarProps) {
                   className={cn(
                     "flex items-center gap-3 rounded-lg px-3 py-3 text-sm transition-all duration-200 group",
                     active
-                      ? "bg-blue-50 text-blue-900 border-l-4 border-blue-600 shadow-sm dark:bg-blue-950 dark:text-blue-100 dark:border-blue-400"
+                      ? "text-brand-blue"
                       : "hover:bg-accent hover:text-accent-foreground"
                   )}
                   onClick={() => setOpen(false)}
                 >
-                  <IconComponent
-                    className={cn(
-                      "h-5 w-5 transition-colors",
-                      active
-                        ? "text-blue-600 dark:text-blue-400"
-                        : "text-muted-foreground group-hover:text-accent-foreground"
-                    )}
-                  />
                   <div className="flex flex-col">
                     <span
                       className={cn(
                         "font-medium transition-colors",
-                        active ? "text-blue-900 dark:text-blue-100" : ""
+                        active ? "text-brand-blue" : ""
                       )}
                     >
                       {item.title}
@@ -122,9 +91,7 @@ export function MobileSidebar({ className }: MobileSidebarProps) {
                     <span
                       className={cn(
                         "text-xs transition-colors",
-                        active
-                          ? "text-blue-700 dark:text-blue-300"
-                          : "text-muted-foreground"
+                        active ? "text-brand-blue/80" : "text-muted-foreground"
                       )}
                     >
                       {item.description}
@@ -136,15 +103,24 @@ export function MobileSidebar({ className }: MobileSidebarProps) {
           })}
         </nav>
 
-        {/* Footer section with branding */}
+        {/* Footer with action */}
         <div className="absolute bottom-0 left-0 right-0 border-t p-4">
-          <div className="flex items-center gap-2 text-sm text-muted-foreground">
-            <Activity className="h-4 w-4" />
-            <span>Wrestling MVP Dashboard</span>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+              <Activity className="h-4 w-4" />
+              <span>Wrestling MVP</span>
+            </div>
+            <SheetClose asChild>
+              <Link
+                href="/dashboard"
+                className="inline-flex items-center gap-2 rounded-md bg-black text-white px-3 py-2 text-sm font-medium shadow-sm hover:bg-black/90 active:bg-black/80"
+                onClick={() => setOpen(false)}
+              >
+                Go To Dashboard
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </SheetClose>
           </div>
-          <p className="text-xs text-muted-foreground mt-1">
-            Track your wrestling performance
-          </p>
         </div>
       </SheetContent>
     </Sheet>
