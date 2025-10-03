@@ -29,8 +29,8 @@ export default function Navbar() {
                 <Image
                   src="/icon.png"
                   alt="لوگو"
-                  width={60}
-                  height={60}
+                  width={40}
+                  height={40}
                   priority
                 />
                 تکنواسپورت

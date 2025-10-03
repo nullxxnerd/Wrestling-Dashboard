@@ -77,8 +77,8 @@ export const Footer: React.FC = () => {
               <Image
                 src="/icon.png"
                 alt="لوگوی بیزینس اینسایت"
-                width={50}
-                height={50}
+                width={30}
+                height={30}
                 className="rounded-md border border-primary/20"
                 priority
               />
