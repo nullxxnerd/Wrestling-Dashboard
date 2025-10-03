@@ -70,8 +70,8 @@ export const Features: React.FC = () => {
             با مربی دیجیتال تمرین کنید و همیشه در اوج بمانید
           </h3>
           <p className="max-w-2xl text-sm sm:text-base text-muted-foreground">
-            مانیتورینگ وضعیت ورزشکاران، برنامه‌های تمرینی شخصی‌سازی‌شده و توصیه‌های
-            عملی برای مربیان تا عملکرد تیم و فرد را به سطح بعدی ببرید.
+            مانیتورینگ وضعیت ورزشکاران، برنامه‌های تمرینی شخصی‌سازی‌شده و
+            توصیه‌های عملی برای مربیان تا عملکرد تیم و فرد را به سطح بعدی ببرید.
           </p>
         </div>
 
@@ -88,19 +88,27 @@ export const Features: React.FC = () => {
                     <Icon className="w-6 h-6" />
                   </span>
                   <div>
-                    <h4 className="text-sm sm:text-base font-semibold">{it.title}</h4>
+                    <h4 className="text-sm sm:text-base font-semibold">
+                      {it.title}
+                    </h4>
                     {it.subtitle && (
-                      <p className="text-[11px] text-muted-foreground/90 mt-1">{it.subtitle}</p>
+                      <p className="text-[11px] text-muted-foreground/90 mt-1">
+                        {it.subtitle}
+                      </p>
                     )}
                   </div>
                 </div>
 
                 {it.desc && (
-                  <p className="text-[13px] text-muted-foreground leading-6 mb-1">{it.desc}</p>
+                  <p className="text-[13px] text-muted-foreground leading-6 mb-1">
+                    {it.desc}
+                  </p>
                 )}
 
                 {it.extra && (
-                  <p className="text-[12px] text-muted-foreground/90 mb-2">{it.extra}</p>
+                  <p className="text-[12px] text-muted-foreground/90 mb-2">
+                    {it.extra}
+                  </p>
                 )}
 
                 {it.bullets && (
@@ -121,4 +129,3 @@ export const Features: React.FC = () => {
     </section>
   );
 };
-
