@@ -1,0 +1,32 @@
+/* Minimal FullCalendar timegrid CSS (adapted) */
+.fc .fc-timegrid {
+  font-family: inherit;
+}
+.fc .fc-timegrid-slot {
+  border-top: 1px solid rgba(0, 0, 0, 0.04);
+  min-height: 2rem;
+}
+.fc .fc-timegrid-col {
+  padding: 0.25rem;
+}
+
+.fc .fc-timegrid-event {
+  background: #7c3aed;
+  color: #fff;
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+  font-size: 0.8rem;
+}
+
+/* Time labels */
+.fc .fc-timegrid-axis {
+  color: rgba(0, 0, 0, 0.6);
+  width: 3.5rem;
+  text-align: right;
+  padding-right: 0.5rem;
+}
+
+/* Ensure the height works inside containers */
+.fc .fc-scrollgrid-section {
+  overflow: auto;
+}

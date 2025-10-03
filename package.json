@@ -9,6 +9,11 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@fullcalendar/core": "^6.1.19",
+    "@fullcalendar/daygrid": "^6.1.19",
+    "@fullcalendar/interaction": "^6.1.19",
+    "@fullcalendar/react": "^6.1.19",
+    "@fullcalendar/timegrid": "^6.1.19",
     "@radix-ui/react-accordion": "^1.2.12",
     "@radix-ui/react-dialog": "^1.1.15",
     "@radix-ui/react-navigation-menu": "^1.2.14",
@@ -18,6 +23,7 @@
     "echarts": "^6.0.0",
     "echarts-for-react": "^3.0.2",
     "framer-motion": "^12.23.22",
+    "fullcalendar": "^6.1.19",
     "lucide-react": "^0.544.0",
     "next": "15.5.4",
     "react": "19.1.1",
