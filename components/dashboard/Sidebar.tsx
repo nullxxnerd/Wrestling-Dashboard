@@ -1,13 +1,27 @@
 "use client";
 
-import Link from "next/link";
+// Link removed — navigation is handled via next/navigation router
 import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { Activity, Dumbbell, Droplets, HeartPulse, Pill, TestTube, ChevronDown } from "lucide-react";
+import {
+  Activity,
+  Dumbbell,
+  Droplets,
+  HeartPulse,
+  Pill,
+  TestTube,
+  ChevronDown,
+  CalendarDays,
+} from "lucide-react";
 import * as Accordion from "@radix-ui/react-accordion";
 
 type Section = { label: string };
-type NavItem = { label: string; href: string; icon: React.ReactNode; sections: Section[] };
+type NavItem = {
+  label: string;
+  href: string;
+  icon: React.ReactNode;
+  sections: Section[];
+};
 
 const navItems: NavItem[] = [
   {
@@ -42,6 +56,16 @@ const navItems: NavItem[] = [
     ],
   },
   {
+    label: "Calendar",
+    href: "/dashboard/calendar",
+    icon: <CalendarDays className="h-4 w-4" />,
+    sections: [
+      { label: "My Schedule" },
+      { label: "Programs" },
+      { label: "Events" },
+    ],
+  },
+  {
     label: "Bloodwork",
     href: "/dashboard/bloodwork",
     icon: <TestTube className="h-4 w-4" />,
@@ -55,11 +79,7 @@ const navItems: NavItem[] = [
     label: "Recovery",
     href: "/dashboard/recovery",
     icon: <Droplets className="h-4 w-4" />,
-    sections: [
-      { label: "Sleep" },
-      { label: "HRV" },
-      { label: "Hydration" },
-    ],
+    sections: [{ label: "Sleep" }, { label: "HRV" }, { label: "Hydration" }],
   },
   {
     label: "Supplements",
@@ -78,15 +98,19 @@ export default function Sidebar() {
   const router = useRouter();
 
   // Determine which accordion should be open by default based on route
-  const activeItem = navItems.find((i) =>
-    pathname === i.href || (pathname?.startsWith(i.href) && i.href !== "/dashboard")
+  const activeItem = navItems.find(
+    (i) =>
+      pathname === i.href ||
+      (pathname?.startsWith(i.href) && i.href !== "/dashboard")
   )?.href;
 
   return (
     <aside className="hidden lg:block w-64 shrink-0">
       <div className="border bg-white text-sidebar-foreground rounded-lg shadow-sm">
         <div className="px-4 py-4 border-b">
-          <div className="text-sm font-semibold text-muted-foreground">Dashboard</div>
+          <div className="text-sm font-semibold text-muted-foreground">
+            Dashboard
+          </div>
         </div>
 
         <nav className="p-3 space-y-3">
@@ -97,7 +121,9 @@ export default function Sidebar() {
             defaultValue={activeItem}
           >
             {navItems.map((item) => {
-              const active = pathname === item.href || (pathname?.startsWith(item.href) && item.href !== "/dashboard");
+              const active =
+                pathname === item.href ||
+                (pathname?.startsWith(item.href) && item.href !== "/dashboard");
               const value = item.href;
               return (
                 <Accordion.Item

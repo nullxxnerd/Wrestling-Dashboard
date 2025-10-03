@@ -19,7 +19,7 @@ export const Hero: React.FC = () => {
           </span>
           برای باشگاه‌ها و تیم‌های کشتی
         </h1>
-        <p className="mt-5 text-base sm:text-lg md:text-xl text-muted-foreground leading-8">
+        <p className="mt-5 text-base sm:text-lg  text-muted-foreground leading-8">
           همه چیزِ مدیریت کشتی در یک‌جا: برنامه‌ریزی تمرین و دوره‌بندی، رصد وزن
           و وزن‌کشی، نتایج مسابقات روی تشک، خون‌نگاری و مکمل‌ها، و گزارش‌های
           تحلیلی برای تصمیم‌گیری سریع‌تر. با{" "}
