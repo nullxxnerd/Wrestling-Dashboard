@@ -79,7 +79,7 @@ export default function Home() {
   };
 
   return (
-    <div className="container mx-auto px-3 sm:px-4 py-4 sm:py-6 lg:py-8 max-w-full overflow-x-hidden">
+    <div className="container mx-auto px-1 sm:px-4 py-4 sm:py-6 lg:py-8 max-w-full overflow-x-hidden">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 gap-4">
         <div className="min-w-0 flex-1">
           <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 truncate">
