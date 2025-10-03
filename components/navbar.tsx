@@ -36,7 +36,7 @@ export default function Navbar() {
                 تکنواسپورت
               </Link>
             </div>
-            <div className="hidden md:ml-6 md:flex md:space-x-1">
+            <div className="hidden md:mr-4 md:flex md:space-x-1">
               {navigation.map((item) => {
                 const hasHash = item.href.includes("#");
                 const basePath = item.href.split("#")[0] || item.href;
@@ -49,7 +49,7 @@ export default function Navbar() {
                       "inline-flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors",
                       isActive
                         ? "text-brand-blue"
-                        : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
+                        : "text-gray-700 hover:text-gray-900 hover:bg-gray-100"
                     )}
                   >
                     {item.name}

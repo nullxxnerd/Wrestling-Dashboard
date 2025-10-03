@@ -19,12 +19,38 @@ export const ProductShowcase: React.FC = () => {
     tooltip: { trigger: "axis" },
     legend: { data: ["قدرت", "استقامت", "ریکاوری"], bottom: 0 },
     grid: { left: 40, right: 20, top: 40, bottom: 50 },
-    xAxis: { type: "category", data: ["دوش", "سه‌", "چهار", "پنج", "جمع", "شنب", "یکش"] },
-    yAxis: { type: "value", min: 0, max: 100, splitLine: { lineStyle: { color: "#e5e7eb" } } },
+    xAxis: {
+      type: "category",
+      data: ["دوش", "سه‌", "چهار", "پنج", "جمع", "شنب", "یکش"],
+    },
+    yAxis: {
+      type: "value",
+      min: 0,
+      max: 100,
+      splitLine: { lineStyle: { color: "#e5e7eb" } },
+    },
     series: [
-      { name: "قدرت", type: "line", data: [78, 81, 79, 83, 86, 88, 90], areaStyle: { color: "rgba(30,64,175,0.12)" }, lineStyle: { color: WRESTLING_BLUE, width: 3 } },
-      { name: "استقامت", type: "line", data: [70, 72, 73, 74, 75, 77, 79], areaStyle: { color: "rgba(220,38,38,0.10)" }, lineStyle: { color: WRESTLING_RED, width: 2 } },
-      { name: "ریکاوری", type: "bar", data: [82, 84, 80, 86, 87, 85, 88], itemStyle: { color: "#10b981" }, barWidth: "40%" },
+      {
+        name: "قدرت",
+        type: "line",
+        data: [78, 81, 79, 83, 86, 88, 90],
+        areaStyle: { color: "rgba(30,64,175,0.12)" },
+        lineStyle: { color: WRESTLING_BLUE, width: 3 },
+      },
+      {
+        name: "استقامت",
+        type: "line",
+        data: [70, 72, 73, 74, 75, 77, 79],
+        areaStyle: { color: "rgba(220,38,38,0.10)" },
+        lineStyle: { color: WRESTLING_RED, width: 2 },
+      },
+      {
+        name: "ریکاوری",
+        type: "bar",
+        data: [82, 84, 80, 86, 87, 85, 88],
+        itemStyle: { color: "#10b981" },
+        barWidth: "40%",
+      },
     ],
   } as const;
   // پیش‌نمایش سبک نسبت توان به وزن
@@ -34,7 +60,15 @@ export const ProductShowcase: React.FC = () => {
     grid: { left: 36, right: 12, top: 40, bottom: 24 },
     xAxis: {
       type: "category",
-      data: ["دوشنبه", "سه‌شنبه", "چهارشنبه", "پنجشنبه", "جمعه", "شنبه", "یکشنبه"],
+      data: [
+        "دوشنبه",
+        "سه‌شنبه",
+        "چهارشنبه",
+        "پنجشنبه",
+        "جمعه",
+        "شنبه",
+        "یکشنبه",
+      ],
       axisLabel: { fontSize: 10 },
     },
     yAxis: {
@@ -54,7 +88,11 @@ export const ProductShowcase: React.FC = () => {
         areaStyle: { color: "rgba(30, 64, 175, 0.12)" },
         markLine: {
           data: [
-            { yAxis: 1.85, name: "نخبه", lineStyle: { type: "dashed", color: "#10b981" } },
+            {
+              yAxis: 1.85,
+              name: "نخبه",
+              lineStyle: { type: "dashed", color: "#10b981" },
+            },
           ],
         },
       },
@@ -66,7 +104,10 @@ export const ProductShowcase: React.FC = () => {
     title: { text: "امتیاز ریکاوری", textStyle: { fontSize: 12 } },
     tooltip: { trigger: "axis" },
     grid: { left: 36, right: 12, top: 40, bottom: 24 },
-    xAxis: { type: "category", data: ["دوشنبه", "سه‌شنبه", "چهارشنبه", "پنجشنبه", "جمعه"] },
+    xAxis: {
+      type: "category",
+      data: ["دوشنبه", "سه‌شنبه", "چهارشنبه", "پنجشنبه", "جمعه"],
+    },
     yAxis: { type: "value", min: 0, max: 100 },
     series: [
       { data: [78, 82, 85, 80, 87], type: "line", smooth: true, areaStyle: {} },
@@ -78,33 +119,49 @@ export const ProductShowcase: React.FC = () => {
     title: { text: "پایبندی مکمل‌ها و عملکرد", textStyle: { fontSize: 12 } },
     tooltip: { trigger: "axis" },
     grid: { left: 40, right: 20, top: 40, bottom: 28 },
-    legend: { data: ["پایبندی", "امتیاز عملکرد"], bottom: 0, textStyle: { fontSize: 11 } },
-    xAxis: { type: "category", data: ["هفته ۱", "هفته ۲", "هفته ۳", "هفته ۴", "هفته ۵", "هفته ۶"], axisLabel: { fontSize: 10 } },
+    legend: {
+      data: ["پایبندی", "امتیاز عملکرد"],
+      bottom: 0,
+      textStyle: { fontSize: 11 },
+    },
+    xAxis: {
+      type: "category",
+      data: ["هفته ۱", "هفته ۲", "هفته ۳", "هفته ۴", "هفته ۵", "هفته ۶"],
+      axisLabel: { fontSize: 10 },
+    },
     yAxis: { type: "value", min: 0, max: 100, axisLabel: { fontSize: 10 } },
     series: [
-      { name: "پایبندی", type: "bar", data: [88, 90, 86, 94, 92, 95], itemStyle: { color: WRESTLING_BLUE }, barWidth: "45%" },
-      { name: "امتیاز عملکرد", type: "line", data: [82, 85, 78, 92, 89, 94], lineStyle: { color: WRESTLING_RED, width: 3 }, symbol: "circle", symbolSize: 6 }
+      {
+        name: "پایبندی",
+        type: "bar",
+        data: [88, 90, 86, 94, 92, 95],
+        itemStyle: { color: WRESTLING_BLUE },
+        barWidth: "45%",
+      },
+      {
+        name: "امتیاز عملکرد",
+        type: "line",
+        data: [82, 85, 78, 92, 89, 94],
+        lineStyle: { color: WRESTLING_RED, width: 3 },
+        symbol: "circle",
+        symbolSize: 6,
+      },
     ],
   } as const;
 
   const Kicker = ({ children }: { children: React.ReactNode }) => (
-    <p className="uppercase tracking-wider text-xs font-semibold text-gray-500 mb-2" dir="rtl">
+    <p
+      className="uppercase tracking-wider text-xs font-semibold text-gray-500 mb-2"
+      dir="rtl"
+    >
       {children}
     </p>
   );
-
-  const AccentBar = ({ color = "blue" as "blue" | "red" }) => (
-    <div className={`h-1 w-16 rounded-full ${color === "blue" ? "bg-[#1e40af]" : "bg-[#dc2626]"}`} />
-  );
-
-  const Title = ({
-    blue,
-    black,
-  }: {
-    blue: string;
-    black: string;
-  }) => (
-    <h3 className="text-2xl sm:text-3xl font-extrabold leading-tight mt-2" dir="rtl">
+  const Title = ({ blue, black }: { blue: string; black: string }) => (
+    <h3
+      className="text-2xl sm:text-3xl font-extrabold leading-tight mt-2"
+      dir="rtl"
+    >
       <span className="text-[#1e40af]">{blue}</span> {black}
     </h3>
   );
@@ -124,14 +181,15 @@ export const ProductShowcase: React.FC = () => {
     <section className="py-12">
       <div className="max-w-7xl mx-auto space-y-12">
         {/* Overview - move to top */}
-        <div className="grid lg:grid-cols-2 gap-8 items-center bg-slate-50 rounded-xl p-6 border border-slate-200">
+        <div className="grid lg:grid-cols-2 gap-8 items-center bg-gray-50 rounded-xl p-6 border border-slate-200">
           <div className="order-2 lg:order-1 text-right" dir="rtl">
             <Kicker>نمای کلی عملکرد</Kicker>
             <Title blue="آمادگی مسابقه" black="در یک نگاه" />
             <p className="text-sm sm:text-base text-gray-700 mt-3 leading-7">
               ترکیب شاخص‌های کلیدی (قدرت، استقامت و ریکاوری) تصویری شفاف از روند
-              هفتگی می‌دهد. هر روز «توصیه‌ی روزانه» شخصی‌سازی‌شده دریافت می‌کنید؛
-              شامل پیشنهاد تمرین/ریکاوری و تمرکز تغذیه‌ای متناسب با وضعیت شما.
+              هفتگی می‌دهد. هر روز «توصیه‌ی روزانه» شخصی‌سازی‌شده دریافت
+              می‌کنید؛ شامل پیشنهاد تمرین/ریکاوری و تمرکز تغذیه‌ای متناسب با
+              وضعیت شما.
             </p>
             <Bullets
               items={[
@@ -140,16 +198,16 @@ export const ProductShowcase: React.FC = () => {
                 "هم‌راستاسازی دوره‌بندی تمرین با تقویم رقابت‌ها",
               ]}
             />
-            <div className="mt-4 flex justify-end">
-              <AccentBar color="blue" />
-            </div>
           </div>
           <div className="order-1 lg:order-2 p-4 border border-border rounded-lg bg-white">
-            <ReactECharts option={overallOverviewOption} style={{ height: 240 }} />
+            <ReactECharts
+              option={overallOverviewOption}
+              style={{ height: 240 }}
+            />
           </div>
         </div>
         {/* Bloodwork (Chart left, Description right) */}
-        <div className="grid lg:grid-cols-2 gap-8 items-center bg-slate-50 rounded-xl p-6 border border-slate-200">
+        <div className="grid lg:grid-cols-2 gap-8 items-center bg-gray-50 rounded-xl p-6 border border-slate-200">
           <div className="order-1 lg:order-2 text-right" dir="rtl">
             <Kicker>برای کشتی‌گیران و مربیان</Kicker>
             <Title blue="خون‌سنجی دقیق" black="برای سلامت پایدار" />
@@ -168,15 +226,16 @@ export const ProductShowcase: React.FC = () => {
             <div className="mt-4 flex items-center gap-6 justify-end" dir="rtl">
               <div>
                 <p className="text-2xl font-extrabold text-[#dc2626]">15+</p>
-                <p className="text-xs text-gray-500">شاخص آزمایشگاهی پوشش‌داده‌شده</p>
+                <p className="text-xs text-gray-500">
+                  شاخص آزمایشگاهی پوشش‌داده‌شده
+                </p>
               </div>
               <div>
                 <p className="text-2xl font-extrabold text-[#1e40af]">10+</p>
-                <p className="text-xs text-gray-500">بینش عملی برای تصمیم‌گیری</p>
+                <p className="text-xs text-gray-500">
+                  بینش عملی برای تصمیم‌گیری
+                </p>
               </div>
-            </div>
-            <div className="mt-4 flex justify-end">
-              <AccentBar color="blue" />
             </div>
           </div>
           <div className="order-2 lg:order-1 p-4 border border-border rounded-lg bg-white">
@@ -185,17 +244,21 @@ export const ProductShowcase: React.FC = () => {
         </div>
 
         {/* Body Composition (Description left, Chart right) */}
-        <div className="grid lg:grid-cols-2 gap-8 items-center bg-slate-50 rounded-xl p-6 border border-slate-200">
+        <div className="grid lg:grid-cols-2 gap-8 items-center bg-gray-50 rounded-xl p-6 border border-slate-200">
           <div className="order-2 lg:order-2 p-4 border border-border rounded-lg bg-white">
-            <ReactECharts option={powerToWeightPreview} style={{ height: 220 }} />
+            <ReactECharts
+              option={powerToWeightPreview}
+              style={{ height: 220 }}
+            />
           </div>
           <div className="order-1 lg:order-1 text-right" dir="rtl">
             <Kicker>آنالیز ترکیب بدنی</Kicker>
             <Title blue="نسبت توان به وزن" black="برای ارزیابی مهارت کشتی" />
             <p className="text-sm sm:text-base text-gray-700 mt-3 leading-7">
               نسبت توان به وزن معیار کلیدی در کشتی است؛ توان بیشتر با وزن مؤثرتر
-              یعنی جابه‌جایی سریع‌تر، اجرای تکنیک‌های انفجاری و کنترل بهتر در کشتی.
-              این نمودار به مربیان کمک می‌کند آستانه‌های «خوب» و «نخبه» را هدف بگیرند.
+              یعنی جابه‌جایی سریع‌تر، اجرای تکنیک‌های انفجاری و کنترل بهتر در
+              کشتی. این نمودار به مربیان کمک می‌کند آستانه‌های «خوب» و «نخبه» را
+              هدف بگیرند.
             </p>
             <Bullets
               items={[
@@ -204,21 +267,18 @@ export const ProductShowcase: React.FC = () => {
                 "تنظیم تمرینات قدرتی/پلایومتریک بر اساس پیشرفت واقعی",
               ]}
             />
-            <div className="mt-4 flex justify-end">
-              <AccentBar color="red" />
-            </div>
           </div>
         </div>
 
         {/* Lifting (Chart left, Description right) */}
-        <div className="grid lg:grid-cols-2 gap-8 items-center bg-slate-50 rounded-xl p-6 border border-slate-200">
+        <div className="grid lg:grid-cols-2 gap-8 items-center bg-gray-50 rounded-xl p-6 border border-slate-200">
           <div className="order-1 lg:order-2 text-right" dir="rtl">
             <Kicker>قدرت و اجرای تمرین</Kicker>
             <Title blue="نسبت‌های قدرتی" black="برای تعادل اسکات/بنچ/ددلیفت" />
             <p className="text-sm sm:text-base text-gray-700 mt-3 leading-7">
-              هم‌ترازی نسبت‌های قدرتی احتمال آسیب را کاهش می‌دهد و انتقال قدرت به
-              مهارت‌های روی تشک را بهبود می‌بخشد. مربیان می‌توانند بر اساس نقاط ضعف،
-              نسخه‌ی تمرین را دقیق‌تر تنظیم کنند.
+              هم‌ترازی نسبت‌های قدرتی احتمال آسیب را کاهش می‌دهد و انتقال قدرت
+              به مهارت‌های روی تشک را بهبود می‌بخشد. مربیان می‌توانند بر اساس
+              نقاط ضعف، نسخه‌ی تمرین را دقیق‌تر تنظیم کنند.
             </p>
             <Bullets
               items={[
@@ -227,9 +287,6 @@ export const ProductShowcase: React.FC = () => {
                 "پیگیری پیشرفت واقعی به‌جای رکوردهای لحظه‌ای",
               ]}
             />
-            <div className="mt-4 flex justify-end">
-              <AccentBar color="blue" />
-            </div>
           </div>
           <div className="order-2 lg:order-1 p-4 border border-border rounded-lg bg-white">
             <StrengthRatiosChart />
@@ -237,17 +294,21 @@ export const ProductShowcase: React.FC = () => {
         </div>
 
         {/* Supplements (Description left, Chart right) */}
-        <div className="grid lg:grid-cols-2 gap-8 items-center bg-slate-50 rounded-xl p-6 border border-slate-200">
+        <div className="grid lg:grid-cols-2 gap-8 items-center bg-gray-50 rounded-xl p-6 border border-slate-200">
           <div className="order-2 lg:order-2 p-4 border border-border rounded-lg bg-white">
             {/* نسخه کوچک برای شوکیس */}
-            <ReactECharts option={miniAdherenceOption} style={{ height: 200 }} />
+            <ReactECharts
+              option={miniAdherenceOption}
+              style={{ height: 200 }}
+            />
           </div>
           <div className="order-1 lg:order-1 text-right" dir="rtl">
             <Kicker>تغذیه و مکمل‌ها</Kicker>
             <Title blue="پروتکل هوشمند" black="برای پایبندی و اثرگذاری" />
             <p className="text-sm sm:text-base text-gray-700 mt-3 leading-7">
-              پایش پایبندی به مکمل‌ها به همراه ارتباط آن با عملکرد، از هدررفت هزینه
-              جلوگیری می‌کند و نشان می‌دهد کدام مکمل واقعاً برای کشتی‌گیر مفید است.
+              پایش پایبندی به مکمل‌ها به همراه ارتباط آن با عملکرد، از هدررفت
+              هزینه جلوگیری می‌کند و نشان می‌دهد کدام مکمل واقعاً برای کشتی‌گیر
+              مفید است.
             </p>
             <Bullets
               items={[
@@ -256,12 +317,8 @@ export const ProductShowcase: React.FC = () => {
                 "مقایسه پشته‌های مکمل در طول فصل",
               ]}
             />
-            <div className="mt-4 flex justify-end">
-              <AccentBar color="red" />
-            </div>
           </div>
         </div>
-
       </div>
     </section>
   );
