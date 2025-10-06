@@ -28,70 +28,70 @@ type NavItem = {
 
 const navItems: NavItem[] = [
   {
-    label: "Overview",
+    label: "نمای کلی",
     href: "/dashboard",
     icon: <Activity className="h-5 w-5" />,
     sections: [
-      { label: "Quick Stats" },
-      { label: "Performance Overview" },
-      { label: "Readiness & Recovery" },
+      { label: "آمار سریع" },
+      { label: "نمای عملکرد" },
+      { label: "آمادگی و بازیابی" },
     ],
   },
   {
-    label: "Body Composition",
+    label: "ترکیب بدنی",
     href: "/dashboard/body-composition",
     icon: <HeartPulse className="h-5 w-5" />,
     sections: [
-      { label: "Interactive Diagram" },
-      { label: "Trends" },
-      { label: "Targets" },
+      { label: "نمودار تعاملی" },
+      { label: "روندها" },
+      { label: "اهداف" },
     ],
   },
   {
-    label: "Lifting",
+    label: "وزنه‌برداری",
     href: "/dashboard/lifting",
     icon: <Dumbbell className="h-5 w-5" />,
     sections: [
-      { label: "Strength" },
-      { label: "Bodybuilding" },
-      { label: "Cardiovascular" },
-      { label: "Analytics" },
+      { label: "قدرت" },
+      { label: "بدنسازی" },
+      { label: "قلبی عروقی" },
+      { label: "تحلیل‌ها" },
     ],
   },
   {
-    label: "Calendar",
+    label: "تقویم",
     href: "/dashboard/calendar",
     icon: <CalendarDays className="h-5 w-5" />,
     sections: [
-      { label: "My Schedule" },
-      { label: "Programs" },
-      { label: "Events" },
+      { label: "برنامه من" },
+      { label: "برنامه‌ها" },
+      { label: "رویدادها" },
     ],
   },
   {
-    label: "Bloodwork",
+    label: "آزمایش خون",
     href: "/dashboard/bloodwork",
     icon: <TestTube className="h-5 w-5" />,
     sections: [
-      { label: "Cell Counts" },
+      { label: "شمارش سلول‌ها" },
       { label: "Hemoglobin & Hematocrit" },
-      { label: "Trends & Zones" },
+      { label: "روندها و مناطق" },
     ],
   },
   {
-    label: "Recovery",
+    label: "بازیابی",
     href: "/dashboard/recovery",
     icon: <Droplets className="h-5 w-5" />,
-    sections: [{ label: "Sleep" }, { label: "HRV" }, { label: "Hydration" }],
+    sections: [{ label: "خواب" }, { label: "HRV" }, { label: "آب‌رسانی" }],
   },
   {
-    label: "Supplements",
+    label: "مکمل‌ها",
     href: "/dashboard/supplements",
     icon: <Pill className="h-5 w-5" />,
     sections: [
-      { label: "Stack Overview" },
-      { label: "Adherence" },
-      { label: "Performance Correlation" },
+      { label: "نمای کلی پشته" },
+      { label: "پیروی" },
+      { label: "همبستگی عملکرد" },
     ],
   },
 ];
@@ -147,6 +147,7 @@ export default function MobileSidebar() {
     const distance = touchStart - touchEnd;
     const isLeftSwipe = distance > minSwipeDistance;
 
+    // For RTL sidebar on right side, swipe left to close
     if (isLeftSwipe && isOpen) {
       setIsOpen(false);
     }
@@ -200,7 +201,7 @@ export default function MobileSidebar() {
           {/* Sidebar Content */}
           <Sheet.Content
             ref={sidebarRef}
-            className="fixed inset-y-0 left-0 z-50 h-full w-80 max-w-[85vw] bg-white shadow-2xl data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left duration-300 ease-out"
+            className="fixed inset-y-0 right-0 z-50 h-full w-80 max-w-[85vw] bg-white shadow-2xl data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right duration-300 ease-out"
             onTouchStart={onTouchStart}
             onTouchMove={onTouchMove}
             onTouchEnd={onTouchEnd}
@@ -214,7 +215,7 @@ export default function MobileSidebar() {
                 </div>
                 <div>
                   <h2 className="text-sm font-semibold text-gray-900">
-                    Dashboard
+                    داشبورد
                   </h2>
                   <p className="text-xs text-gray-500">Wrestling MVP</p>
                 </div>
@@ -252,23 +253,12 @@ export default function MobileSidebar() {
                           }
                         }}
                         className={cn(
-                          "flex w-full items-center gap-3 rounded-xl px-3 py-3 text-left text-sm font-medium transition-all duration-200 active:scale-[0.98]",
+                          "flex w-full items-center gap-3 rounded-xl px-3 py-3 text-right text-sm font-medium transition-all duration-200 active:scale-[0.98]",
                           isActive
-                            ? "bg-gradient-to-r from-primary/10 to-primary/5 text-primary shadow-sm ring-1 ring-primary/10"
+                            ? "bg-gradient-to-l from-primary/10 to-primary/5 text-primary shadow-sm ring-1 ring-primary/10"
                             : "text-gray-700 hover:bg-gray-50 hover:text-gray-900"
                         )}
                       >
-                        <span
-                          className={cn(
-                            "flex h-9 w-9 items-center justify-center rounded-lg transition-all duration-200",
-                            isActive
-                              ? "bg-gradient-to-br from-primary to-primary/80 text-primary-foreground shadow-sm"
-                              : "bg-gray-100 text-gray-600 group-hover:bg-gray-200"
-                          )}
-                        >
-                          {item.icon}
-                        </span>
-                        <span className="flex-1 truncate">{item.label}</span>
                         {item.sections.length > 0 && (
                           <ChevronRight
                             className={cn(
@@ -279,6 +269,17 @@ export default function MobileSidebar() {
                             )}
                           />
                         )}
+                        <span className="flex-1 truncate">{item.label}</span>
+                        <span
+                          className={cn(
+                            "flex h-9 w-9 items-center justify-center rounded-lg transition-all duration-200",
+                            isActive
+                              ? "bg-gradient-to-br from-primary to-primary/80 text-primary-foreground shadow-sm"
+                              : "bg-gray-100 text-gray-600 group-hover:bg-gray-200"
+                          )}
+                        >
+                          {item.icon}
+                        </span>
                       </button>
 
                       {/* Sections (Expandable) */}
@@ -291,16 +292,16 @@ export default function MobileSidebar() {
                               : "max-h-0 opacity-0"
                           )}
                         >
-                          <div className="ml-12 space-y-1 pt-1 pb-2">
+                          <div className="mr-12 space-y-1 pt-1 pb-2">
                             {item.sections.map((section, idx) => (
                               <button
                                 key={idx}
                                 onClick={() => handleSectionClick(item.href)}
-                                className="block w-full rounded-lg px-3 py-2.5 text-left text-xs font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-800 transition-all duration-200 active:scale-[0.98]"
+                                className="block w-full rounded-lg px-3 py-2.5 text-right text-xs font-medium text-gray-600 hover:bg-gray-50 hover:text-gray-800 transition-all duration-200 active:scale-[0.98]"
                               >
-                                <span className="flex items-center gap-2">
-                                  <div className="h-1.5 w-1.5 rounded-full bg-gray-300" />
+                                <span className="flex items-center gap-2 justify-end">
                                   {section.label}
+                                  <div className="h-1.5 w-1.5 rounded-full bg-gray-300" />
                                 </span>
                               </button>
                             ))}
@@ -314,10 +315,10 @@ export default function MobileSidebar() {
             </nav>
 
             {/* Footer */}
-            <div className="border-t bg-gradient-to-r from-gray-50 to-gray-100/50 px-4 py-3">
+            <div className="border-t bg-gradient-to-l from-gray-50 to-gray-100/50 px-4 py-3">
               <div className="text-xs text-gray-500 text-center flex items-center justify-center gap-2">
+                <span>بکشید تا ببندید</span>
                 <span>←</span>
-                <span>Swipe left to close</span>
               </div>
             </div>
           </Sheet.Content>

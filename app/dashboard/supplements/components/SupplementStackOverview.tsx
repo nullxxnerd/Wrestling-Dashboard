@@ -36,7 +36,7 @@ import {
 } from "lucide-react";
 import { AIInsightPanel } from "./AIInsightPanel";
 import { SupplementData, AIInsight } from "../types";
-import { SAMPLE_SUPPLEMENTS, formatCurrency, CHART_COLORS } from "../utils";
+import { formatCurrency, CHART_COLORS } from "../utils";
 
 interface SupplementStackOverviewProps {
   supplements?: SupplementData[];
@@ -61,57 +61,105 @@ export const SupplementStackOverview: React.FC<
     if (supplements) return supplements;
 
     return [
-      SAMPLE_SUPPLEMENTS.creatine,
-      SAMPLE_SUPPLEMENTS.protein,
-      SAMPLE_SUPPLEMENTS.betaAlanine,
-      SAMPLE_SUPPLEMENTS.vitaminD,
+      {
+        id: "creatine",
+        name: "کراتین مونوهیدرات",
+        category: "performance",
+        targetAmount: 5,
+        unit: "g",
+        cost: 25,
+        timing: ["pre-workout", "post-workout"],
+        benefits: ["افزایش قدرت", "بهبود بازیابی", "عملکرد بهتر"],
+      },
+      {
+        id: "protein",
+        name: "پروتئین وی",
+        category: "core",
+        targetAmount: 180,
+        unit: "g",
+        cost: 60,
+        timing: ["post-workout", "evening"],
+        benefits: ["ساخت عضله", "بازیابی", "حفظ توده عضلانی"],
+      },
+      {
+        id: "beta-alanine",
+        name: "بتا آلانین",
+        category: "performance",
+        targetAmount: 3,
+        unit: "g",
+        cost: 20,
+        timing: ["pre-workout"],
+        benefits: ["افزایش استقامت", "کاهش خستگی", "بهبود عملکرد"],
+      },
+      {
+        id: "vitamin-d",
+        name: "ویتامین D3",
+        category: "health",
+        targetAmount: 4000,
+        unit: "IU",
+        cost: 18,
+        timing: ["morning"],
+        benefits: ["سلامت استخوان", "سیستم ایمنی", "بهبود خلق"],
+      },
       {
         id: "multivitamin",
-        name: "Multivitamin Complex",
+        name: "مولتی ویتامین",
         category: "health",
         targetAmount: 1,
-        unit: "tablet",
+        unit: "قرص",
         cost: 30,
         timing: ["morning"],
-        benefits: [
-          "Micronutrient support",
-          "Immune function",
-          "Energy metabolism",
-        ],
+        benefits: ["پشتیبانی کلی", "سیستم ایمنی", "متابولیسم انرژی"],
       },
       {
         id: "fish-oil",
-        name: "Omega-3 Fish Oil",
+        name: "امگا 3",
         category: "health",
         targetAmount: 1000,
         unit: "mg",
         cost: 25,
         timing: ["morning", "evening"],
-        benefits: ["Joint health", "Inflammation reduction", "Brain function"],
+        benefits: ["سلامت مفاصل", "کاهش التهاب", "عملکرد مغز"],
       },
       {
         id: "magnesium",
-        name: "Magnesium Glycinate",
+        name: "منیزیم گلایسینات",
         category: "recovery",
         targetAmount: 400,
         unit: "mg",
         cost: 20,
         timing: ["evening"],
-        benefits: [
-          "Sleep quality",
-          "Muscle relaxation",
-          "Recovery enhancement",
-        ],
+        benefits: ["کیفیت خواب", "آرامش عضلانی", "بهبود بازیابی"],
       },
       {
         id: "caffeine",
-        name: "Caffeine Anhydrous",
+        name: "کافئین",
         category: "performance",
         targetAmount: 200,
         unit: "mg",
         cost: 15,
         timing: ["pre-workout"],
-        benefits: ["Energy boost", "Focus enhancement", "Fat oxidation"],
+        benefits: ["افزایش انرژی", "تمرکز بهتر", "سوزاندن چربی"],
+      },
+      {
+        id: "zinc",
+        name: "زینک",
+        category: "recovery",
+        targetAmount: 15,
+        unit: "mg",
+        cost: 12,
+        timing: ["evening"],
+        benefits: ["بازیابی بافت", "سیستم ایمنی", "تستوستron"],
+      },
+      {
+        id: "bcaa",
+        name: "آمینواسید شاخه‌ای",
+        category: "performance",
+        targetAmount: 10,
+        unit: "g",
+        cost: 35,
+        timing: ["pre-workout", "post-workout"],
+        benefits: ["کاهش خستگی", "بازیابی عضله", "پروتئین‌سازی"],
       },
     ] as SupplementData[];
   }, [supplements]);
@@ -120,16 +168,16 @@ export const SupplementStackOverview: React.FC<
   const stackByTiming: StackTiming[] = useMemo(
     () => [
       {
-        time: "Morning",
+        time: "صبح",
         supplements: supplementData.filter((s) => s.timing.includes("morning")),
         totalCost: supplementData
           .filter((s) => s.timing.includes("morning"))
           .reduce((sum, s) => sum + (s.cost || 0), 0),
         icon: <Calendar className="h-4 w-4" />,
-        color: "bg-yellow-50 border-yellow-200 text-yellow-700",
+        color: "bg-gray-100 border-gray-300 text-gray-700",
       },
       {
-        time: "Pre-Workout",
+        time: "پیش‌تمرین",
         supplements: supplementData.filter((s) =>
           s.timing.includes("pre-workout")
         ),
@@ -137,10 +185,10 @@ export const SupplementStackOverview: React.FC<
           .filter((s) => s.timing.includes("pre-workout"))
           .reduce((sum, s) => sum + (s.cost || 0), 0),
         icon: <Zap className="h-4 w-4" />,
-        color: "bg-red-50 border-red-200 text-red-700",
+        color: "bg-gray-100 border-gray-300 text-gray-700",
       },
       {
-        time: "Post-Workout",
+        time: "پس‌تمرین",
         supplements: supplementData.filter((s) =>
           s.timing.includes("post-workout")
         ),
@@ -148,16 +196,16 @@ export const SupplementStackOverview: React.FC<
           .filter((s) => s.timing.includes("post-workout"))
           .reduce((sum, s) => sum + (s.cost || 0), 0),
         icon: <Target className="h-4 w-4" />,
-        color: "bg-green-50 border-green-200 text-green-700",
+        color: "bg-gray-100 border-gray-300 text-gray-700",
       },
       {
-        time: "Evening",
+        time: "عصر",
         supplements: supplementData.filter((s) => s.timing.includes("evening")),
         totalCost: supplementData
           .filter((s) => s.timing.includes("evening"))
           .reduce((sum, s) => sum + (s.cost || 0), 0),
         icon: <Shield className="h-4 w-4" />,
-        color: "bg-purple-50 border-purple-200 text-purple-700",
+        color: "bg-gray-100 border-gray-300 text-gray-700",
       },
     ],
     [supplementData]
@@ -176,7 +224,16 @@ export const SupplementStackOverview: React.FC<
 
     const costPerCategory = Object.entries(categoryBreakdown).map(
       ([category, cost]) => ({
-        category: category.charAt(0).toUpperCase() + category.slice(1),
+        category:
+          category === "core"
+            ? "اصلی"
+            : category === "performance"
+            ? "عملکرد"
+            : category === "health"
+            ? "سلامت"
+            : category === "recovery"
+            ? "بازیابی"
+            : category,
         cost,
         count: supplementData.filter((s) => s.category === category).length,
       })
@@ -197,8 +254,8 @@ export const SupplementStackOverview: React.FC<
 
   // Cost breakdown pie chart data
   const costBreakdownData = metrics.costPerCategory.map((item) => ({
-    name: item.category,
-    value: item.cost,
+    category: item.category,
+    cost: item.cost,
     count: item.count,
   }));
 
@@ -217,21 +274,17 @@ export const SupplementStackOverview: React.FC<
     if (metrics.totalMonthlyCost > 150) {
       insights.push({
         type: "warning",
-        title: "High Supplement Costs",
-        content: `Monthly cost of ${formatCurrency(
-          metrics.totalMonthlyCost
-        )} is above typical athlete budgets. Consider prioritizing core supplements and bulk purchasing.`,
+        title: "هزینه بالای مکمل‌ها",
+        content: `هزینه ماهانه $${metrics.totalMonthlyCost} بالاتر از بودجه معمول ورزشکاران است. روی مکمل‌های اصلی تمرکز کنید.`,
         priority: "medium",
         actionable: true,
-        relatedMetrics: ["Monthly Cost", "Core Supplements"],
+        relatedMetrics: ["هزینه ماهانه", "مکمل‌های اصلی"],
       });
     } else if (metrics.totalMonthlyCost < 80) {
       insights.push({
         type: "recommendation",
-        title: "Budget Optimization Opportunity",
-        content: `Your current spend of ${formatCurrency(
-          metrics.totalMonthlyCost
-        )} allows room for additional performance supplements like beta-alanine or HMB.`,
+        title: "فرصت بهینه‌سازی بودجه",
+        content: `بودجه فعلی $${metrics.totalMonthlyCost} فضایی برای افزودن مکمل‌های عملکرد دارد.`,
         priority: "low",
         actionable: true,
       });
@@ -301,10 +354,8 @@ export const SupplementStackOverview: React.FC<
       return (
         <div className="bg-white p-3 border border-gray-200 rounded-lg shadow-lg">
           <p className="font-medium text-gray-900">{data.name}</p>
-          <p className="text-blue-600">Cost: {formatCurrency(data.value)}</p>
-          <p className="text-gray-600 text-sm">
-            {data.count} supplement{data.count !== 1 ? "s" : ""}
-          </p>
+          <p className="text-gray-900">هزینه: ${data.value}</p>
+          <p className="text-gray-600 text-sm">{data.count} مکمل</p>
         </div>
       );
     }
@@ -321,30 +372,29 @@ export const SupplementStackOverview: React.FC<
   return (
     <div className={`space-y-4 ${className}`}>
       <Card>
-        <CardHeader>
+        <CardHeader className="pb-4">
           <div className="flex items-center justify-between">
             <div>
-              <CardTitle className="text-lg flex items-center gap-2">
-                <Pill className="h-5 w-5 text-purple-600" />
-                Supplement Stack Overview
+              <CardTitle className="text-lg flex items-center gap-2 text-gray-900">
+                <Pill className="h-5 w-5 text-gray-700" />
+                پشته کامل مکمل‌ها
               </CardTitle>
-              <CardDescription>
-                Complete supplement regimen with cost analysis and timing
-                optimization
+              <CardDescription className="text-gray-600">
+                رژیم کامل با تحلیل هزینه و زمان‌بندی
               </CardDescription>
             </div>
             <div className="flex gap-2">
               <Badge
                 variant="outline"
-                className="bg-green-50 text-green-700 border-green-200"
+                className="bg-gray-100 text-gray-700 border-gray-300"
               >
-                {formatCurrency(metrics.dailyCost)}/day
+                ${metrics.dailyCost}/روز
               </Badge>
               <Badge
                 variant="outline"
-                className="bg-purple-50 text-purple-700 border-purple-200"
+                className="bg-gray-100 text-gray-700 border-gray-300"
               >
-                {metrics.totalSupplements} supplements
+                {metrics.totalSupplements} مکمل
               </Badge>
             </div>
           </div>
@@ -352,76 +402,76 @@ export const SupplementStackOverview: React.FC<
         <CardContent>
           {/* Cost Overview */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-            <div className="bg-green-50 p-3 rounded-lg">
-              <div className="flex items-center gap-2 mb-1">
-                <DollarSign className="h-4 w-4 text-green-600" />
+            <div className="bg-gray-50 p-4 rounded-md border border-gray-200">
+              <div className="flex items-center gap-2 mb-2">
+                <DollarSign className="h-4 w-4 text-gray-600" />
                 <span className="text-sm font-medium text-gray-700">
-                  Monthly Cost
+                  هزینه ماهانه
                 </span>
               </div>
-              <div className="text-xl font-bold text-green-600">
-                {formatCurrency(metrics.totalMonthlyCost)}
+              <div className="text-2xl font-bold text-gray-900">
+                ${metrics.totalMonthlyCost}
               </div>
               <div className="text-xs text-gray-600">
-                {formatCurrency(metrics.dailyCost)} per day
+                ${metrics.dailyCost} روزانه
               </div>
             </div>
 
-            <div className="bg-purple-50 p-3 rounded-lg">
-              <div className="flex items-center gap-2 mb-1">
-                <Pill className="h-4 w-4 text-purple-600" />
+            <div className="bg-gray-50 p-4 rounded-md border border-gray-200">
+              <div className="flex items-center gap-2 mb-2">
+                <Pill className="h-4 w-4 text-gray-600" />
                 <span className="text-sm font-medium text-gray-700">
-                  Total Supplements
+                  کل مکمل‌ها
                 </span>
               </div>
-              <div className="text-xl font-bold text-purple-600">
+              <div className="text-2xl font-bold text-gray-900">
                 {metrics.totalSupplements}
               </div>
               <div className="text-xs text-gray-600">
-                {formatCurrency(metrics.avgCostPerSupplement)} average
+                ${metrics.avgCostPerSupplement} میانگین
               </div>
             </div>
 
-            <div className="bg-blue-50 p-3 rounded-lg">
-              <div className="flex items-center gap-2 mb-1">
-                <ShoppingCart className="h-4 w-4 text-blue-600" />
+            <div className="bg-gray-50 p-4 rounded-md border border-gray-200">
+              <div className="flex items-center gap-2 mb-2">
+                <ShoppingCart className="h-4 w-4 text-gray-600" />
                 <span className="text-sm font-medium text-gray-700">
-                  Most Expensive
+                  گران‌ترین
                 </span>
               </div>
-              <div className="text-xl font-bold text-blue-600">
-                {formatCurrency(metrics.mostExpensive.cost || 0)}
+              <div className="text-2xl font-bold text-gray-900">
+                ${metrics.mostExpensive.cost || 0}
               </div>
               <div className="text-xs text-gray-600">
                 {metrics.mostExpensive.name}
               </div>
             </div>
 
-            <div className="bg-orange-50 p-3 rounded-lg">
-              <div className="flex items-center gap-2 mb-1">
-                <Target className="h-4 w-4 text-orange-600" />
+            <div className="bg-gray-50 p-4 rounded-md border border-gray-200">
+              <div className="flex items-center gap-2 mb-2">
+                <Target className="h-4 w-4 text-gray-600" />
                 <span className="text-sm font-medium text-gray-700">
-                  Core Supplements
+                  مکمل‌های اصلی
                 </span>
               </div>
-              <div className="text-xl font-bold text-orange-600">
+              <div className="text-2xl font-bold text-gray-900">
                 {
                   supplementData.filter(
                     (s) => s.category === "core" || s.category === "performance"
                   ).length
                 }
               </div>
-              <div className="text-xs text-gray-600">Performance focus</div>
+              <div className="text-xs text-gray-600">تمرکز عملکرد</div>
             </div>
           </div>
 
           {/* Charts Section */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
             {/* Cost Breakdown Pie Chart */}
             <div>
-              <h4 className="font-medium text-gray-900 mb-3 flex items-center gap-2">
-                <DollarSign className="h-4 w-4" />
-                Cost Breakdown by Category
+              <h4 className="font-medium text-gray-900 mb-4 flex items-center gap-2">
+                <DollarSign className="h-4 w-4 text-gray-700" />
+                تقسیم‌بندی هزینه بر اساس دسته
               </h4>
               <div className="h-64">
                 <ResponsiveContainer width="100%" height="100%">
@@ -431,7 +481,8 @@ export const SupplementStackOverview: React.FC<
                       cx="50%"
                       cy="50%"
                       outerRadius={80}
-                      dataKey="value"
+                      dataKey="cost"
+                      nameKey="category"
                       label
                     >
                       {costBreakdownData.map((_, index) => (
@@ -449,9 +500,9 @@ export const SupplementStackOverview: React.FC<
 
             {/* Category Analysis */}
             <div>
-              <h4 className="font-medium text-gray-900 mb-3 flex items-center gap-2">
-                <TrendingUp className="h-4 w-4" />
-                Category Investment Analysis
+              <h4 className="font-medium text-gray-900 mb-4 flex items-center gap-2">
+                <TrendingUp className="h-4 w-4 text-gray-700" />
+                تحلیل سرمایه‌گذاری دسته‌ها
               </h4>
               <div className="h-64">
                 <ResponsiveContainer width="100%" height="100%">
@@ -460,20 +511,20 @@ export const SupplementStackOverview: React.FC<
                     margin={{ top: 20, right: 30, left: 20, bottom: 5 }}
                   >
                     <CartesianGrid strokeDasharray="3 3" />
-                    <XAxis dataKey="category" fontSize={11} />
-                    <YAxis fontSize={11} />
+                    <XAxis
+                      dataKey="category"
+                      fontSize={11}
+                      tick={{ fill: "#6b7280" }}
+                    />
+                    <YAxis fontSize={11} tick={{ fill: "#6b7280" }} />
                     <Tooltip
                       formatter={(value: number) => [
-                        formatCurrency(value),
-                        "Monthly Cost",
+                        `$${value}`,
+                        "هزینه ماهانه",
                       ]}
-                      labelFormatter={(label) => `Category: ${label}`}
+                      labelFormatter={(label) => `دسته: ${label}`}
                     />
-                    <Bar
-                      dataKey="cost"
-                      fill={CHART_COLORS.primaryBlue}
-                      radius={[4, 4, 0, 0]}
-                    />
+                    <Bar dataKey="cost" fill="#6b7280" radius={[2, 2, 0, 0]} />
                   </BarChart>
                 </ResponsiveContainer>
               </div>
@@ -481,14 +532,15 @@ export const SupplementStackOverview: React.FC<
           </div>
 
           {/* Timing Filter */}
-          <div className="mb-4">
-            <div className="flex gap-2 mb-3">
+          <div className="mb-6">
+            <div className="flex gap-2 mb-4">
               <Button
                 variant={selectedTiming === "all" ? "default" : "outline"}
                 size="sm"
                 onClick={() => setSelectedTiming("all")}
+                className="text-sm"
               >
-                All Supplements
+                همه مکمل‌ها
               </Button>
               {stackByTiming.map((timing) => (
                 <Button
@@ -515,61 +567,71 @@ export const SupplementStackOverview: React.FC<
           </div>
 
           {/* Supplement Cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {filteredSupplements.map((supplement) => (
               <div
                 key={supplement.id}
-                className="bg-gray-50 p-4 rounded-lg border"
+                className="bg-white p-4 rounded-md border border-gray-200"
               >
-                <div className="flex items-start justify-between mb-2">
-                  <h5 className="font-medium text-gray-900">
+                <div className="flex items-start justify-between mb-3">
+                  <h5 className="font-medium text-gray-900 text-sm">
                     {supplement.name}
                   </h5>
                   <Badge
                     variant="outline"
-                    className={`text-xs ${
-                      supplement.category === "core"
-                        ? "bg-red-50 text-red-700 border-red-200"
-                        : supplement.category === "performance"
-                        ? "bg-blue-50 text-blue-700 border-blue-200"
-                        : supplement.category === "health"
-                        ? "bg-green-50 text-green-700 border-green-200"
-                        : "bg-purple-50 text-purple-700 border-purple-200"
-                    }`}
+                    className="text-xs bg-gray-100 text-gray-700 border-gray-300"
                   >
-                    {supplement.category}
+                    {supplement.category === "core"
+                      ? "اصلی"
+                      : supplement.category === "performance"
+                      ? "عملکرد"
+                      : supplement.category === "health"
+                      ? "سلامت"
+                      : "بازیابی"}
                   </Badge>
                 </div>
 
                 <div className="space-y-2 mb-3">
                   <div className="flex items-center justify-between text-sm">
-                    <span className="text-gray-600">Target:</span>
-                    <span className="font-medium">
+                    <span className="text-gray-600">مقدار:</span>
+                    <span className="font-medium text-gray-900">
                       {supplement.targetAmount}
                       {supplement.unit}
                     </span>
                   </div>
                   <div className="flex items-center justify-between text-sm">
-                    <span className="text-gray-600">Cost:</span>
-                    <span className="font-medium text-green-600">
-                      {formatCurrency(supplement.cost || 0)}/month
+                    <span className="text-gray-600">هزینه:</span>
+                    <span className="font-medium text-gray-900">
+                      ${supplement.cost || 0}
                     </span>
                   </div>
                   <div className="flex items-center gap-1 text-sm">
-                    <Clock className="h-3 w-3 text-gray-400" />
+                    <Clock className="h-3 w-3 text-gray-500" />
                     <span className="text-gray-600">
-                      {supplement.timing.join(", ")}
+                      {supplement.timing
+                        .map((t) =>
+                          t === "morning"
+                            ? "صبح"
+                            : t === "pre-workout"
+                            ? "پیش‌تمرین"
+                            : t === "post-workout"
+                            ? "پس‌تمرین"
+                            : t === "evening"
+                            ? "عصر"
+                            : t
+                        )
+                        .join("، ")}
                     </span>
                   </div>
                 </div>
 
                 <div className="space-y-1">
-                  {supplement.benefits.map((benefit, index) => (
+                  {supplement.benefits.slice(0, 2).map((benefit, index) => (
                     <div
                       key={index}
                       className="flex items-center gap-1 text-xs text-gray-600"
                     >
-                      <CheckCircle className="h-3 w-3 text-green-500" />
+                      <CheckCircle className="h-3 w-3 text-gray-500" />
                       <span>{benefit}</span>
                     </div>
                   ))}
@@ -579,18 +641,19 @@ export const SupplementStackOverview: React.FC<
           </div>
 
           {/* Cost-Effectiveness Analysis */}
-          <div className="mt-6 bg-gradient-to-r from-green-50 to-blue-50 p-4 rounded-lg">
-            <h4 className="font-medium text-gray-900 mb-3 flex items-center gap-2">
-              <TrendingUp className="h-4 w-4 text-green-600" />
-              Cost-Effectiveness Analysis
+          <div className="mt-8 bg-gray-100 border border-gray-300 p-6 rounded-md">
+            <h4 className="font-medium text-gray-900 mb-4 flex items-center gap-2">
+              <TrendingUp className="h-4 w-4 text-gray-700" />
+              تحلیل اثربخشی هزینه
             </h4>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="bg-white p-3 rounded border border-green-200">
+              <div className="bg-white p-4 rounded border border-gray-200">
                 <div className="text-sm text-gray-600 mb-1">
-                  Cost per Performance Benefit
+                  هزینه به ازای مکمل اصلی
                 </div>
-                <div className="text-lg font-bold text-green-600">
-                  {formatCurrency(
+                <div className="text-xl font-bold text-gray-900">
+                  $
+                  {Math.round(
                     metrics.totalMonthlyCost /
                       supplementData.filter(
                         (s) =>
@@ -598,25 +661,21 @@ export const SupplementStackOverview: React.FC<
                       ).length
                   )}
                 </div>
-                <div className="text-xs text-gray-500">Per core supplement</div>
+                <div className="text-xs text-gray-500">در ماه</div>
               </div>
-              <div className="bg-white p-3 rounded border border-blue-200">
+              <div className="bg-white p-4 rounded border border-gray-200">
                 <div className="text-sm text-gray-600 mb-1">
-                  Annual Investment
+                  سرمایه‌گذاری سالانه
                 </div>
-                <div className="text-lg font-bold text-blue-600">
-                  {formatCurrency(metrics.totalMonthlyCost * 12)}
+                <div className="text-xl font-bold text-gray-900">
+                  ${metrics.totalMonthlyCost * 12}
                 </div>
-                <div className="text-xs text-gray-500">Full year cost</div>
+                <div className="text-xs text-gray-500">هزینه کل سال</div>
               </div>
-              <div className="bg-white p-3 rounded border border-purple-200">
-                <div className="text-sm text-gray-600 mb-1">
-                  Performance ROI
-                </div>
-                <div className="text-lg font-bold text-purple-600">High</div>
-                <div className="text-xs text-gray-500">
-                  Evidence-based stack
-                </div>
+              <div className="bg-white p-4 rounded border border-gray-200">
+                <div className="text-sm text-gray-600 mb-1">بازده سرمایه</div>
+                <div className="text-xl font-bold text-gray-900">بالا</div>
+                <div className="text-xs text-gray-500">پشته علمی</div>
               </div>
             </div>
           </div>
@@ -624,10 +683,7 @@ export const SupplementStackOverview: React.FC<
       </Card>
 
       {/* AI Insights */}
-      <AIInsightPanel
-        insights={aiInsights}
-        title="Stack Optimization Insights"
-      />
+      <AIInsightPanel insights={aiInsights} title="بینش‌های بهینه‌سازی پشته" />
     </div>
   );
 };

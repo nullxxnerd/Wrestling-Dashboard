@@ -14,7 +14,7 @@ export default function DashboardLayout({
           <MobileHeader />
         </div>
       </div>
-      <div className="mx-auto flex w-full max-8-xl px-2 sm:px-4 gap-4 mt-2 lg:my-8 mb-16 lg:flex-row-reverse">
+      <div className="mx-auto flex w-full max-8-xl px-2 sm:px-4 gap-4 mt-2 lg:my-8 mb-16 ">
         <Sidebar />
         <div className="min-w-0 flex-1">
           <div className="bg-white rounded-md border border-gray-200 shadow-sm py-4 sm:py-6 lg:py-8 px-2 sm:px-4">

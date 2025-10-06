@@ -322,36 +322,29 @@ export const PerformanceCorrelationChart: React.FC<
   return (
     <div className={`space-y-4 ${className}`}>
       <Card>
-        <CardHeader>
+        <CardHeader className="pb-4">
           <div className="flex items-center justify-between">
             <div>
-              <CardTitle className="text-lg flex items-center gap-2">
-                <Activity className="h-5 w-5 text-orange-600" />
-                Performance Correlation Analysis
+              <CardTitle className="text-lg flex items-center gap-2 text-gray-900">
+                <Activity className="h-5 w-5 text-gray-700" />
+                تحلیل ارتباط عملکرد
               </CardTitle>
-              <CardDescription>
-                Track the relationship between supplement intake and athletic
-                performance
+              <CardDescription className="text-gray-600">
+                ردیابی ارتباط بین مصرف مکمل و عملکرد ورزشی
               </CardDescription>
             </div>
             <div className="flex gap-2">
               <Badge
                 variant="outline"
-                className="bg-orange-50 text-orange-700 border-orange-200"
+                className="bg-gray-100 text-gray-700 border-gray-300"
               >
                 r = {correlationMetrics.strongestCorrelation}
               </Badge>
               <Badge
                 variant="outline"
-                className={`${
-                  correlationMetrics.avgPerformance > 80
-                    ? "bg-green-50 text-green-700 border-green-200"
-                    : correlationMetrics.avgPerformance > 60
-                    ? "bg-yellow-50 text-yellow-700 border-yellow-200"
-                    : "bg-red-50 text-red-700 border-red-200"
-                }`}
+                className="bg-gray-100 text-gray-700 border-gray-300"
               >
-                {correlationMetrics.avgPerformance}% avg performance
+                {correlationMetrics.avgPerformance}% میانگین عملکرد
               </Badge>
             </div>
           </div>
@@ -359,64 +352,62 @@ export const PerformanceCorrelationChart: React.FC<
         <CardContent>
           {/* Correlation Metrics */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-            <div className="bg-blue-50 p-3 rounded-lg">
+            <div className="bg-gray-50 p-3 rounded-md border border-gray-200">
               <div className="flex items-center gap-2 mb-1">
-                <Zap className="h-4 w-4 text-blue-600" />
-                <span className="text-sm font-medium text-gray-700">
-                  Strength
-                </span>
+                <Zap className="h-4 w-4 text-gray-600" />
+                <span className="text-sm font-medium text-gray-700">قدرت</span>
               </div>
-              <div className="text-xl font-bold text-blue-600">
+              <div className="text-xl font-bold text-gray-900">
                 r = {correlationMetrics.strengthCorrelation}
               </div>
-              <div className="text-xs text-gray-600">Adherence correlation</div>
+              <div className="text-xs text-gray-600">ارتباط پایبندی</div>
             </div>
 
-            <div className="bg-green-50 p-3 rounded-lg">
+            <div className="bg-gray-50 p-3 rounded-md border border-gray-200">
               <div className="flex items-center gap-2 mb-1">
-                <Activity className="h-4 w-4 text-green-600" />
+                <Activity className="h-4 w-4 text-gray-600" />
                 <span className="text-sm font-medium text-gray-700">
-                  Endurance
+                  استقامت
                 </span>
               </div>
-              <div className="text-xl font-bold text-green-600">
+              <div className="text-xl font-bold text-gray-900">
                 r = {correlationMetrics.enduranceCorrelation}
               </div>
-              <div className="text-xs text-gray-600">Adherence correlation</div>
+              <div className="text-xs text-gray-600">ارتباط پایبندی</div>
             </div>
 
-            <div className="bg-purple-50 p-3 rounded-lg">
+            <div className="bg-gray-50 p-3 rounded-md border border-gray-200">
               <div className="flex items-center gap-2 mb-1">
-                <Target className="h-4 w-4 text-purple-600" />
-                <span className="text-sm font-medium text-gray-700">Power</span>
+                <Target className="h-4 w-4 text-gray-600" />
+                <span className="text-sm font-medium text-gray-700">قدرت</span>
               </div>
-              <div className="text-xl font-bold text-purple-600">
+              <div className="text-xl font-bold text-gray-900">
                 r = {correlationMetrics.powerCorrelation}
               </div>
-              <div className="text-xs text-gray-600">Adherence correlation</div>
+              <div className="text-xs text-gray-600">ارتباط پایبندی</div>
             </div>
 
-            <div className="bg-orange-50 p-3 rounded-lg">
+            <div className="bg-gray-50 p-3 rounded-md border border-gray-200">
               <div className="flex items-center gap-2 mb-1">
-                <TrendingUp className="h-4 w-4 text-orange-600" />
+                <TrendingUp className="h-4 w-4 text-gray-600" />
                 <span className="text-sm font-medium text-gray-700">
-                  Recovery
+                  بازیابی
                 </span>
               </div>
-              <div className="text-xl font-bold text-orange-600">
+              <div className="text-xl font-bold text-gray-900">
                 r = {correlationMetrics.recoveryCorrelation}
               </div>
-              <div className="text-xs text-gray-600">Adherence correlation</div>
+              <div className="text-xs text-gray-600">ارتباط پایبندی</div>
             </div>
           </div>
 
           {/* Charts Section */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+          <div className="grid grid-cols-1 lg:grid-cols-1 gap-6 mb-6">
             {/* Scatter Plot */}
             <div>
               <h4 className="font-medium text-gray-900 mb-3 flex items-center gap-2">
-                <Activity className="h-4 w-4" />
-                Adherence vs Performance Scatter
+                <Activity className="h-4 w-4 text-gray-700" />
+                نمودار پراکندگی پایبندی در مقابل عملکرد
               </h4>
               <div className="h-80">
                 <ResponsiveContainer width="100%" height="100%">
@@ -432,7 +423,7 @@ export const PerformanceCorrelationChart: React.FC<
                       tick={{ fill: "#6b7280" }}
                       domain={[60, 100]}
                       label={{
-                        value: "Adherence %",
+                        value: "پایبندی %",
                         position: "insideBottom",
                         offset: -5,
                       }}
@@ -444,7 +435,7 @@ export const PerformanceCorrelationChart: React.FC<
                       tick={{ fill: "#6b7280" }}
                       domain={[40, 100]}
                       label={{
-                        value: "Performance Score",
+                        value: "امتیاز عملکرد",
                         angle: -90,
                         position: "insideLeft",
                       }}
@@ -464,8 +455,8 @@ export const PerformanceCorrelationChart: React.FC<
             {/* Performance Trends */}
             <div>
               <h4 className="font-medium text-gray-900 mb-3 flex items-center gap-2">
-                <BarChart3 className="h-4 w-4" />
-                Weekly Performance Breakdown
+                <BarChart3 className="h-4 w-4 text-gray-700" />
+                تجزیه عملکرد هفتگی
               </h4>
               <div className="h-80">
                 <ResponsiveContainer width="100%" height="100%">
@@ -640,10 +631,6 @@ export const PerformanceCorrelationChart: React.FC<
       </Card>
 
       {/* AI Insights */}
-      <AIInsightPanel
-        insights={aiInsights}
-        title="Performance Correlation Insights"
-      />
     </div>
   );
 };

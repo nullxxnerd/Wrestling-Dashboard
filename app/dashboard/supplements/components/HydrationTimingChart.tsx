@@ -25,7 +25,6 @@ import {
 import { Droplets, Clock, Target, Timer, TrendingUp } from "lucide-react";
 import { AIInsightPanel } from "./AIInsightPanel";
 import { AIInsight } from "../types";
-import { CHART_COLORS } from "../utils";
 
 interface HydrationTimingData {
   date: string;
@@ -106,20 +105,20 @@ export const HydrationTimingChart: React.FC<HydrationTimingChartProps> = ({
   const radarData = useMemo(
     () => ({
       title: {
-        text: "Hydration & Timing Optimization",
-        textStyle: { fontSize: 16, fontWeight: "normal" },
+        text: "بهینه‌سازی آب‌رسانی و زمان‌بندی",
+        textStyle: { fontSize: 14, fontWeight: "normal", color: "#374151" },
       },
       tooltip: { trigger: "item" },
       radar: {
         indicator: [
-          { name: "Water Intake", max: 5 },
-          { name: "Pre-workout Hydration", max: 10 },
-          { name: "During Workout", max: 10 },
-          { name: "Post-workout Recovery", max: 10 },
-          { name: "Supplement Timing", max: 60 },
-          { name: "Sleep Quality", max: 10 },
+          { name: "مصرف آب", max: 5 },
+          { name: "پیش‌تمرین", max: 10 },
+          { name: "حین تمرین", max: 10 },
+          { name: "پس‌تمرین", max: 10 },
+          { name: "زمان مکمل", max: 60 },
+          { name: "خواب", max: 10 },
         ],
-        radius: "70%",
+        radius: "65%",
       },
       series: [
         {
@@ -139,15 +138,15 @@ export const HydrationTimingChart: React.FC<HydrationTimingChartProps> = ({
                 metrics.avgSupplementTiming,
                 metrics.avgSleepQuality,
               ],
-              name: "Current Week",
-              itemStyle: { color: CHART_COLORS.primaryBlue },
-              areaStyle: { color: `${CHART_COLORS.primaryBlue}30` },
+              name: "هفته فعلی",
+              itemStyle: { color: "#3b82f6" },
+              areaStyle: { color: "#3b82f630" },
             },
             {
               value: [4.0, 8.5, 8.0, 9.0, 30, 8.0], // Optimal targets
-              name: "Optimal Targets",
-              itemStyle: { color: CHART_COLORS.successGreen },
-              areaStyle: { color: `${CHART_COLORS.successGreen}20` },
+              name: "اهداف بهینه",
+              itemStyle: { color: "#60a5fa" },
+              areaStyle: { color: "#60a5fa20" },
               lineStyle: { type: "dashed" },
             },
           ],
@@ -161,35 +160,28 @@ export const HydrationTimingChart: React.FC<HydrationTimingChartProps> = ({
   const timingDistribution = useMemo(
     () => [
       {
-        name: "Pre-workout (20-30 min)",
+        name: "پیش‌تمرین (20-30 دق)",
         value: chartData.filter(
           (d) => d.supplementTiming >= 20 && d.supplementTiming <= 30
         ).length,
       },
       {
-        name: "Pre-workout (30-45 min)",
+        name: "پیش‌تمرین (30-45 دق)",
         value: chartData.filter(
           (d) => d.supplementTiming > 30 && d.supplementTiming <= 45
         ).length,
       },
       {
-        name: "Too Early (>45 min)",
+        name: "خیلی زود (>45 دق)",
         value: chartData.filter((d) => d.supplementTiming > 45).length,
       },
       {
-        name: "Too Late (<20 min)",
+        name: "خیلی دیر (<20 دق)",
         value: chartData.filter((d) => d.supplementTiming < 20).length,
       },
     ],
     [chartData]
   );
-
-  const TIMING_COLORS = [
-    CHART_COLORS.successGreen,
-    CHART_COLORS.primaryBlue,
-    CHART_COLORS.warningOrange,
-    CHART_COLORS.dangerRed,
-  ];
 
   // Generate AI insights
   const aiInsights: AIInsight[] = useMemo(() => {
@@ -199,17 +191,17 @@ export const HydrationTimingChart: React.FC<HydrationTimingChartProps> = ({
     if (metrics.avgWaterIntake < 3.0) {
       insights.push({
         type: "warning",
-        title: "Hydration Deficit Alert",
-        content: `Average water intake of ${metrics.avgWaterIntake}L is below the recommended 3-4L for athletes. Dehydration can significantly impact performance and recovery.`,
+        title: "کمبود آب‌رسانی",
+        content: `میانگین مصرف آب ${metrics.avgWaterIntake}L زیر حد توصیه‌شده 3-4L برای ورزشکاران است.`,
         priority: "high",
         actionable: true,
-        relatedMetrics: ["Water Intake", "Performance", "Recovery"],
+        relatedMetrics: ["مصرف آب", "عملکرد", "بازیابی"],
       });
     } else if (metrics.avgWaterIntake > 4.5) {
       insights.push({
         type: "optimization",
-        title: "Excellent Hydration! 💧",
-        content: `Outstanding water intake at ${metrics.avgWaterIntake}L daily. Your hydration supports optimal performance and recovery.`,
+        title: "آب‌رسانی عالی! 💧",
+        content: `مصرف آب فوق‌العاده در ${metrics.avgWaterIntake}L روزانه. آب‌رسانی شما از عملکرد بهینه حمایت می‌کند.`,
         priority: "low",
         actionable: false,
       });
@@ -219,11 +211,11 @@ export const HydrationTimingChart: React.FC<HydrationTimingChartProps> = ({
     if (metrics.timingConsistency < 5) {
       insights.push({
         type: "recommendation",
-        title: "Supplement Timing Optimization",
-        content: `Only ${metrics.timingConsistency}/7 days had optimal supplement timing. Aim for 20-45 minutes pre-workout for maximum absorption and effectiveness.`,
+        title: "بهینه‌سازی زمان‌بندی مکمل",
+        content: `تنها ${metrics.timingConsistency}/7 روز زمان‌بندی بهینه داشتید. هدف 20-45 دقیقه قبل تمرین.`,
         priority: "medium",
         actionable: true,
-        relatedMetrics: ["Supplement Timing", "Absorption", "Performance"],
+        relatedMetrics: ["زمان‌بندی مکمل", "جذب", "عملکرد"],
       });
     }
 
@@ -231,11 +223,11 @@ export const HydrationTimingChart: React.FC<HydrationTimingChartProps> = ({
     if (metrics.avgSleepQuality < 7) {
       insights.push({
         type: "warning",
-        title: "Sleep Quality Impact",
-        content: `Sleep quality averaging ${metrics.avgSleepQuality}/10 may be limiting recovery. Poor sleep affects supplement absorption and performance gains.`,
+        title: "تأثیر کیفیت خواب",
+        content: `میانگین کیفیت خواب ${metrics.avgSleepQuality}/10 ممکن است بازیابی را محدود کند.`,
         priority: "high",
         actionable: true,
-        relatedMetrics: ["Sleep Quality", "Recovery", "Hormone Balance"],
+        relatedMetrics: ["کیفیت خواب", "بازیابی", "تعادل هورمونی"],
       });
     }
 
@@ -267,133 +259,142 @@ export const HydrationTimingChart: React.FC<HydrationTimingChartProps> = ({
   return (
     <div className={`space-y-4 ${className}`}>
       <Card>
-        <CardHeader>
+        <CardHeader className="pb-4">
           <div className="flex items-center justify-between">
             <div>
-              <CardTitle className="text-lg flex items-center gap-2">
-                <Droplets className="h-5 w-5 text-blue-600" />
-                Hydration & Timing Optimization
+              <CardTitle className="text-lg flex items-center gap-2 text-gray-900">
+                <Droplets className="h-5 w-5 text-gray-700" />
+                هیدراتاسیون و زمان‌بندی
               </CardTitle>
-              <CardDescription>
-                Track hydration, supplement timing, and recovery factors
+              <CardDescription className="text-gray-600">
+                ردیابی آب‌رسانی، زمان‌بندی مکمل و عوامل بازیابی
               </CardDescription>
             </div>
             <div className="flex gap-2">
               <Badge
                 variant="outline"
-                className="bg-blue-50 text-blue-700 border-blue-200"
+                className="bg-gray-100 text-gray-700 border-gray-300"
               >
-                {metrics.avgWaterIntake}L daily
+                {metrics.avgWaterIntake}L روزانه
               </Badge>
               <Badge
                 variant="outline"
-                className={`${
-                  metrics.overallScore > 80
-                    ? "bg-green-50 text-green-700 border-green-200"
-                    : metrics.overallScore > 60
-                    ? "bg-yellow-50 text-yellow-700 border-yellow-200"
-                    : "bg-red-50 text-red-700 border-red-200"
-                }`}
+                className="bg-gray-100 text-gray-700 border-gray-300"
               >
-                {metrics.overallScore}% optimized
+                {metrics.overallScore}% بهینه
               </Badge>
             </div>
           </div>
         </CardHeader>
         <CardContent>
           {/* Metrics Overview */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-            <div className="bg-blue-50 p-3 rounded-lg">
-              <div className="flex items-center gap-2 mb-1">
-                <Droplets className="h-4 w-4 text-blue-600" />
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+            <div className="bg-gray-50 p-4 rounded-md border border-gray-200">
+              <div className="flex items-center gap-2 mb-2">
+                <Droplets className="h-4 w-4 text-gray-600" />
                 <span className="text-sm font-medium text-gray-700">
-                  Water Intake
+                  مصرف آب
                 </span>
               </div>
-              <div className="text-xl font-bold text-blue-600">
+              <div className="text-2xl font-bold text-gray-900">
                 {metrics.avgWaterIntake}L
               </div>
               <div className="text-xs text-gray-600">
-                {metrics.hydrationConsistency}/7 days optimal
+                {metrics.hydrationConsistency}/7 روز بهینه
               </div>
             </div>
 
-            <div className="bg-purple-50 p-3 rounded-lg">
-              <div className="flex items-center gap-2 mb-1">
-                <Clock className="h-4 w-4 text-purple-600" />
+            <div className="bg-gray-50 p-4 rounded-md border border-gray-200">
+              <div className="flex items-center gap-2 mb-2">
+                <Clock className="h-4 w-4 text-gray-600" />
                 <span className="text-sm font-medium text-gray-700">
-                  Supplement Timing
+                  زمان‌بندی مکمل
                 </span>
               </div>
-              <div className="text-xl font-bold text-purple-600">
-                {metrics.avgSupplementTiming}min
+              <div className="text-2xl font-bold text-gray-900">
+                {metrics.avgSupplementTiming} دقیقه
               </div>
-              <div className="text-xs text-gray-600">Before workout</div>
+              <div className="text-xs text-gray-600">قبل تمرین</div>
             </div>
 
-            <div className="bg-green-50 p-3 rounded-lg">
-              <div className="flex items-center gap-2 mb-1">
-                <Timer className="h-4 w-4 text-green-600" />
+            <div className="bg-gray-50 p-4 rounded-md border border-gray-200">
+              <div className="flex items-center gap-2 mb-2">
+                <Timer className="h-4 w-4 text-gray-600" />
                 <span className="text-sm font-medium text-gray-700">
-                  Meal Spacing
+                  فاصله غذا
                 </span>
               </div>
-              <div className="text-xl font-bold text-green-600">
+              <div className="text-2xl font-bold text-gray-900">
                 {metrics.avgMealSpacing}h
               </div>
-              <div className="text-xs text-gray-600">Between meals</div>
+              <div className="text-xs text-gray-600">بین وعده‌ها</div>
             </div>
 
-            <div className="bg-orange-50 p-3 rounded-lg">
-              <div className="flex items-center gap-2 mb-1">
-                <Target className="h-4 w-4 text-orange-600" />
+            <div className="bg-gray-50 p-4 rounded-md border border-gray-200">
+              <div className="flex items-center gap-2 mb-2">
+                <Target className="h-4 w-4 text-gray-600" />
                 <span className="text-sm font-medium text-gray-700">
-                  Sleep Quality
+                  کیفیت خواب
                 </span>
               </div>
-              <div className="text-xl font-bold text-orange-600">
+              <div className="text-2xl font-bold text-gray-900">
                 {metrics.avgSleepQuality}/10
               </div>
-              <div className="text-xs text-gray-600">Recovery factor</div>
+              <div className="text-xs text-gray-600">عامل بازیابی</div>
             </div>
           </div>
 
-          {/* Radar Chart */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+          {/* Charts */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
             <div>
-              <h4 className="font-medium text-gray-900 mb-3 flex items-center gap-2">
-                <Target className="h-4 w-4" />
-                Weekly Performance Radar
+              <h4 className="font-medium text-gray-900 mb-4 flex items-center gap-2">
+                <Target className="h-4 w-4 text-gray-700" />
+                رادار عملکرد هفتگی
               </h4>
-              <div className="h-80">
+              <div className="h-80 bg-gray-50 rounded-md border border-gray-200 p-4">
                 <ReactECharts option={radarData} style={{ height: "100%" }} />
               </div>
             </div>
 
             <div>
-              <h4 className="font-medium text-gray-900 mb-3 flex items-center gap-2">
-                <Clock className="h-4 w-4" />
-                Supplement Timing Distribution
+              <h4 className="font-medium text-gray-900 mb-4 flex items-center gap-2">
+                <Clock className="h-4 w-4 text-gray-700" />
+                توزیع زمان‌بندی مکمل
               </h4>
-              <div className="h-80">
+              <div className="h-80 bg-gray-50 rounded-md border border-gray-200 p-4">
                 <ResponsiveContainer width="100%" height="100%">
                   <PieChart>
                     <Pie
                       data={timingDistribution}
                       cx="50%"
                       cy="50%"
-                      outerRadius={80}
+                      outerRadius={70}
                       dataKey="value"
-                      label={({ name, value }) => `${name}: ${value}`}
+                      label={({ value }) =>
+                        (value as number) > 0 ? `${value}` : ""
+                      }
                     >
                       {timingDistribution.map((_, index) => (
                         <Cell
                           key={`cell-${index}`}
-                          fill={TIMING_COLORS[index % TIMING_COLORS.length]}
+                          fill={
+                            index === 0
+                              ? "#3b82f6"
+                              : index === 1
+                              ? "#60a5fa"
+                              : index === 2
+                              ? "#93c5fd"
+                              : "#dbeafe"
+                          }
                         />
                       ))}
                     </Pie>
-                    <Tooltip />
+                    <Tooltip
+                      formatter={(value: number, name: string) => [
+                        `${value} روز`,
+                        name,
+                      ]}
+                    />
                   </PieChart>
                 </ResponsiveContainer>
               </div>
@@ -401,39 +402,39 @@ export const HydrationTimingChart: React.FC<HydrationTimingChartProps> = ({
           </div>
 
           {/* Weekly Hydration Trend */}
-          <div className="bg-gradient-to-r from-blue-50 to-cyan-50 p-4 rounded-lg">
-            <h4 className="font-medium text-gray-900 mb-3 flex items-center gap-2">
-              <TrendingUp className="h-4 w-4 text-blue-600" />
-              Weekly Hydration Trend
+          <div className="bg-gray-50 border border-gray-200 p-6 rounded-md">
+            <h4 className="font-medium text-gray-900 mb-4 flex items-center gap-2">
+              <TrendingUp className="h-4 w-4 text-gray-700" />
+              روند آب‌رسانی هفتگی
             </h4>
-            <div className="h-40">
+            <div className="h-48">
               <ResponsiveContainer width="100%" height="100%">
                 <LineChart
                   data={chartData}
                   margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
                 >
-                  <CartesianGrid strokeDasharray="3 3" stroke="#e0e0e0" />
+                  <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" />
                   <XAxis
                     dataKey="date"
-                    fontSize={10}
+                    fontSize={11}
                     tick={{ fill: "#6b7280" }}
                   />
                   <YAxis
-                    fontSize={10}
+                    fontSize={11}
                     tick={{ fill: "#6b7280" }}
                     domain={[0, 5]}
                   />
                   <Tooltip
-                    formatter={(value: number) => [`${value}L`, "Water Intake"]}
-                    labelFormatter={(label) => `Day: ${label}`}
+                    formatter={(value: number) => [`${value}L`, "مصرف آب"]}
+                    labelFormatter={(label) => `روز: ${label}`}
                   />
                   <Line
                     type="monotone"
                     dataKey="waterIntake"
-                    stroke={CHART_COLORS.primaryBlue}
+                    stroke="#3b82f6"
                     strokeWidth={3}
                     dot={{
-                      fill: CHART_COLORS.primaryBlue,
+                      fill: "#3b82f6",
                       strokeWidth: 2,
                       r: 4,
                     }}
@@ -444,41 +445,39 @@ export const HydrationTimingChart: React.FC<HydrationTimingChartProps> = ({
           </div>
 
           {/* Quick Tips */}
-          <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4">
-            <div className="bg-blue-50 p-3 rounded-lg border border-blue-200">
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="bg-blue-50 p-4 rounded-md border border-blue-200">
               <div className="flex items-center gap-2 mb-2">
                 <Droplets className="h-4 w-4 text-blue-600" />
+                <span className="font-medium text-blue-900">نکات آب‌رسانی</span>
+              </div>
+              <p className="text-sm text-blue-800">
+                هدف 3-4 لیتر روزانه، 500ml دو ساعت قبل تمرین و 150-250ml هر
+                15-20 دقیقه حین ورزش.
+              </p>
+            </div>
+
+            <div className="bg-blue-50 p-4 rounded-md border border-blue-200">
+              <div className="flex items-center gap-2 mb-2">
+                <Clock className="h-4 w-4 text-blue-600" />
                 <span className="font-medium text-blue-900">
-                  Hydration Tips
+                  نکات زمان‌بندی
                 </span>
               </div>
-              <p className="text-xs text-blue-700">
-                Aim for 3-4L daily, with 500ml 2 hours before training and
-                150-250ml every 15-20 minutes during exercise.
+              <p className="text-sm text-blue-800">
+                کراتین 30 دقیقه قبل تمرین برای جذب بهینه. پروتئین تا 30 دقیقه پس
+                از تمرین.
               </p>
             </div>
 
-            <div className="bg-purple-50 p-3 rounded-lg border border-purple-200">
+            <div className="bg-blue-50 p-4 rounded-md border border-blue-200">
               <div className="flex items-center gap-2 mb-2">
-                <Clock className="h-4 w-4 text-purple-600" />
-                <span className="font-medium text-purple-900">Timing Tips</span>
+                <Target className="h-4 w-4 text-blue-600" />
+                <span className="font-medium text-blue-900">نکات بازیابی</span>
               </div>
-              <p className="text-xs text-purple-700">
-                Take creatine 30 minutes pre-workout for optimal absorption.
-                Post-workout protein within 30 minutes maximizes recovery.
-              </p>
-            </div>
-
-            <div className="bg-green-50 p-3 rounded-lg border border-green-200">
-              <div className="flex items-center gap-2 mb-2">
-                <Target className="h-4 w-4 text-green-600" />
-                <span className="font-medium text-green-900">
-                  Recovery Tips
-                </span>
-              </div>
-              <p className="text-xs text-green-700">
-                Maintain 7-9 hours sleep, space meals 3-4 hours apart, and stay
-                hydrated for optimal nutrient absorption.
+              <p className="text-sm text-blue-800">
+                7-9 ساعت خواب، فاصله 3-4 ساعته وعده‌ها و آب‌رسانی مناسب برای جذب
+                بهینه مواد مغذی.
               </p>
             </div>
           </div>
@@ -488,7 +487,7 @@ export const HydrationTimingChart: React.FC<HydrationTimingChartProps> = ({
       {/* AI Insights */}
       <AIInsightPanel
         insights={aiInsights}
-        title="Hydration & Timing Insights"
+        title="بینش‌های آب‌رسانی و زمان‌بندی"
       />
     </div>
   );

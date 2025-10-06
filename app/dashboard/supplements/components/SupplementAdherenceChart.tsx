@@ -159,20 +159,20 @@ export const SupplementAdherenceChart: React.FC<
     if (metrics.coreAdherence >= 90) {
       insights.push({
         type: "achievement",
-        title: "Core Foundation Solid! 🏆",
-        content: `Excellent adherence to core supplements (${metrics.coreAdherence}%). Your creatine and protein consistency is supporting optimal performance.`,
+        title: "پایه محکم! 🏆",
+        content: `پایبندی عالی به مکمل‌های اصلی (${metrics.coreAdherence}%). ثبات کراتین و پروتئین شما از عملکرد بهینه حمایت می‌کند.`,
         priority: "low",
         actionable: false,
-        relatedMetrics: ["Core Adherence", "Performance Score"],
+        relatedMetrics: ["پایبندی اصلی", "امتیاز عملکرد"],
       });
     } else if (metrics.coreAdherence < 80) {
       insights.push({
         type: "warning",
-        title: "Core Supplement Gaps",
-        content: `Core supplement adherence at ${metrics.coreAdherence}% needs attention. Focus on creatine and protein consistency for maximum performance gains.`,
+        title: "کمبود مکمل‌های اصلی",
+        content: `پایبندی مکمل‌های اصلی در ${metrics.coreAdherence}% نیاز به توجه دارد. روی ثبات کراتین و پروتئین تمرکز کنید.`,
         priority: "high",
         actionable: true,
-        relatedMetrics: ["Creatine", "Protein", "Performance"],
+        relatedMetrics: ["کراتین", "پروتئین", "عملکرد"],
       });
     }
 
@@ -180,8 +180,8 @@ export const SupplementAdherenceChart: React.FC<
     if (metrics.performanceCorrelation > 0.8) {
       insights.push({
         type: "optimization",
-        title: "Strong Performance Link",
-        content: `Your supplement adherence shows strong correlation with performance (${metrics.performanceCorrelation}). Maintaining consistency will continue driving results.`,
+        title: "ارتباط قوی عملکرد",
+        content: `پایبندی مکمل شما ارتباط قوی با عملکرد نشان می‌دهد (${metrics.performanceCorrelation}). حفظ ثبات به ادامه نتایج کمک می‌کند.`,
         priority: "medium",
         actionable: false,
       });
@@ -191,8 +191,8 @@ export const SupplementAdherenceChart: React.FC<
     if (metrics.trend === "improving" && metrics.overallAdherence > 85) {
       insights.push({
         type: "achievement",
-        title: "Momentum Building! 📈",
-        content: `Performance trending upward with ${metrics.overallAdherence}% adherence. You're in the optimal zone for wrestling performance gains.`,
+        title: "حرکت رو به جلو! 📈",
+        content: `عملکرد با ${metrics.overallAdherence}% پایبندی رو به بهبود است. در ناحیه بهینه برای پیشرفت کشتی قرار دارید.`,
         priority: "low",
         actionable: false,
       });
@@ -202,11 +202,11 @@ export const SupplementAdherenceChart: React.FC<
     if (metrics.improvementPotential > 15) {
       insights.push({
         type: "recommendation",
-        title: "Performance Opportunity",
-        content: `${metrics.improvementPotential}% improvement potential available. Focus on consistency in your weakest supplement categories for maximum gains.`,
+        title: "فرصت بهبود عملکرد",
+        content: `${metrics.improvementPotential}% پتانسیل بهبود موجود است. روی ثبات در ضعیف‌ترین دسته‌های مکمل تمرکز کنید.`,
         priority: "medium",
         actionable: true,
-        relatedMetrics: ["Overall Adherence", "Performance Potential"],
+        relatedMetrics: ["پایبندی کلی", "پتانسیل عملکرد"],
       });
     }
 
@@ -220,17 +220,15 @@ export const SupplementAdherenceChart: React.FC<
     if (lowestAdherence < 75) {
       const lowestSupplement =
         latest.vitamins === lowestAdherence
-          ? "vitamins"
+          ? "ویتامین‌ها"
           : latest.preWorkout === lowestAdherence
-          ? "pre-workout"
-          : "beta-alanine";
+          ? "پیش‌تمرین"
+          : "بتا آلانین";
 
       insights.push({
         type: "recommendation",
-        title: `${
-          lowestSupplement.charAt(0).toUpperCase() + lowestSupplement.slice(1)
-        } Focus Needed`,
-        content: `Your ${lowestSupplement} adherence is at ${lowestAdherence}%. Consider setting reminders or adjusting timing to improve consistency.`,
+        title: `نیاز به تمرکز روی ${lowestSupplement}`,
+        content: `پایبندی ${lowestSupplement} شما در ${lowestAdherence}% است. تنظیم یادآوری یا تغییر زمان‌بندی را در نظر بگیرید.`,
         priority: "medium",
         actionable: true,
       });
@@ -271,16 +269,15 @@ export const SupplementAdherenceChart: React.FC<
   return (
     <div className={`space-y-4 ${className}`}>
       <Card>
-        <CardHeader>
+        <CardHeader className="pb-4">
           <div className="flex items-center justify-between">
             <div>
-              <CardTitle className="text-lg flex items-center gap-2">
-                <Shield className="h-5 w-5 text-purple-600" />
-                Supplement Adherence & Performance
+              <CardTitle className="text-lg flex items-center gap-2 text-gray-900">
+                <Shield className="h-5 w-5 text-gray-700" />
+                پایبندی مکمل‌ها
               </CardTitle>
-              <CardDescription>
-                Track supplement consistency and correlation with performance
-                metrics
+              <CardDescription className="text-gray-600">
+                ردیابی پایبندی و ارتباط با عملکرد
               </CardDescription>
             </div>
             <div className="flex gap-2">
@@ -288,10 +285,10 @@ export const SupplementAdherenceChart: React.FC<
                 variant="outline"
                 className={`${
                   metrics.trend === "improving"
-                    ? "bg-green-50 text-green-700 border-green-200"
+                    ? "bg-gray-100 text-gray-700 border-gray-300"
                     : metrics.trend === "declining"
-                    ? "bg-red-50 text-red-700 border-red-200"
-                    : "bg-gray-50 text-gray-700 border-gray-200"
+                    ? "bg-gray-100 text-gray-700 border-gray-300"
+                    : "bg-gray-100 text-gray-700 border-gray-300"
                 }`}
               >
                 {metrics.trend === "improving"
@@ -299,13 +296,17 @@ export const SupplementAdherenceChart: React.FC<
                   : metrics.trend === "declining"
                   ? "↘"
                   : "→"}{" "}
-                {metrics.trend}
+                {metrics.trend === "improving"
+                  ? "بهبود"
+                  : metrics.trend === "declining"
+                  ? "کاهش"
+                  : "ثابت"}
               </Badge>
               <Badge
                 variant="outline"
-                className="bg-purple-50 text-purple-700 border-purple-200"
+                className="bg-gray-100 text-gray-700 border-gray-300"
               >
-                {metrics.overallAdherence}% overall
+                {metrics.overallAdherence}% کلی
               </Badge>
             </div>
           </div>
@@ -313,56 +314,56 @@ export const SupplementAdherenceChart: React.FC<
         <CardContent>
           {/* Metrics Overview */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-            <div className="bg-purple-50 p-3 rounded-lg">
+            <div className="bg-gray-50 p-3 rounded-md border border-gray-200">
               <div className="flex items-center gap-2 mb-1">
-                <CheckCircle className="h-4 w-4 text-purple-600" />
+                <CheckCircle className="h-4 w-4 text-gray-600" />
                 <span className="text-sm font-medium text-gray-700">
-                  Core Adherence
+                  پایبندی اصلی
                 </span>
               </div>
-              <div className="text-xl font-bold text-purple-600">
+              <div className="text-xl font-bold text-gray-900">
                 {metrics.coreAdherence}%
               </div>
-              <div className="text-xs text-gray-600">Creatine + Protein</div>
+              <div className="text-xs text-gray-600">کراتین + پروتئین</div>
             </div>
 
-            <div className="bg-blue-50 p-3 rounded-lg">
+            <div className="bg-gray-50 p-3 rounded-md border border-gray-200">
               <div className="flex items-center gap-2 mb-1">
-                <Shield className="h-4 w-4 text-blue-600" />
+                <Shield className="h-4 w-4 text-gray-600" />
                 <span className="text-sm font-medium text-gray-700">
-                  Support Stack
+                  پشتیبان
                 </span>
               </div>
-              <div className="text-xl font-bold text-blue-600">
+              <div className="text-xl font-bold text-gray-900">
                 {metrics.supplementaryAdherence}%
               </div>
-              <div className="text-xs text-gray-600">Vitamins + Extras</div>
+              <div className="text-xs text-gray-600">ویتامین‌ها + سایر</div>
             </div>
 
-            <div className="bg-green-50 p-3 rounded-lg">
+            <div className="bg-gray-50 p-3 rounded-md border border-gray-200">
               <div className="flex items-center gap-2 mb-1">
-                <Award className="h-4 w-4 text-green-600" />
+                <Award className="h-4 w-4 text-gray-600" />
                 <span className="text-sm font-medium text-gray-700">
-                  Performance
+                  عملکرد
                 </span>
               </div>
-              <div className="text-xl font-bold text-green-600">
+              <div className="text-xl font-bold text-gray-900">
                 {metrics.performanceScore}
               </div>
-              <div className="text-xs text-gray-600">Weekly score</div>
+              <div className="text-xs text-gray-600">امتیاز هفتگی</div>
             </div>
 
-            <div className="bg-orange-50 p-3 rounded-lg">
+            <div className="bg-gray-50 p-3 rounded-md border border-gray-200">
               <div className="flex items-center gap-2 mb-1">
-                <TrendingUp className="h-4 w-4 text-orange-600" />
+                <TrendingUp className="h-4 w-4 text-gray-600" />
                 <span className="text-sm font-medium text-gray-700">
-                  Correlation
+                  ارتباط
                 </span>
               </div>
-              <div className="text-xl font-bold text-orange-600">
+              <div className="text-xl font-bold text-gray-900">
                 {metrics.performanceCorrelation}
               </div>
-              <div className="text-xs text-gray-600">Adherence impact</div>
+              <div className="text-xs text-gray-600">تأثیر پایبندی</div>
             </div>
           </div>
 
@@ -391,13 +392,13 @@ export const SupplementAdherenceChart: React.FC<
                 <Bar
                   dataKey="creatine"
                   fill={CHART_COLORS.primaryBlue}
-                  name="Creatine"
+                  name="کراتین"
                   radius={[2, 2, 0, 0]}
                 />
                 <Bar
                   dataKey="protein"
                   fill={CHART_COLORS.dangerRed}
-                  name="Protein"
+                  name="پروتئین"
                   radius={[2, 2, 0, 0]}
                 />
 
@@ -405,19 +406,19 @@ export const SupplementAdherenceChart: React.FC<
                 <Bar
                   dataKey="vitamins"
                   fill={CHART_COLORS.successGreen}
-                  name="Vitamins"
+                  name="ویتامین‌ها"
                   radius={[2, 2, 0, 0]}
                 />
                 <Bar
                   dataKey="preWorkout"
                   fill={CHART_COLORS.purpleAccent}
-                  name="Pre-workout"
+                  name="پیش‌تمرین"
                   radius={[2, 2, 0, 0]}
                 />
                 <Bar
                   dataKey="betaAlanine"
                   fill={CHART_COLORS.infoCyan}
-                  name="Beta-Alanine"
+                  name="بتا آلانین"
                   radius={[2, 2, 0, 0]}
                 />
 
@@ -427,62 +428,54 @@ export const SupplementAdherenceChart: React.FC<
                   dataKey="performance"
                   stroke={CHART_COLORS.warningOrange}
                   strokeWidth={3}
+                  name="امتیاز عملکرد"
                   dot={{
                     fill: CHART_COLORS.warningOrange,
                     strokeWidth: 2,
                     r: 4,
                   }}
-                  name="Performance Score"
                 />
               </ComposedChart>
             </ResponsiveContainer>
           </div>
 
           {/* Performance Indicators */}
-          <div className="mt-6 bg-gradient-to-r from-purple-50 to-blue-50 p-4 rounded-lg">
+          <div className="mt-6 bg-gray-50 border border-gray-200 p-4 rounded-md">
             <h4 className="font-medium text-gray-900 mb-3 flex items-center gap-2">
-              <TrendingUp className="h-4 w-4 text-purple-600" />
-              Performance Impact Analysis
+              <TrendingUp className="h-4 w-4 text-gray-700" />
+              تحلیل تأثیر عملکرد
             </h4>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-              <div className="bg-white p-3 rounded border border-purple-200">
+              <div className="bg-white p-3 rounded border border-gray-200">
                 <div className="text-sm text-gray-600 mb-1">
-                  Adherence-Performance Correlation
+                  ارتباط پایبندی-عملکرد
                 </div>
-                <div className="text-lg font-bold text-purple-600">
+                <div className="text-lg font-bold text-gray-900">
                   {metrics.performanceCorrelation}
                 </div>
                 <div className="text-xs text-gray-500">
-                  Strong correlation = better results
+                  ارتباط قوی = نتایج بهتر
                 </div>
               </div>
-              <div className="bg-white p-3 rounded border border-blue-200">
-                <div className="text-sm text-gray-600 mb-1">
-                  Improvement Potential
+              <div className="bg-white p-3 rounded border border-gray-200">
+                <div className="text-sm text-gray-600 mb-1">پتانسیل بهبود</div>
+                <div className="text-lg font-bold text-gray-900">
+                  {metrics.improvementPotential.toFixed(2)}%
                 </div>
-                <div className="text-lg font-bold text-blue-600">
-                  {metrics.improvementPotential}%
-                </div>
-                <div className="text-xs text-gray-500">
-                  Room for performance gains
-                </div>
+                <div className="text-xs text-gray-500">فضای بهبود عملکرد</div>
               </div>
-              <div className="bg-white p-3 rounded border border-green-200">
-                <div className="text-sm text-gray-600 mb-1">
-                  Consistency Rating
-                </div>
-                <div className="text-lg font-bold text-green-600">
+              <div className="bg-white p-3 rounded border border-gray-200">
+                <div className="text-sm text-gray-600 mb-1">رتبه‌بندی ثبات</div>
+                <div className="text-lg font-bold text-gray-900">
                   {metrics.overallAdherence > 90
-                    ? "Excellent"
+                    ? "عالی"
                     : metrics.overallAdherence > 80
-                    ? "Good"
+                    ? "خوب"
                     : metrics.overallAdherence > 70
-                    ? "Fair"
-                    : "Needs Work"}
+                    ? "متوسط"
+                    : "نیاز به بهبود"}
                 </div>
-                <div className="text-xs text-gray-500">
-                  Based on overall adherence
-                </div>
+                <div className="text-xs text-gray-500">بر اساس پایبندی کلی</div>
               </div>
             </div>
           </div>
@@ -490,10 +483,7 @@ export const SupplementAdherenceChart: React.FC<
       </Card>
 
       {/* AI Insights */}
-      <AIInsightPanel
-        insights={aiInsights}
-        title="Adherence & Performance Insights"
-      />
+      <AIInsightPanel insights={aiInsights} title="بینش‌های پایبندی و عملکرد" />
     </div>
   );
 };
