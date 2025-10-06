@@ -8,7 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { COLORS, generateDateRange } from "../../utils";
+import { generateDateRange } from "../../utils";
 
 interface TrainingLoadReadinessChartProps {
   trainingLoad?: number[];
@@ -25,7 +25,7 @@ export default function TrainingLoadReadinessChart({
 
   const option = {
     title: {
-      text: "Training Load vs Readiness",
+      text: "بار تمرین در برابر آمادگی",
       textStyle: { fontSize: 14, fontWeight: "normal" },
     },
     tooltip: {
@@ -33,7 +33,7 @@ export default function TrainingLoadReadinessChart({
       textStyle: { fontSize: 12 },
     },
     legend: {
-      data: ["Training Load", "Readiness Score"],
+      data: ["بار تمرین", "امتیاز آمادگی"],
       textStyle: { fontSize: 11 },
     },
     xAxis: {
@@ -44,7 +44,7 @@ export default function TrainingLoadReadinessChart({
     yAxis: [
       {
         type: "value",
-        name: "Load (0-100)",
+        name: "بار (۰-۱۰۰)",
         min: 0,
         max: 100,
         axisLabel: { fontSize: 10 },
@@ -52,7 +52,7 @@ export default function TrainingLoadReadinessChart({
       },
       {
         type: "value",
-        name: "Readiness (0-100)",
+        name: "آمادگی (۰-۱۰۰)",
         min: 50,
         max: 100,
         axisLabel: { fontSize: 10 },
@@ -62,18 +62,18 @@ export default function TrainingLoadReadinessChart({
     ],
     series: [
       {
-        name: "Training Load",
+        name: "بار تمرین",
         type: "bar",
         data: trainingLoad,
-        itemStyle: { color: COLORS.WRESTLING_BLUE },
+        itemStyle: { color: "#6B7280" },
         yAxisIndex: 0,
       },
       {
-        name: "Readiness Score",
+        name: "امتیاز آمادگی",
         type: "line",
         yAxisIndex: 1,
         data: readiness,
-        itemStyle: { color: COLORS.ORANGE },
+        itemStyle: { color: "#9CA3AF" },
         lineStyle: { width: 3 },
         smooth: true,
       },
@@ -92,37 +92,37 @@ export default function TrainingLoadReadinessChart({
   const getRecoveryStatus = (readinessScore: number, loadTrend: number) => {
     if (readinessScore >= 85 && loadTrend < 70)
       return {
-        status: "Excellent Recovery",
-        recommendation: "Ready for high intensity training",
-        color: "text-green-600",
+        status: "بازیابی عالی",
+        recommendation: "آماده تمرین شدت بالا",
+        color: "text-gray-700",
       };
     if (readinessScore >= 80)
       return {
-        status: "Good Recovery",
-        recommendation: "Normal training intensity",
-        color: "text-blue-600",
+        status: "بازیابی خوب",
+        recommendation: "شدت تمرین عادی",
+        color: "text-gray-700",
       };
     if (readinessScore >= 75)
       return {
-        status: "Moderate Recovery",
-        recommendation: "Consider reduced volume",
-        color: "text-yellow-600",
+        status: "بازیابی متوسط",
+        recommendation: "کاهش حجم در نظر بگیرید",
+        color: "text-gray-700",
       };
     return {
-      status: "Poor Recovery",
-      recommendation: "Active recovery or rest day needed",
-      color: "text-red-600",
+      status: "بازیابی ضعیف",
+      recommendation: "بازیابی فعال یا روز استراحت مورد نیاز",
+      color: "text-gray-700",
     };
   };
 
   const recovery = getRecoveryStatus(currentReadiness, recentLoadTrend);
 
   return (
-    <Card className="lg:col-span-2">
+    <Card className="lg:col-span-2 rounded-md border-gray-200">
       <CardHeader>
-        <CardTitle className="text-lg">Recovery Management</CardTitle>
+        <CardTitle className="text-lg">مدیریت بازیابی</CardTitle>
         <CardDescription>
-          Balancing training stress and recovery capacity
+          متعادل کردن استرس تمرین و ظرفیت بازیابی
           <div className={`text-sm mt-1 ${recovery.color}`}>
             {recovery.status}: {recovery.recommendation}
           </div>
@@ -132,19 +132,19 @@ export default function TrainingLoadReadinessChart({
         <ReactECharts option={option} style={{ height: "320px" }} />
         <div className="mt-4 grid grid-cols-3 gap-4 text-sm">
           <div className="text-center">
-            <div className="font-semibold text-blue-600">Avg Training Load</div>
+            <div className="font-semibold text-gray-700">میانگین بار تمرین</div>
             <div className="text-lg">{avgLoad.toFixed(0)}</div>
-            <div className="text-xs text-gray-500">Past {days} days</div>
+            <div className="text-xs text-gray-500">{days} روز گذشته</div>
           </div>
           <div className="text-center">
-            <div className="font-semibold text-orange-600">Avg Readiness</div>
+            <div className="font-semibold text-gray-700">میانگین آمادگی</div>
             <div className="text-lg">{avgReadiness.toFixed(0)}</div>
-            <div className="text-xs text-gray-500">Optimal: 80+</div>
+            <div className="text-xs text-gray-500">بهینه: ۸۰+</div>
           </div>
           <div className="text-center">
-            <div className="font-semibold text-purple-600">Load:Readiness</div>
+            <div className="font-semibold text-gray-700">بار:آمادگی</div>
             <div className="text-lg">{(avgLoad / avgReadiness).toFixed(2)}</div>
-            <div className="text-xs text-gray-500">Target: &lt;0.9</div>
+            <div className="text-xs text-gray-500">هدف: &lt;۰.۹</div>
           </div>
         </div>
       </CardContent>

@@ -387,103 +387,103 @@ export const MuscleMassAnalysis: React.FC<MuscleMassAnalysisProps> = ({
   return (
     <div className="space-y-8">
       <SectionHeader
-        title="Segmental Muscle Analysis"
-        description="Detailed muscle mass and quality analysis by body segment"
-        icon={<User className="h-6 w-6" />}
+        title="تحلیل عضلانی بخش‌بندی‌شده"
+        description="تحلیل دقیق جرم عضلانی و کیفیت بر اساس بخش بدن"
+        icon={<User className="h-6 w-6 text-gray-700" />}
       />
 
       {/* Key Muscle Metrics */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         <MetricCard
-          title="Total Muscle Mass"
+          title="کل جرم عضلانی"
           value={totalMuscleMass.toFixed(1)}
           unit="lbs"
           trend="up"
-          trendValue="+0.8 lbs this week"
-          icon={<Activity className="h-6 w-6" />}
+          trendValue="+0.8 lbs این هفته"
+          icon={<Activity className="h-6 w-6 text-gray-700" />}
         />
 
         <MetricCard
-          title="Avg Muscle Quality"
+          title="کیفیت عضلانی متوسط"
           value={avgMuscleQuality.toFixed(0)}
           unit="/100"
           trend="up"
-          trendValue="+1.2 this week"
-          icon={<Target className="h-6 w-6" />}
+          trendValue="+1.2 این هفته"
+          icon={<Target className="h-6 w-6 text-gray-700" />}
         />
 
         <MetricCard
-          title="Arm Symmetry"
+          title="تقارن بازو"
           value={(segmentalData.armSymmetry * 100).toFixed(1)}
           unit="%"
           trend="stable"
-          trendValue="Balanced"
-          icon={<TrendingUp className="h-6 w-6" />}
+          trendValue="متعادل"
+          icon={<TrendingUp className="h-6 w-6 text-gray-700" />}
         />
 
         <MetricCard
-          title="Leg Symmetry"
+          title="تقارن پا"
           value={(segmentalData.legSymmetry * 100).toFixed(1)}
           unit="%"
           trend="stable"
-          trendValue="Balanced"
-          icon={<Zap className="h-6 w-6" />}
+          trendValue="متعادل"
+          icon={<Zap className="h-6 w-6 text-gray-700" />}
         />
       </div>
 
       {/* Segmental Mass Breakdown */}
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3 sm:gap-4">
         <MetricCard
-          title="Right Arm"
+          title="بازوی راست"
           value={segmentalData.rightArm.toFixed(1)}
           unit="lbs"
           trend="up"
           trendValue="+0.2 lbs"
-          icon={<Activity className="h-5 w-5" />}
+          icon={<Activity className="h-5 w-5 text-gray-700" />}
         />
 
         <MetricCard
-          title="Left Arm"
+          title="بازوی چپ"
           value={segmentalData.leftArm.toFixed(1)}
           unit="lbs"
           trend="up"
           trendValue="+0.2 lbs"
-          icon={<Activity className="h-5 w-5" />}
+          icon={<Activity className="h-5 w-5 text-gray-700" />}
         />
 
         <MetricCard
-          title="Trunk"
+          title="تنه"
           value={segmentalData.trunk.toFixed(1)}
           unit="lbs"
           trend="up"
           trendValue="+0.3 lbs"
-          icon={<Activity className="h-5 w-5" />}
+          icon={<Activity className="h-5 w-5 text-gray-700" />}
         />
 
         <MetricCard
-          title="Right Leg"
+          title="پای راست"
           value={segmentalData.rightLeg.toFixed(1)}
           unit="lbs"
           trend="up"
           trendValue="+0.2 lbs"
-          icon={<Activity className="h-5 w-5" />}
+          icon={<Activity className="h-5 w-5 text-gray-700" />}
         />
 
         <MetricCard
-          title="Left Leg"
+          title="پای چپ"
           value={segmentalData.leftLeg.toFixed(1)}
           unit="lbs"
           trend="up"
           trendValue="+0.2 lbs"
-          icon={<Activity className="h-5 w-5" />}
+          icon={<Activity className="h-5 w-5 text-gray-700" />}
         />
       </div>
 
       {/* Visualization Charts */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
         <ChartCard
-          title="Muscle Mass Distribution"
-          description="Radar view of muscle mass across body segments"
+          title="توزیع جرم عضلانی"
+          description="نمای رادار جرم عضلانی در بخش‌های بدن"
         >
           <ReactECharts
             option={muscleDistributionRadar}
@@ -492,8 +492,8 @@ export const MuscleMassAnalysis: React.FC<MuscleMassAnalysisProps> = ({
         </ChartCard>
 
         <ChartCard
-          title="Muscle Quality Assessment"
-          description="Quality scores for each muscle group (0-100 scale)"
+          title="ارزیابی کیفیت عضلانی"
+          description="امتیازات کیفیت برای هر گروه عضلانی (مقیاس 0-100)"
         >
           <ReactECharts
             option={muscleQualityRadar}
@@ -502,8 +502,8 @@ export const MuscleMassAnalysis: React.FC<MuscleMassAnalysisProps> = ({
         </ChartCard>
 
         <ChartCard
-          title="Symmetry Analysis"
-          description="Right vs left muscle balance (ideal ratio: 1.00)"
+          title="تحلیل تقارن"
+          description="تعادل عضلانی راست در برابر چپ (نسبت ایده‌آل: 1.00)"
         >
           <ReactECharts
             option={muscleSymmetryChart}
@@ -511,10 +511,7 @@ export const MuscleMassAnalysis: React.FC<MuscleMassAnalysisProps> = ({
           />
         </ChartCard>
 
-        <ChartCard
-          title="Percentage Distribution"
-          description="Relative contribution of each muscle group"
-        >
+        <ChartCard title="توزیع درصدی" description="مشارکت نسبی هر گروه عضلانی">
           <ReactECharts
             option={musclePercentageChart}
             style={{ height: "300px" }}
@@ -524,8 +521,8 @@ export const MuscleMassAnalysis: React.FC<MuscleMassAnalysisProps> = ({
 
       <div className="grid grid-cols-1">
         <ChartCard
-          title="Segmental Progression"
-          description="Muscle mass development trends for each body segment"
+          title="پیشرفت بخش‌بندی‌شده"
+          description="روندهای توسعه جرم عضلانی برای هر بخش بدن"
         >
           <ReactECharts
             option={muscleProgressionChart}

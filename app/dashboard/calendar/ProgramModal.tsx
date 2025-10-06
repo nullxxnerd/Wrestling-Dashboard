@@ -59,23 +59,27 @@ export default function ProgramModal({
                 transition={{ duration: 0.18, ease: "circOut" }}
                 className="fixed left-1/2 top-1/2 z-[110] w-[95vw] max-w-2xl -translate-x-1/2 -translate-y-1/2 rounded-xl border bg-white p-0 shadow-2xl outline-none"
               >
-                <div className="flex items-start justify-between gap-4 px-5 py-4 border-b bg-gradient-to-r from-white to-purple-50/40 rounded-t-xl">
+                <div className="flex items-start justify-between gap-4 px-5 py-4 border-b bg-gray-50 rounded-t-xl">
                   <div className="flex items-center gap-3">
-                    <Calendar className="w-5 h-5 text-purple-600" />
+                    <Calendar className="w-5 h-5 text-gray-700" />
                     <div>
                       <Dialog.Title className="text-lg font-semibold">
-                        {selectedProgram?.title ?? "Rest / Recovery"}
+                        {selectedProgram?.title ?? "استراحت / بازیابی"}
                       </Dialog.Title>
                       <p className="text-sm text-muted-foreground">
                         {selectedDate}
                         {selectedProgram?.focus
-                          ? ` • Focus: ${selectedProgram.focus}`
+                          ? ` • تمرکز: ${selectedProgram.focus}`
                           : ""}
                       </p>
                     </div>
                   </div>
                   <Dialog.Close asChild>
-                    <Button variant="outline" size="sm">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="rounded-md border-gray-200"
+                    >
                       <X className="w-4 h-4" />
                     </Button>
                   </Dialog.Close>
@@ -86,8 +90,8 @@ export default function ProgramModal({
                     <>
                       <section>
                         <h3 className="font-medium mb-2 flex items-center gap-2">
-                          <BarChart className="w-4 h-4 text-gray-600" /> Workout
-                          Blocks
+                          <BarChart className="w-4 h-4 text-gray-600" />{" "}
+                          بلوک‌های تمرین
                         </h3>
                         <ul className="list-disc pl-5 space-y-1">
                           {selectedProgram.blocks.map((b, idx) => (
@@ -102,18 +106,17 @@ export default function ProgramModal({
                       </section>
 
                       <section className="grid sm:grid-cols-2 gap-3">
-                        <div className="rounded-md border p-3 bg-purple-50/20">
+                        <div className="rounded-md border border-gray-200 p-3 bg-gray-50">
                           <h4 className="font-medium mb-1 flex items-center gap-2">
-                            <Heart className="w-4 h-4 text-rose-500" />{" "}
-                            Nutrition
+                            <Heart className="w-4 h-4 text-gray-700" /> تغذیه
                           </h4>
                           <p className="text-sm text-muted-foreground">
                             {selectedProgram.nutrition}
                           </p>
                         </div>
-                        <div className="rounded-md border p-3 bg-blue-50/20">
+                        <div className="rounded-md border border-gray-200 p-3 bg-gray-50">
                           <h4 className="font-medium mb-1 flex items-center gap-2">
-                            <Heart className="w-4 h-4 text-blue-500" /> Recovery
+                            <Heart className="w-4 h-4 text-gray-700" /> بازیابی
                           </h4>
                           <p className="text-sm text-muted-foreground">
                             {selectedProgram.recovery}
@@ -122,7 +125,9 @@ export default function ProgramModal({
                       </section>
 
                       <section>
-                        <h3 className="font-medium mb-2">AI Recommendations</h3>
+                        <h3 className="font-medium mb-2">
+                          توصیه‌های هوش مصنوعی
+                        </h3>
                         <ul className="list-disc pl-5 space-y-1">
                           {selectedProgram.aiRecommendations.map((r, i) => (
                             <li key={i} className="text-sm">
@@ -133,11 +138,11 @@ export default function ProgramModal({
                       </section>
                     </>
                   ) : (
-                    <div className="rounded-md border p-4">
+                    <div className="rounded-md border border-gray-200 p-4">
                       <p className="text-sm">
-                        No program scheduled. Suggested: light cardio 20–30 min,
-                        full-body mobility, and 7–9 hours sleep. Hydrate and
-                        maintain protein intake.
+                        هیچ برنامه‌ای برنامه‌ریزی نشده. پیشنهاد: کاردیو سبک
+                        ۲۰-۳۰ دقیقه، تحرک کامل بدن، و ۷-۹ ساعت خواب. هیدراته
+                        بمانید و مصرف پروتئین را حفظ کنید.
                       </p>
                     </div>
                   )}

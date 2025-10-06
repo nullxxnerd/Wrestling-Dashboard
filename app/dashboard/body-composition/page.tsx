@@ -33,14 +33,17 @@ export default function BodyCompositionPage() {
   // Power-to-Weight ratio chart (top preview)
   const powerToWeightOption = {
     title: {
-      text: "Power-to-Weight Ratio",
+      text: "نسبت قدرت به وزن",
       textStyle: { fontSize: 14, fontWeight: "normal", color: "#1f2937" },
     },
     tooltip: { trigger: "axis", formatter: "{b}<br/>P/W: {c}" },
     xAxis: {
       type: "category",
       data: bodyCompData.trends.dates.map((d) =>
-        new Date(d).toLocaleDateString("en-US", { month: "short", day: "numeric" })
+        new Date(d).toLocaleDateString("en-US", {
+          month: "short",
+          day: "numeric",
+        })
       ),
       axisLabel: { fontSize: 10, color: "#6b7280" },
     },
@@ -64,8 +67,16 @@ export default function BodyCompositionPage() {
         areaStyle: { color: "rgba(139, 92, 246, 0.1)" },
         markLine: {
           data: [
-            { yAxis: 1.85, name: "Elite", lineStyle: { type: "dashed", color: "#10b981" } },
-            { yAxis: 1.75, name: "Good", lineStyle: { type: "dashed", color: "#f59e0b" } },
+            {
+              yAxis: 1.85,
+              name: "الیته",
+              lineStyle: { type: "dashed", color: "#10b981" },
+            },
+            {
+              yAxis: 1.75,
+              name: "خوب",
+              lineStyle: { type: "dashed", color: "#f59e0b" },
+            },
           ],
         },
       },
@@ -82,16 +93,20 @@ export default function BodyCompositionPage() {
               <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-2">
                 <Scale className="h-6 w-6 sm:h-8 sm:w-8 text-gray-700" />
                 <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 leading-tight">
-                  Body Composition
+                  ترکیب بدنی
                 </h1>
               </div>
               <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
-                Track InBody metrics, segmental muscle balance, and performance-linked
-                analytics. Preview shows your power-to-weight trend against elite zones.
+                پیگیری معیارهای InBody، تعادل عضلانی بخش‌بندی‌شده و تحلیل‌های
+                مرتبط با عملکرد. پیش‌نمایش روند قدرت به وزن شما در برابر مناطق
+                الیته را نشان می‌دهد.
               </p>
             </div>
             <div className="bg-white rounded-lg border border-gray-200 p-3">
-              <ReactECharts option={powerToWeightOption} style={{ height: 220 }} />
+              <ReactECharts
+                option={powerToWeightOption}
+                style={{ height: 220 }}
+              />
             </div>
           </div>
         </div>

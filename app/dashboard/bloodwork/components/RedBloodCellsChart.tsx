@@ -44,7 +44,7 @@ export const RedBloodCellsChart: React.FC<RedBloodCellsChartProps> = ({
     },
     series: [
       {
-        name: "Red Blood Cells",
+        name: "گلبول‌های قرمز خون",
         type: "line",
         data: values,
         lineStyle: { color: WRESTLING_RED, width: 3 },

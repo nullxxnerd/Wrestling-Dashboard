@@ -49,21 +49,21 @@ export default function CalendarPage() {
       // Example entries for the current month
       // Adjust or expand as needed
       [new Date().toISOString().slice(0, 10)]: {
-        title: "Hypertrophy: Push",
-        focus: "Chest, Shoulders, Triceps",
+        title: "هایپرتروفی: پوش",
+        focus: "سینه، شانه‌ها، سه سر بازو",
         blocks: [
-          { name: "Bench Press", sets: 4, reps: "6-8", load: "RPE 8" },
-          { name: "Incline DB Press", sets: 3, reps: "8-10" },
-          { name: "Cable Fly", sets: 3, reps: 12 },
-          { name: "Lateral Raise", sets: 4, reps: 15 },
-          { name: "Triceps Rope Pushdown", sets: 3, reps: 12 },
+          { name: "پرس سینه", sets: 4, reps: "۶-۸", load: "RPE ۸" },
+          { name: "پرس دمبل شیبدار", sets: 3, reps: "۸-۱۰" },
+          { name: "فلای کابل", sets: 3, reps: 12 },
+          { name: "بالا بردن جانبی", sets: 4, reps: 15 },
+          { name: "پوشداون طناب سه سر", sets: 3, reps: 12 },
         ],
-        nutrition: "200g protein, +250 kcal surplus, hydrate >3L",
-        recovery: "10 min cooldown + 15 min mobility for shoulders",
+        nutrition: "۲۰۰ گرم پروتئین، +۲۵۰ کالری مازاد، هیدراته >۳ لیتر",
+        recovery: "۱۰ دقیقه سرد کردن + ۱۵ دقیقه تحرک برای شانه‌ها",
         aiRecommendations: [
-          "Slight elbow tuck on bench for shoulder comfort.",
-          "Progress incline DB by 2.5 lb if last set >10 reps.",
-          "Add extra set of laterals if no shoulder fatigue.",
+          "کمی آرنج را جمع کنید در پرس برای راحتی شانه.",
+          "پرس دمبل شیبدار را ۲.۵ پوند پیشرفت دهید اگر ست آخر >۱۰ تکرار.",
+          "ست اضافی جانبی اضافه کنید اگر خستگی شانه وجود ندارد.",
         ],
       },
     }),
@@ -91,23 +91,22 @@ export default function CalendarPage() {
     <div className="flex flex-col gap-4">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <CalendarIcon className="h-5 w-5 text-purple-600" />
-          <h1 className="text-xl sm:text-2xl font-semibold">
-            Training Calendar
-          </h1>
+          <CalendarIcon className="h-5 w-5 text-gray-700" />
+          <h1 className="text-xl sm:text-2xl font-semibold">تقویم تمرین</h1>
         </div>
         <Button
           variant="outline"
+          className="rounded-md border-gray-200"
           onClick={() => openForDate(new Date().toISOString().slice(0, 10))}
         >
-          Today’s Plan
+          برنامه امروز
         </Button>
       </div>
 
-      <Card className="min-h-[70vh]">
+      <Card className="min-h-[70vh] rounded-md border-gray-200">
         <CardHeader className="pb-2">
           <CardTitle className="text-base sm:text-lg">
-            Your Bodybuilding Program
+            برنامه بدنسازی شما
           </CardTitle>
         </CardHeader>
         <CardContent>

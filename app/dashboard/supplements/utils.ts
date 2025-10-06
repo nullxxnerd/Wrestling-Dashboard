@@ -71,8 +71,8 @@ export const generateAIInsights = (
   if (adherenceRate >= 90) {
     insights.push({
       type: "achievement",
-      title: "Excellent Consistency! 🏆",
-      content: `You've maintained excellent ${supplementName} consistency with ${adherenceRate}% adherence. This level of consistency is optimal for performance gains.`,
+      title: "ثبات عالی! 🏆",
+      content: `شما ثبات عالی ${supplementName} را با ${adherenceRate}% پایبندی حفظ کرده‌اید. این سطح از ثبات برای بهبود عملکرد بهینه است.`,
       priority: "low",
       actionable: false,
     });
@@ -82,11 +82,11 @@ export const generateAIInsights = (
   if (adherenceRate < 70) {
     insights.push({
       type: "warning",
-      title: "Consistency Alert",
-      content: `Your ${supplementName} adherence is below optimal levels at ${adherenceRate}%. Consider setting daily reminders or adjusting your routine.`,
+      title: "هشدار ثبات",
+      content: `پایبندی ${supplementName} شما در سطح زیر بهینه ${adherenceRate}% است. در نظر بگیرید یادآورهای روزانه تنظیم کنید یا روال خود را تغییر دهید.`,
       priority: "high",
       actionable: true,
-      relatedMetrics: ["Adherence Rate", "Performance Impact"],
+      relatedMetrics: ["نرخ پایبندی", "تأثیر عملکرد"],
     });
   }
 
@@ -94,10 +94,10 @@ export const generateAIInsights = (
   if (avgRecent > avgMonth * 1.1) {
     insights.push({
       type: "optimization",
-      title: "Positive Trend Detected",
-      content: `Your recent ${supplementName} intake has improved by ${Math.round(
+      title: "روند مثبت شناسایی شد",
+      content: `مصرف اخیر ${supplementName} شما ${Math.round(
         ((avgRecent - avgMonth) / avgMonth) * 100
-      )}% compared to your monthly average. Keep up the momentum!`,
+      )}% نسبت به میانگین ماهانه بهبود یافته است. شتاب را حفظ کنید!`,
       priority: "medium",
       actionable: false,
     });
@@ -107,15 +107,15 @@ export const generateAIInsights = (
   if (avgRecent < target * 0.9) {
     insights.push({
       type: "recommendation",
-      title: "Intake Optimization",
-      content: `Consider increasing your ${supplementName} intake by ${
+      title: "بهینه‌سازی مصرف",
+      content: `در نظر بگیرید مصرف ${supplementName} خود را به میزان ${
         Math.round((target - avgRecent) * 10) / 10
       }${
         supplementName === "Protein" ? "g" : "g"
-      } to reach optimal levels for wrestling performance.`,
+      } افزایش دهید تا به سطوح بهینه برای عملکرد کشتی برسید.`,
       priority: "medium",
       actionable: true,
-      relatedMetrics: ["Daily Intake", "Performance Correlation"],
+      relatedMetrics: ["مصرف روزانه", "ارتباط عملکرد"],
     });
   }
 

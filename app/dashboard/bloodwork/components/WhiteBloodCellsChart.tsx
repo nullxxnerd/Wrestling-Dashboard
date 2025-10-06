@@ -42,7 +42,7 @@ export const WhiteBloodCellsChart: React.FC<WhiteBloodCellsChartProps> = ({
     },
     series: [
       {
-        name: "White Blood Cells",
+        name: "گلبول‌های سفید خون",
         type: "line",
         data: values,
         lineStyle: { color: WRESTLING_BLUE, width: 3 },

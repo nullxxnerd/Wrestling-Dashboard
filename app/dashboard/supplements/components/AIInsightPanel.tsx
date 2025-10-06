@@ -65,24 +65,22 @@ const getPriorityColor = (priority: AIInsight["priority"]) => {
 
 export const AIInsightPanel: React.FC<AIInsightPanelProps> = ({
   insights,
-  title = "AI Insights & Recommendations",
+  title = "بینش‌ها و توصیه‌های هوش مصنوعی",
   className = "",
 }) => {
   if (!insights || insights.length === 0) {
     return (
-      <Card
-        className={`bg-gradient-to-br from-blue-50 to-indigo-50 ${className}`}
-      >
+      <Card className={`bg-gray-50 ${className}`}>
         <CardHeader className="pb-3">
           <CardTitle className="text-sm font-medium flex items-center gap-2">
-            <Brain className="h-4 w-4 text-blue-600" />
+            <Brain className="h-4 w-4 text-gray-700" />
             {title}
           </CardTitle>
         </CardHeader>
         <CardContent>
           <p className="text-sm text-gray-600">
-            No insights available at the moment. Keep tracking your supplements
-            for personalized recommendations.
+            در حال حاضر بینشی موجود نیست. برای توصیه‌های شخصی‌سازی‌شده، ردیابی
+            مکمل‌های خود را ادامه دهید.
           </p>
         </CardContent>
       </Card>
@@ -90,18 +88,16 @@ export const AIInsightPanel: React.FC<AIInsightPanelProps> = ({
   }
 
   return (
-    <Card
-      className={`bg-gradient-to-br from-blue-50 to-indigo-50 border-blue-200 ${className}`}
-    >
+    <Card className={`bg-gray-50 border-gray-200 ${className}`}>
       <CardHeader className="pb-3">
         <CardTitle className="text-sm font-medium flex items-center gap-2">
-          <Brain className="h-4 w-4 text-blue-600" />
+          <Brain className="h-4 w-4 text-gray-700" />
           {title}
           <Badge
             variant="outline"
-            className="bg-blue-100 text-blue-700 border-blue-300"
+            className="bg-gray-100 text-gray-700 border-gray-300"
           >
-            {insights.length} insight{insights.length !== 1 ? "s" : ""}
+            {insights.length} بینش{insights.length !== 1 ? "" : ""}
           </Badge>
         </CardTitle>
       </CardHeader>
@@ -124,7 +120,11 @@ export const AIInsightPanel: React.FC<AIInsightPanelProps> = ({
                   insight.priority
                 )}`}
               >
-                {insight.priority}
+                {insight.priority === "high"
+                  ? "بالا"
+                  : insight.priority === "medium"
+                  ? "متوسط"
+                  : "پایین"}
               </Badge>
             </div>
 
@@ -134,7 +134,7 @@ export const AIInsightPanel: React.FC<AIInsightPanelProps> = ({
               <div className="flex items-center gap-1 mb-2">
                 <Target className="h-3 w-3 opacity-60" />
                 <span className="text-xs opacity-80">
-                  Related: {insight.relatedMetrics.join(", ")}
+                  مرتبط: {insight.relatedMetrics.join(", ")}
                 </span>
               </div>
             )}
@@ -142,18 +142,17 @@ export const AIInsightPanel: React.FC<AIInsightPanelProps> = ({
             {insight.actionable && (
               <div className="flex items-center gap-1 text-xs font-medium opacity-80">
                 <ArrowRight className="h-3 w-3" />
-                <span>Action recommended</span>
+                <span>اقدام توصیه می‌شود</span>
               </div>
             )}
           </div>
         ))}
 
-        <div className="mt-4 pt-3 border-t border-blue-200">
-          <p className="text-xs text-blue-600 flex items-center gap-1">
+        <div className="mt-4 pt-3 border-t border-gray-200">
+          <p className="text-xs text-gray-600 flex items-center gap-1">
             <Brain className="h-3 w-3" />
             <span>
-              Powered by AI analysis of your supplement patterns and performance
-              data
+              قدرت‌گرفته از تحلیل هوش مصنوعی الگوهای مکمل و داده‌های عملکرد شما
             </span>
           </p>
         </div>

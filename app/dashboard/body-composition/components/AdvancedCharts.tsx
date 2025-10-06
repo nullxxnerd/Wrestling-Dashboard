@@ -24,7 +24,7 @@ export const AdvancedCharts: React.FC<AdvancedChartsProps> = ({
   // Comprehensive body composition trends
   const bodyCompositionTrends: ChartOptions = {
     title: {
-      text: "Multi-Metric Body Composition Trends",
+      text: "روندهای چندمعیاره ترکیب بدنی",
       textStyle: { fontSize: 14, fontWeight: "normal", color: "#1f2937" },
     },
     tooltip: {
@@ -99,7 +99,7 @@ export const AdvancedCharts: React.FC<AdvancedChartsProps> = ({
   // Hydration and health indicators radar
   const healthIndicatorsRadar: ChartOptions = {
     title: {
-      text: "Health & Performance Indicators",
+      text: "شاخص‌های سلامت و عملکرد",
       textStyle: { fontSize: 14, fontWeight: "normal", color: "#1f2937" },
     },
     tooltip: {
@@ -149,7 +149,7 @@ export const AdvancedCharts: React.FC<AdvancedChartsProps> = ({
   // Metabolic age vs chronological age gauge
   const ageComparisonGauge: ChartOptions = {
     title: {
-      text: "Metabolic vs Chronological Age",
+      text: "سن متابولیک در برابر سن تقویمی",
       textStyle: { fontSize: 14, fontWeight: "normal", color: "#1f2937" },
     },
     tooltip: {
@@ -232,7 +232,7 @@ export const AdvancedCharts: React.FC<AdvancedChartsProps> = ({
   // Power to weight ratio trend with performance zones
   const powerToWeightTrend: ChartOptions = {
     title: {
-      text: "Power-to-Weight Performance Analysis",
+      text: "تحلیل عملکرد قدرت به وزن",
       textStyle: { fontSize: 14, fontWeight: "normal", color: "#1f2937" },
     },
     tooltip: {
@@ -306,7 +306,7 @@ export const AdvancedCharts: React.FC<AdvancedChartsProps> = ({
   // Body shape analysis (WHR, WHtR)
   const bodyShapeAnalysis: ChartOptions = {
     title: {
-      text: "Body Shape Health Indicators",
+      text: "شاخص‌های سلامت شکل بدن",
       textStyle: { fontSize: 14, fontWeight: "normal", color: "#1f2937" },
     },
     tooltip: {
@@ -364,96 +364,67 @@ export const AdvancedCharts: React.FC<AdvancedChartsProps> = ({
     ],
   };
 
-  // Hydration status indicator
-  const getHydrationColor = ():
-    | "green"
-    | "orange"
-    | "blue"
-    | "purple"
-    | "red" => {
-    switch (advancedData.hydrationStatus) {
-      case "Normal":
-        return "green";
-      case "Dehydrated":
-        return "orange";
-      case "Overhydrated":
-        return "blue";
-      default:
-        return "purple";
-    }
-  };
-
   return (
     <div className="space-y-8">
       <SectionHeader
-        title="Advanced Analytics"
-        description="Comprehensive health indicators and performance metrics"
-        icon={<BarChart3 className="h-6 w-6" />}
+        title="تحلیل‌های پیشرفته"
+        description="شاخص‌های سلامت جامع و معیارهای عملکرد"
+        icon={<BarChart3 className="h-6 w-6 text-gray-700" />}
       />
 
       {/* Advanced Health Metrics */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-1 lg:gap-6">
         <MetricCard
-          title="Hydration Status"
+          title="وضعیت آب‌رسانی"
           value={advancedData.hydrationStatus}
           trend="stable"
-          trendValue={`Score: ${advancedData.hydrationScore}/100`}
-          icon={<Droplets className="h-6 w-6" />}
-          colorScheme={getHydrationColor()}
+          trendValue={`امتیاز: ${advancedData.hydrationScore}/100`}
+          icon={<Droplets className="h-6 w-6 text-gray-700" />}
         />
 
         <MetricCard
-          title="Metabolic Age"
+          title="سن متابولیک"
           value={advancedData.metabolicAge}
-          unit="years"
+          unit="سال"
           trend={advancedData.metabolicAge <= 25 ? "down" : "up"}
-          trendValue={advancedData.metabolicAge <= 25 ? "Excellent" : "Monitor"}
-          icon={<Heart className="h-6 w-6" />}
-          colorScheme={advancedData.metabolicAge <= 25 ? "green" : "orange"}
+          trendValue={advancedData.metabolicAge <= 25 ? "عالی" : "نظارت"}
+          icon={<Heart className="h-6 w-6 text-gray-700" />}
         />
 
         <MetricCard
-          title="Muscle Balance"
+          title="تعادل عضلانی"
           value={advancedData.muscleBalance}
           unit="/100"
           trend="up"
-          trendValue="+2.3 this week"
-          icon={<Activity className="h-6 w-6" />}
-          colorScheme="blue"
+          trendValue="+2.3 این هفته"
+          icon={<Activity className="h-6 w-6 text-gray-700" />}
         />
 
         <MetricCard
-          title="Strength Index"
+          title="شاخص قدرت"
           value={advancedData.strengthIndex.toFixed(1)}
           trend="up"
-          trendValue="+1.5 this week"
-          icon={<TrendingUp className="h-6 w-6" />}
-          colorScheme="purple"
+          trendValue="+1.5 این هفته"
+          icon={<TrendingUp className="h-6 w-6 text-gray-700" />}
         />
       </div>
 
       {/* Body Shape Metrics */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <MetricCard
-          title="Waist-Hip Ratio"
+          title="ضریب کمر به باسن"
           value={advancedData.waistHipRatio.toFixed(3)}
           trend={advancedData.waistHipRatio <= 0.9 ? "down" : "stable"}
-          trendValue={advancedData.waistHipRatio <= 0.9 ? "Optimal" : "Monitor"}
-          icon={<Target className="h-6 w-6" />}
-          colorScheme={advancedData.waistHipRatio <= 0.9 ? "green" : "orange"}
+          trendValue={advancedData.waistHipRatio <= 0.9 ? "بهینه" : "نظارت"}
+          icon={<Target className="h-6 w-6 text-gray-700" />}
         />
 
         <MetricCard
-          title="Waist-Height Ratio"
+          title="ضریب کمر به قد"
           value={advancedData.waistHeightRatio.toFixed(3)}
           trend={advancedData.waistHeightRatio <= 0.5 ? "down" : "stable"}
-          trendValue={
-            advancedData.waistHeightRatio <= 0.5 ? "Optimal" : "Monitor"
-          }
-          icon={<Gauge className="h-6 w-6" />}
-          colorScheme={
-            advancedData.waistHeightRatio <= 0.5 ? "green" : "orange"
-          }
+          trendValue={advancedData.waistHeightRatio <= 0.5 ? "بهینه" : "نظارت"}
+          icon={<Gauge className="h-6 w-6 text-gray-700" />}
         />
       </div>
 

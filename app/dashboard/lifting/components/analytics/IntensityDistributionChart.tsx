@@ -8,7 +8,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { COLORS } from "../../utils";
 
 interface IntensityDistributionChartProps {
   repRangeData?: {
@@ -27,7 +26,7 @@ export default function IntensityDistributionChart({
 }: IntensityDistributionChartProps) {
   const option = {
     title: {
-      text: "Training Intensity Distribution",
+      text: "توزیع شدت تمرین",
       textStyle: { fontSize: 14, fontWeight: "normal" },
     },
     tooltip: {
@@ -42,25 +41,25 @@ export default function IntensityDistributionChart({
     },
     series: [
       {
-        name: "Rep Range",
+        name: "محدوده تکرار",
         type: "pie",
         radius: ["40%", "70%"],
         center: ["50%", "45%"],
         data: [
           {
             value: repRangeData.strength,
-            name: "Strength (1-5 reps)",
-            itemStyle: { color: COLORS.WRESTLING_RED },
+            name: "قدرت (۱-۵ تکرار)",
+            itemStyle: { color: "#6B7280" },
           },
           {
             value: repRangeData.hypertrophy,
-            name: "Hypertrophy (6-12 reps)",
-            itemStyle: { color: COLORS.WRESTLING_BLUE },
+            name: "هیپرتروفی (۶-۱۲ تکرار)",
+            itemStyle: { color: "#9CA3AF" },
           },
           {
             value: repRangeData.endurance,
-            name: "Endurance (13+ reps)",
-            itemStyle: { color: COLORS.WRESTLING_GREEN },
+            name: "تحمل (۱۳+ تکرار)",
+            itemStyle: { color: "#D1D5DB" },
           },
         ],
         label: { fontSize: 11 },
@@ -72,31 +71,31 @@ export default function IntensityDistributionChart({
   const getDominantAdaptation = (data: typeof repRangeData) => {
     if (data.hypertrophy >= 50)
       return {
-        adaptation: "Hypertrophy-focused",
-        description: "Optimal for muscle mass development",
-        color: "text-blue-600",
+        adaptation: "متمرکز بر هیپرتروفی",
+        description: "بهینه برای توسعه توده عضلانی",
+        color: "text-gray-700",
       };
     if (data.strength >= 40)
       return {
-        adaptation: "Strength-focused",
-        description: "Prioritizing maximal strength gains",
-        color: "text-red-600",
+        adaptation: "متمرکز بر قدرت",
+        description: "اولویت‌بندی افزایش قدرت حداکثری",
+        color: "text-gray-700",
       };
     return {
-      adaptation: "Balanced approach",
-      description: "Mixed adaptations across rep ranges",
-      color: "text-green-600",
+      adaptation: "رویکرد متعادل",
+      description: "تطابق‌های مختلط در محدوده تکرار",
+      color: "text-gray-700",
     };
   };
 
   const adaptation = getDominantAdaptation(repRangeData);
 
   return (
-    <Card>
+    <Card className="rounded-md border-gray-200">
       <CardHeader>
-        <CardTitle className="text-lg">Rep Range Analysis</CardTitle>
+        <CardTitle className="text-lg">تحلیل محدوده تکرار</CardTitle>
         <CardDescription>
-          Training emphasis distribution
+          توزیع تأکید تمرین
           <div className={`text-sm mt-1 ${adaptation.color}`}>
             {adaptation.adaptation}: {adaptation.description}
           </div>
@@ -106,27 +105,27 @@ export default function IntensityDistributionChart({
         <ReactECharts option={option} style={{ height: "300px" }} />
         <div className="mt-4 grid grid-cols-3 gap-4 text-xs">
           <div className="text-center">
-            <div className="font-semibold text-red-600">Strength</div>
+            <div className="font-semibold text-gray-700">قدرت</div>
             <div className="text-lg">{repRangeData.strength}%</div>
-            <div className="text-gray-500">1-5 reps</div>
-            <div className="text-gray-500">Max strength</div>
+            <div className="text-gray-500">۱-۵ تکرار</div>
+            <div className="text-gray-500">قدرت حداکثری</div>
           </div>
           <div className="text-center">
-            <div className="font-semibold text-blue-600">Hypertrophy</div>
+            <div className="font-semibold text-gray-700">هیپرتروفی</div>
             <div className="text-lg">{repRangeData.hypertrophy}%</div>
-            <div className="text-gray-500">6-12 reps</div>
-            <div className="text-gray-500">Muscle growth</div>
+            <div className="text-gray-500">۶-۱۲ تکرار</div>
+            <div className="text-gray-500">رشد عضلانی</div>
           </div>
           <div className="text-center">
-            <div className="font-semibold text-green-600">Endurance</div>
+            <div className="font-semibold text-gray-700">تحمل</div>
             <div className="text-lg">{repRangeData.endurance}%</div>
-            <div className="text-gray-500">13+ reps</div>
-            <div className="text-gray-500">Work capacity</div>
+            <div className="text-gray-500">۱۳+ تکرار</div>
+            <div className="text-gray-500">ظرفیت کاری</div>
           </div>
         </div>
         <div className="mt-3 text-xs text-gray-600">
-          <strong>Recommendations:</strong> For wrestling, aim for 30% strength,
-          50% hypertrophy, 20% endurance
+          <strong>توصیه‌ها:</strong> برای کشتی، هدف ۳۰% قدرت، ۵۰% هیپرتروفی، ۲۰%
+          تحمل
         </div>
       </CardContent>
     </Card>

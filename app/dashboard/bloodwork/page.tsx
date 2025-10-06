@@ -68,20 +68,10 @@ const commonChartUX = {
 const SectionSeparator = ({
   title,
   description,
-  color = "blue",
 }: {
   title: string;
   description?: string;
-  color?: "blue" | "red" | "green" | "purple" | "orange";
 }) => {
-  const colorClasses = {
-    blue: "from-blue-500 to-blue-300",
-    red: "from-red-500 to-red-300",
-    green: "from-green-500 to-green-300",
-    purple: "from-purple-500 to-purple-300",
-    orange: "from-orange-500 to-orange-300",
-  };
-
   return (
     <div className="mb-8 sm:mb-10">
       <div className="mb-4">
@@ -93,9 +83,7 @@ const SectionSeparator = ({
             {description}
           </p>
         )}
-        <div
-          className={`h-1 bg-gradient-to-r ${colorClasses[color]} to-transparent w-full rounded-full`}
-        ></div>
+        <div className="h-1 bg-gray-200 w-full rounded-md"></div>
       </div>
     </div>
   );
@@ -154,7 +142,7 @@ export default function BloodworkPage() {
     },
     series: [
       {
-        name: "White Blood Cells",
+        name: "گلبول‌های سفید خون",
         type: "line",
         data: [6.8, 7.2, 6.9, 7.1, 6.7, 7.0],
         lineStyle: {
@@ -2038,13 +2026,13 @@ export default function BloodworkPage() {
 
       {/* Enhanced Insights & AI Coach Section */}
       <div id="insights" className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        <Card className="lg:col-span-2 shadow-lg border-l-4 border-l-blue-500">
-          <CardHeader className="pb-4 bg-gradient-to-r from-blue-50 to-transparent">
+        <Card className="lg:col-span-2 shadow-lg border border-gray-200 rounded-md">
+          <CardHeader className="pb-4 bg-gray-50">
             <CardTitle className="text-xl sm:text-2xl font-bold text-gray-900 flex items-center gap-2">
-              🔍 Quick Insights
+              🔍 بینش‌های سریع
             </CardTitle>
             <CardDescription className="text-sm font-medium text-gray-600">
-              Auto-summarized trends from recent biomarker data
+              روندهای خودکار خلاصه‌شده از داده‌های اخیر نشانگر زیستی
             </CardDescription>
           </CardHeader>
           <CardContent className="p-6 space-y-4">
@@ -2116,13 +2104,13 @@ export default function BloodworkPage() {
           </CardContent>
         </Card>
 
-        <Card className="shadow-lg border-l-4 border-l-green-500">
-          <CardHeader className="pb-4 bg-gradient-to-r from-green-50 to-transparent">
+        <Card className="shadow-lg border border-gray-200 rounded-md">
+          <CardHeader className="pb-4 bg-gray-50">
             <CardTitle className="text-xl sm:text-2xl font-bold text-gray-900 flex items-center gap-2">
-              🤖 AI Coach
+              🤖 مربی هوش مصنوعی
             </CardTitle>
             <CardDescription className="text-sm font-medium text-gray-600">
-              Personalized recommendations for optimal performance
+              توصیه‌های شخصی‌سازی‌شده برای عملکرد بهینه
             </CardDescription>
           </CardHeader>
           <CardContent className="p-6">
@@ -2147,27 +2135,26 @@ export default function BloodworkPage() {
       {/* Complete Blood Count (CBC) Section */}
       <div id="cbc" className="mb-12">
         <SectionSeparator
-          title="🩸 Complete Blood Count (CBC)"
-          description="Essential blood cell counts and immune system markers for athletic performance"
-          color="red"
+          title="🩸 شمارش کامل خون (CBC)"
+          description="شمارش ضروری سلول‌های خون و نشانگرهای سیستم ایمنی برای عملکرد ورزشی"
         />
 
         {/* CBC Key Insights */}
         <div className="mb-8">
-          <Card className="bg-gradient-to-r from-red-50 to-orange-50 border-l-4 border-l-red-500">
+          <Card className="bg-gray-50 border border-gray-200 rounded-md">
             <CardHeader className="pb-3">
-              <CardTitle className="text-lg font-bold text-red-800 flex items-center gap-2">
-                🔍 CBC Key Insights
+              <CardTitle className="text-lg font-bold text-gray-900 flex items-center gap-2">
+                🔍 بینش‌های کلیدی CBC
               </CardTitle>
-              <CardDescription className="text-sm text-red-600 font-medium">
-                Current blood cell analysis and performance implications
+              <CardDescription className="text-sm text-gray-600 font-medium">
+                تحلیل فعلی سلول‌های خون و تأثیرات عملکردی
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               {/* Current Values Grid */}
               <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                <div className="text-center p-3 bg-white/70 rounded-lg border border-red-200">
-                  <div className="text-xs font-semibold text-red-600 uppercase tracking-wide mb-1">
+                <div className="text-center p-3 bg-white/70 rounded-md border border-gray-200">
+                  <div className="text-xs font-semibold text-gray-700 uppercase tracking-wide mb-1">
                     WBC
                   </div>
                   <div className="text-lg font-bold text-gray-900">
@@ -2175,21 +2162,21 @@ export default function BloodworkPage() {
                   </div>
                   <div className="text-xs text-gray-600">×10³/µL</div>
                   <div className="text-xs mt-1 font-medium text-green-600">
-                    Normal Range
+                    محدوده طبیعی
                   </div>
                 </div>
-                <div className="text-center p-3 bg-white/70 rounded-lg border border-red-200">
-                  <div className="text-xs font-semibold text-red-600 uppercase tracking-wide mb-1">
+                <div className="text-center p-3 bg-white/70 rounded-md border border-gray-200">
+                  <div className="text-xs font-semibold text-gray-700 uppercase tracking-wide mb-1">
                     RBC
                   </div>
                   <div className="text-lg font-bold text-gray-900">4.8</div>
                   <div className="text-xs text-gray-600">×10⁶/µL</div>
                   <div className="text-xs mt-1 font-medium text-green-600">
-                    Optimal
+                    بهینه
                   </div>
                 </div>
-                <div className="text-center p-3 bg-white/70 rounded-lg border border-red-200">
-                  <div className="text-xs font-semibold text-red-600 uppercase tracking-wide mb-1">
+                <div className="text-center p-3 bg-white/70 rounded-md border border-gray-200">
+                  <div className="text-xs font-semibold text-gray-700 uppercase tracking-wide mb-1">
                     Hemoglobin
                   </div>
                   <div className="text-lg font-bold text-gray-900">
@@ -2197,58 +2184,56 @@ export default function BloodworkPage() {
                   </div>
                   <div className="text-xs text-gray-600">g/dL</div>
                   <div className="text-xs mt-1 font-medium text-green-600">
-                    Excellent
+                    عالی
                   </div>
                 </div>
-                <div className="text-center p-3 bg-white/70 rounded-lg border border-red-200">
-                  <div className="text-xs font-semibold text-red-600 uppercase tracking-wide mb-1">
+                <div className="text-center p-3 bg-white/70 rounded-md border border-gray-200">
+                  <div className="text-xs font-semibold text-gray-700 uppercase tracking-wide mb-1">
                     Hematocrit
                   </div>
                   <div className="text-lg font-bold text-gray-900">
                     {insights.hct.last}%
                   </div>
                   <div className="text-xs mt-1 font-medium text-green-600">
-                    Good
+                    خوب
                   </div>
                 </div>
               </div>
 
               {/* CBC Insights */}
-              <div className="bg-white/50 p-4 rounded-lg border border-red-200">
+              <div className="bg-white/50 p-4 rounded-md border border-gray-200">
                 <h4 className="font-semibold text-gray-900 mb-2 text-sm">
-                  🎯 Performance Analysis:
+                  🎯 تحلیل عملکرد:
                 </h4>
                 <ul className="space-y-2 text-sm text-gray-700">
                   <li className="flex items-start gap-2">
                     <span className="text-green-500 mt-0.5">✓</span>
                     <span>
-                      <strong>Oxygen Delivery:</strong> Hemoglobin at{" "}
-                      {insights.hgb.last} g/dL indicates excellent
-                      oxygen-carrying capacity for endurance performance.
+                      <strong>تحویل اکسیژن:</strong> هموگلوبین در{" "}
+                      {insights.hgb.last} g/dL نشان‌دهنده ظرفیت عالی حمل اکسیژن
+                      برای عملکرد استقامتی است.
                     </span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-green-500 mt-0.5">✓</span>
                     <span>
-                      <strong>Blood Volume:</strong> Hematocrit at{" "}
-                      {insights.hct.last}% suggests optimal blood thickness for
-                      circulation and performance.
+                      <strong>حجم خون:</strong> هماتوکریت در {insights.hct.last}
+                      % نشان‌دهنده ضخامت خون بهینه برای گردش خون و عملکرد است.
                     </span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-blue-500 mt-0.5">ℹ</span>
                     <span>
-                      <strong>Immune Status:</strong> WBC count at{" "}
-                      {insights.wbc.last}×10³/µL indicates healthy immune
-                      function with no signs of overtraining.
+                      <strong>وضعیت ایمنی:</strong> تعداد WBC در{" "}
+                      {insights.wbc.last}×10³/µL نشان‌دهنده عملکرد ایمنی سالم
+                      بدون علائم بیش‌تمرینی است.
                     </span>
                   </li>
                   <li className="flex items-start gap-2">
                     <span className="text-orange-500 mt-0.5">⚠</span>
                     <span>
-                      <strong>Recommendation:</strong> Monitor hydration closely
-                      during intense training to maintain optimal hematocrit
-                      levels.
+                      <strong>توصیه:</strong> هیدراتاسیون را در طول تمرین شدید
+                      به دقت نظارت کنید برای حفظ سطوح هماتوکریت بهینه.
                     </span>
                   </li>
                 </ul>
@@ -2261,9 +2246,9 @@ export default function BloodworkPage() {
           <Card>
             <CardHeader>
               <CardTitle className="text-xl font-semibold">
-                White Blood Cells
+                گلبول‌های سفید خون
               </CardTitle>
-              <CardDescription>Immune system cell count</CardDescription>
+              <CardDescription>شمارش سلول‌های سیستم ایمنی</CardDescription>
             </CardHeader>
             <CardContent>
               <ReactECharts option={wbcData} style={chartStyle} />
@@ -2273,9 +2258,9 @@ export default function BloodworkPage() {
           <Card>
             <CardHeader>
               <CardTitle className="text-xl font-semibold">
-                Red Blood Cells
+                گلبول‌های قرمز خون
               </CardTitle>
-              <CardDescription>Oxygen transport cell count</CardDescription>
+              <CardDescription>شمارش سلول‌های حمل اکسیژن</CardDescription>
             </CardHeader>
             <CardContent>
               <RedBloodCellsChart />
@@ -2287,7 +2272,7 @@ export default function BloodworkPage() {
               <CardTitle className="text-xl font-semibold">
                 Hemoglobin
               </CardTitle>
-              <CardDescription>Oxygen-carrying protein</CardDescription>
+              <CardDescription>پروتئین حمل‌کننده اکسیژن</CardDescription>
             </CardHeader>
             <CardContent>
               <ReactECharts option={hemoglobinData} style={chartStyle} />
@@ -2299,7 +2284,7 @@ export default function BloodworkPage() {
               <CardTitle className="text-xl font-semibold">
                 Hematocrit
               </CardTitle>
-              <CardDescription>Blood volume percentage</CardDescription>
+              <CardDescription>درصد حجم خون</CardDescription>
             </CardHeader>
             <CardContent>
               <ReactECharts option={hematocritData} style={chartStyle} />
@@ -2309,9 +2294,9 @@ export default function BloodworkPage() {
           <Card>
             <CardHeader>
               <CardTitle className="text-xl font-semibold">
-                Platelet Count
+                شمارش پلاکت
               </CardTitle>
-              <CardDescription>Blood clotting capability</CardDescription>
+              <CardDescription>قابلیت انعقاد خون</CardDescription>
             </CardHeader>
             <CardContent>
               <PlateletCountChart />
@@ -2323,15 +2308,14 @@ export default function BloodworkPage() {
       {/* Comprehensive Metabolic Panel (CMP) Section */}
       <div id="metabolic" className="mb-12">
         <SectionSeparator
-          title="🧪 Comprehensive Metabolic Panel (CMP)"
-          description="Kidney function, blood sugar, and electrolyte balance assessment"
-          color="green"
+          title="🧪 پانل متابولیک جامع (CMP)"
+          description="ارزیابی عملکرد کلیه، قند خون و تعادل الکترولیت"
         />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <Card>
             <CardHeader>
               <CardTitle className="text-xl font-semibold">Glucose</CardTitle>
-              <CardDescription>Blood sugar levels</CardDescription>
+              <CardDescription>سطوح قند خون</CardDescription>
             </CardHeader>
             <CardContent>
               <ReactECharts option={glucoseData} style={chartStyle} />
@@ -2343,7 +2327,7 @@ export default function BloodworkPage() {
               <CardTitle className="text-lg">
                 BUN (Blood Urea Nitrogen)
               </CardTitle>
-              <CardDescription>Kidney function marker</CardDescription>
+              <CardDescription>نشانگر عملکرد کلیه</CardDescription>
             </CardHeader>
             <CardContent>
               <ReactECharts option={bunData} style={{ height: "280px" }} />
@@ -2380,9 +2364,8 @@ export default function BloodworkPage() {
       {/* Hormone Panel Section */}
       <div id="hormones" className="mb-12">
         <SectionSeparator
-          title="💪 Hormone Panel"
-          description="Testosterone, LH, FSH levels crucial for strength and recovery"
-          color="purple"
+          title="💪 پانل هورمونی"
+          description="سطوح تستوسترون، LH، FSH حیاتی برای قدرت و بازیابی"
         />
         <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
           <Card>
@@ -2440,9 +2423,8 @@ export default function BloodworkPage() {
       {/* Lipid Panel Section */}
       <div id="lipids" className="mb-12">
         <SectionSeparator
-          title="🫀 Lipid Panel"
-          description="Cholesterol and cardiovascular health markers for athlete wellness"
-          color="purple"
+          title="🫀 پانل لیپیدی"
+          description="کلسترول و نشانگرهای سلامت قلبی عروقی برای ورزشکاران"
         />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <Card>
@@ -2508,9 +2490,8 @@ export default function BloodworkPage() {
       {/* Thyroid Function Section */}
       <div id="thyroid" className="mb-12">
         <SectionSeparator
-          title="⚡ Thyroid Function Panel"
-          description="TSH, T3, T4 levels affecting metabolism and energy regulation"
-          color="purple"
+          title="⚡ پانل عملکرد تیروئید"
+          description="سطوح TSH، T3، T4 که بر متابولیسم و تنظیم انرژی تأثیر می‌گذارد"
         />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <Card>
@@ -2550,9 +2531,8 @@ export default function BloodworkPage() {
       {/* Vitamins & Minerals Section */}
       <div id="vitamins" className="mb-12">
         <SectionSeparator
-          title="🍊 Vitamins & Minerals Panel"
-          description="Essential micronutrients for optimal athletic performance and recovery"
-          color="orange"
+          title="🍊 پانل ویتامین‌ها و مواد معدنی"
+          description="میکرونوترینت‌های ضروری برای عملکرد و بازیابی بهینه ورزشی"
         />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <Card>
@@ -2615,9 +2595,8 @@ export default function BloodworkPage() {
       {/* Inflammatory Markers Section */}
       <div id="inflammation" className="mb-12">
         <SectionSeparator
-          title="🔥 Inflammatory Markers"
-          description="CRP, ESR, IL-6, and TNF-α levels for recovery monitoring"
-          color="red"
+          title="🔥 نشانگرهای التهابی"
+          description="سطوح CRP، ESR، IL-6 و TNF-α برای نظارت بر بازیابی"
         />
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           <Card>

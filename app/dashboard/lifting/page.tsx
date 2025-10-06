@@ -40,24 +40,24 @@ export default function LiftingPage() {
       <div className="flex items-start justify-between mb-8">
         <div>
           <h1 className="text-3xl font-bold text-gray-900">
-            Lifting & Performance Analytics
+            آمار وزنه‌برداری و عملکرد
           </h1>
           <p className="text-gray-600 mt-2">
-            Strength, conditioning, and training load metrics with actionable trends.
+            متریک‌های قدرت، آمادگی جسمانی و بار تمرینی با روندهای عملی.
           </p>
         </div>
         <div className="flex gap-2">
           <Badge
             variant="outline"
-            className="bg-blue-50 text-blue-700 border-blue-200"
+            className="bg-gray-50 text-gray-700 border-gray-200 rounded-md"
           >
-            Current Cycle: Week 4
+            دوره فعلی: هفته ۴
           </Badge>
           <Badge
             variant="outline"
-            className="bg-green-50 text-green-700 border-green-200"
+            className="bg-gray-50 text-gray-700 border-gray-200 rounded-md"
           >
-            Peak Performance
+            عملکرد اوج
           </Badge>
         </div>
       </div>
@@ -65,7 +65,7 @@ export default function LiftingPage() {
       {/* Performance Overview Section */}
       <div className="mb-8">
         <h2 className="text-2xl font-semibold text-gray-800 mb-6">
-          Performance Overview
+          نمای کلی عملکرد
         </h2>
         <PerformanceScore />
       </div>
@@ -73,7 +73,7 @@ export default function LiftingPage() {
       {/* Strength Training Section */}
       <div className="mb-8">
         <h2 className="text-2xl font-semibold text-gray-800 mb-6">
-          Strength Training Metrics
+          متریک‌های تمرین قدرتی
         </h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <BenchPressChart />
@@ -87,7 +87,7 @@ export default function LiftingPage() {
       {/* Cardiovascular Section */}
       <div className="mb-8">
         <h2 className="text-2xl font-semibold text-gray-800 mb-6">
-          Cardiovascular Performance
+          عملکرد قلبی عروقی
         </h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <VO2MaxChart />
@@ -100,7 +100,7 @@ export default function LiftingPage() {
       {/* Advanced Analytics Section */}
       <div className="mb-8">
         <h2 className="text-2xl font-semibold text-gray-800 mb-6">
-          Training Analytics
+          آمار تمرینی
         </h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <VolumeLoadChart />
@@ -113,7 +113,7 @@ export default function LiftingPage() {
       {/* Bodybuilding Metrics Section */}
       <div className="mb-8">
         <h2 className="text-2xl font-semibold text-gray-800 mb-6">
-          Bodybuilding & Development Metrics
+          متریک‌های بدنسازی و توسعه
         </h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           <MuscleSymmetryChart />
@@ -125,63 +125,65 @@ export default function LiftingPage() {
 
       {/* Performance Summary Cards */}
       <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
-        <Card>
+        <Card className="rounded-md border-gray-200">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium">Bench PR</CardTitle>
+            <CardTitle className="text-sm font-medium">
+              رکورد پرس سینه
+            </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-blue-600">330 lbs</div>
-            <p className="text-xs text-gray-500">+15 lbs this month</p>
+            <div className="text-2xl font-bold text-gray-700">۳۳۰ پوند</div>
+            <p className="text-xs text-gray-500">+۱۵ پوند این ماه</p>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="rounded-md border-gray-200">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium">Squat PR</CardTitle>
+            <CardTitle className="text-sm font-medium">رکورد اسکوات</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-red-600">460 lbs</div>
-            <p className="text-xs text-gray-500">+20 lbs this month</p>
+            <div className="text-2xl font-bold text-gray-700">۴۶۰ پوند</div>
+            <p className="text-xs text-gray-500">+۲۰ پوند این ماه</p>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="rounded-md border-gray-200">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium">Deadlift PR</CardTitle>
+            <CardTitle className="text-sm font-medium">رکورد ددلیفت</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-green-600">520 lbs</div>
-            <p className="text-xs text-gray-500">+15 lbs this month</p>
+            <div className="text-2xl font-bold text-gray-700">۵۲۰ پوند</div>
+            <p className="text-xs text-gray-500">+۱۵ پوند این ماه</p>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="rounded-md border-gray-200">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium">VO2 Max</CardTitle>
+            <CardTitle className="text-sm font-medium">حداکثر VO2</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-blue-600">53.7</div>
-            <p className="text-xs text-gray-500">mL/kg/min</p>
+            <div className="text-2xl font-bold text-gray-700">۵۳.۷</div>
+            <p className="text-xs text-gray-500">میلی‌لیتر/کیلوگرم/دقیقه</p>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="rounded-md border-gray-200">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium">Body Fat</CardTitle>
+            <CardTitle className="text-sm font-medium">چربی بدن</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-orange-600">13.5%</div>
-            <p className="text-xs text-gray-500">Competition ready</p>
+            <div className="text-2xl font-bold text-gray-700">۱۳.۵%</div>
+            <p className="text-xs text-gray-500">آماده رقابت</p>
           </CardContent>
         </Card>
 
-        <Card>
+        <Card className="rounded-md border-gray-200">
           <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium">Performance</CardTitle>
+            <CardTitle className="text-sm font-medium">عملکرد</CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-purple-600">87/100</div>
-            <p className="text-xs text-gray-500">Overall score</p>
+            <div className="text-2xl font-bold text-gray-700">۸۷/۱۰۰</div>
+            <p className="text-xs text-gray-500">امتیاز کلی</p>
           </CardContent>
         </Card>
       </div>

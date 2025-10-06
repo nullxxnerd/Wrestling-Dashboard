@@ -256,11 +256,11 @@ export const GoalsTargets: React.FC<GoalsTargetsProps> = ({
       <Card className="border-gray-200 shadow-sm">
         <CardHeader className="bg-gray-50">
           <CardTitle className="text-lg flex items-center gap-2 text-gray-800">
-            <Target className="h-5 w-5" />
-            Update Goals & Targets
+            <Target className="h-5 w-5 text-gray-700" />
+            به‌روزرسانی اهداف و اهداف
           </CardTitle>
           <CardDescription className="text-gray-600">
-            Adjust your competition weight targets and timeline
+            اهداف وزن رقابت و جدول زمانی خود را تنظیم کنید
           </CardDescription>
         </CardHeader>
         <CardContent className="bg-white">

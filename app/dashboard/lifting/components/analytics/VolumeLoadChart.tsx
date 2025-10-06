@@ -8,7 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { COLORS, generateWeekLabels } from "../../utils";
+import { generateWeekLabels } from "../../utils";
 
 interface VolumeLoadChartProps {
   benchVolume?: number[];
@@ -27,7 +27,7 @@ export default function VolumeLoadChart({
 
   const option = {
     title: {
-      text: "Weekly Volume Load - Big 3",
+      text: "بار حجم هفتگی - سه حرکت بزرگ",
       textStyle: { fontSize: 14, fontWeight: "normal" },
     },
     tooltip: {
@@ -35,10 +35,10 @@ export default function VolumeLoadChart({
       axisPointer: { type: "shadow" },
       textStyle: { fontSize: 12 },
       formatter:
-        "{b}<br/>{a0}: {c0} lbs<br/>{a1}: {c1} lbs<br/>{a2}: {c2} lbs<br/>Total: {c3} lbs",
+        "{b}<br/>{a0}: {c0} پوند<br/>{a1}: {c1} پوند<br/>{a2}: {c2} پوند<br/>مجموع: {c3} پوند",
     },
     legend: {
-      data: ["Bench", "Squat", "Deadlift"],
+      data: ["پرس سینه", "اسکوات", "ددلیفت"],
       textStyle: { fontSize: 11 },
     },
     xAxis: {
@@ -48,33 +48,33 @@ export default function VolumeLoadChart({
     },
     yAxis: {
       type: "value",
-      name: "Volume (lbs)",
+      name: "حجم (پوند)",
       min: 0,
       nameTextStyle: { fontSize: 10 },
       axisLabel: { fontSize: 10 },
     },
     series: [
       {
-        name: "Bench",
+        name: "پرس سینه",
         type: "bar",
         stack: "total",
         emphasis: { focus: "series" },
         data: benchVolume,
-        itemStyle: { color: COLORS.WRESTLING_BLUE },
+        itemStyle: { color: "#6B7280" },
       },
       {
-        name: "Squat",
+        name: "اسکوات",
         type: "bar",
         stack: "total",
         data: squatVolume,
-        itemStyle: { color: COLORS.WRESTLING_RED },
+        itemStyle: { color: "#9CA3AF" },
       },
       {
-        name: "Deadlift",
+        name: "ددلیفت",
         type: "bar",
         stack: "total",
         data: deadliftVolume,
-        itemStyle: { color: COLORS.WRESTLING_GREEN },
+        itemStyle: { color: "#D1D5DB" },
       },
     ],
   };
@@ -89,20 +89,15 @@ export default function VolumeLoadChart({
   const volumeChange = currentWeekTotal - previousWeekTotal;
 
   return (
-    <Card>
+    <Card className="rounded-md border-gray-200">
       <CardHeader>
-        <CardTitle className="text-lg">Training Volume Analysis</CardTitle>
+        <CardTitle className="text-lg">تحلیل حجم تمرین</CardTitle>
         <CardDescription>
-          Weekly tonnage progression - Current:{" "}
-          {currentWeekTotal.toLocaleString()} lbs
+          پیشرفت تناژ هفتگی - فعلی: {currentWeekTotal.toLocaleString()} پوند
           {volumeChange !== 0 && (
-            <span
-              className={`ml-2 ${
-                volumeChange > 0 ? "text-green-600" : "text-red-600"
-              }`}
-            >
+            <span className={`ml-2 text-gray-700`}>
               ({volumeChange > 0 ? "+" : ""}
-              {volumeChange.toLocaleString()} lbs vs last week)
+              {volumeChange.toLocaleString()} پوند در مقایسه با هفته گذشته)
             </span>
           )}
         </CardDescription>
@@ -111,40 +106,40 @@ export default function VolumeLoadChart({
         <ReactECharts option={option} style={{ height: "300px" }} />
         <div className="mt-4 grid grid-cols-3 gap-4 text-sm">
           <div className="text-center">
-            <div className="font-semibold text-blue-600">Bench Volume</div>
+            <div className="font-semibold text-gray-700">حجم پرس سینه</div>
             <div>
-              {benchVolume[benchVolume.length - 1].toLocaleString()} lbs
+              {benchVolume[benchVolume.length - 1].toLocaleString()} پوند
             </div>
             <div className="text-xs text-gray-500">
               {Math.round(
                 (benchVolume[benchVolume.length - 1] / currentWeekTotal) * 100
               )}
-              % of total
+              % از مجموع
             </div>
           </div>
           <div className="text-center">
-            <div className="font-semibold text-red-600">Squat Volume</div>
+            <div className="font-semibold text-gray-700">حجم اسکوات</div>
             <div>
-              {squatVolume[squatVolume.length - 1].toLocaleString()} lbs
+              {squatVolume[squatVolume.length - 1].toLocaleString()} پوند
             </div>
             <div className="text-xs text-gray-500">
               {Math.round(
                 (squatVolume[squatVolume.length - 1] / currentWeekTotal) * 100
               )}
-              % of total
+              % از مجموع
             </div>
           </div>
           <div className="text-center">
-            <div className="font-semibold text-green-600">Deadlift Volume</div>
+            <div className="font-semibold text-gray-700">حجم ددلیفت</div>
             <div>
-              {deadliftVolume[deadliftVolume.length - 1].toLocaleString()} lbs
+              {deadliftVolume[deadliftVolume.length - 1].toLocaleString()} پوند
             </div>
             <div className="text-xs text-gray-500">
               {Math.round(
                 (deadliftVolume[deadliftVolume.length - 1] / currentWeekTotal) *
                   100
               )}
-              % of total
+              % از مجموع
             </div>
           </div>
         </div>

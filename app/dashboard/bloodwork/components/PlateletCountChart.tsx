@@ -41,7 +41,7 @@ export const PlateletCountChart: React.FC<PlateletCountChartProps> = ({
     },
     series: [
       {
-        name: "Platelets",
+        name: "پلاکت‌ها",
         type: "line",
         data: values,
         lineStyle: { color: "#f59e0b", width: 3 },

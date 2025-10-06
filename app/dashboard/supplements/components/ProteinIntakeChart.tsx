@@ -125,17 +125,17 @@ export const ProteinIntakeChart: React.FC<ProteinIntakeChartProps> = ({
     if (metrics.proteinPerKg < 1.6) {
       specificInsights.push({
         type: "warning",
-        title: "Sub-Optimal Protein Intake",
-        content: `At ${metrics.proteinPerKg}g/kg body weight, you're below the recommended 1.6-2.2g/kg for athletes. Consider increasing intake for optimal muscle protein synthesis.`,
+        title: "مصرف پروتئین زیر بهینه",
+        content: `در ${metrics.proteinPerKg}g/kg وزن بدن، شما زیر محدوده توصیه‌شده ۱.۶-۲.۲g/kg برای ورزشکاران هستید. در نظر بگیرید مصرف را برای سنتز پروتئین عضلانی بهینه افزایش دهید.`,
         priority: "high",
         actionable: true,
-        relatedMetrics: ["Protein per kg", "Muscle Recovery"],
+        relatedMetrics: ["پروتئین در هر کیلوگرم", "بازیابی عضلانی"],
       });
     } else if (metrics.proteinPerKg > 2.2) {
       specificInsights.push({
         type: "optimization",
-        title: "High Protein Intake",
-        content: `Your intake of ${metrics.proteinPerKg}g/kg is above typical athletic recommendations. Monitor kidney health and consider redistribution if experiencing digestive issues.`,
+        title: "مصرف پروتئین بالا",
+        content: `مصرف شما ${metrics.proteinPerKg}g/kg بالاتر از توصیه‌های معمول ورزشی است. سلامت کلیه را پایش کنید و در صورت تجربه مشکلات گوارشی، توزیع مجدد را در نظر بگیرید.`,
         priority: "medium",
         actionable: true,
       });
@@ -145,11 +145,11 @@ export const ProteinIntakeChart: React.FC<ProteinIntakeChartProps> = ({
     if (metrics.mealDistribution.breakfast < 25) {
       specificInsights.push({
         type: "recommendation",
-        title: "Breakfast Protein Boost",
-        content: `Your breakfast averages only ${metrics.mealDistribution.breakfast}g protein. Aim for 25-30g to kickstart muscle protein synthesis after overnight fasting.`,
+        title: "تقویت پروتئین صبحانه",
+        content: `صبحانه شما به طور متوسط فقط ${metrics.mealDistribution.breakfast}g پروتئین دارد. هدف ۲۵-۳۰g برای شروع سنتز پروتئین عضلانی پس از روزه شبانه.`,
         priority: "medium",
         actionable: true,
-        relatedMetrics: ["Meal Timing", "Recovery"],
+        relatedMetrics: ["زمان‌بندی وعده غذایی", "بازیابی"],
       });
     }
 
@@ -157,8 +157,8 @@ export const ProteinIntakeChart: React.FC<ProteinIntakeChartProps> = ({
     if (metrics.avgWeekly >= target && metrics.consistency > 20) {
       specificInsights.push({
         type: "achievement",
-        title: "Protein Timing Mastery! 🥇",
-        content: `Excellent consistency at ${metrics.avgDaily}g daily. Your protein intake supports optimal recovery and strength gains for wrestling performance.`,
+        title: "تسلط زمان‌بندی پروتئین! 🥇",
+        content: `ثبات عالی در ${metrics.avgDaily}g روزانه. مصرف پروتئین شما بازیابی بهینه و افزایش قدرت برای عملکرد کشتی را پشتیبانی می‌کند.`,
         priority: "low",
         actionable: false,
       });
@@ -220,34 +220,32 @@ export const ProteinIntakeChart: React.FC<ProteinIntakeChartProps> = ({
           <div className="flex items-center justify-between">
             <div>
               <CardTitle className="text-lg flex items-center gap-2">
-                <Beef className="h-5 w-5 text-red-600" />
-                Protein Intake Analysis
+                <Beef className="h-5 w-5 text-gray-700" />
+                تحلیل مصرف پروتئین
               </CardTitle>
               <CardDescription>
-                Daily protein tracking for muscle recovery and performance
+                ردیابی روزانه پروتئین برای بازیابی عضلانی و عملکرد
               </CardDescription>
             </div>
             <div className="flex gap-2">
               <Badge
                 variant="outline"
-                className={`${
-                  metrics.trend === "up"
-                    ? "bg-green-50 text-green-700 border-green-200"
-                    : metrics.trend === "down"
-                    ? "bg-red-50 text-red-700 border-red-200"
-                    : "bg-gray-50 text-gray-700 border-gray-200"
-                }`}
+                className="bg-gray-50 text-gray-700 border-gray-200"
               >
                 {metrics.trend === "up"
                   ? "↗"
                   : metrics.trend === "down"
                   ? "↘"
                   : "→"}{" "}
-                {metrics.trend}
+                {metrics.trend === "up"
+                  ? "افزایشی"
+                  : metrics.trend === "down"
+                  ? "کاهشی"
+                  : "پایدار"}
               </Badge>
               <Badge
                 variant="outline"
-                className="bg-red-50 text-red-700 border-red-200"
+                className="bg-gray-50 text-gray-700 border-gray-200"
               >
                 {metrics.proteinPerKg}g/kg
               </Badge>
@@ -257,60 +255,60 @@ export const ProteinIntakeChart: React.FC<ProteinIntakeChartProps> = ({
         <CardContent>
           {/* Metrics Overview */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-            <div className="bg-red-50 p-3 rounded-lg">
+            <div className="bg-gray-50 p-3 rounded-lg">
               <div className="flex items-center gap-2 mb-1">
-                <Calendar className="h-4 w-4 text-red-600" />
+                <Calendar className="h-4 w-4 text-gray-700" />
                 <span className="text-sm font-medium text-gray-700">
-                  Daily Avg
+                  میانگین روزانه
                 </span>
               </div>
-              <div className="text-xl font-bold text-red-600">
+              <div className="text-xl font-bold text-gray-900">
                 {metrics.avgDaily}g
               </div>
               <div className="text-xs text-gray-600">
-                {metrics.proteinPerKg}g/kg body weight
+                {metrics.proteinPerKg}g/kg وزن بدن
               </div>
             </div>
 
-            <div className="bg-green-50 p-3 rounded-lg">
+            <div className="bg-gray-50 p-3 rounded-lg">
               <div className="flex items-center gap-2 mb-1">
-                <TrendingUp className="h-4 w-4 text-green-600" />
+                <TrendingUp className="h-4 w-4 text-gray-700" />
                 <span className="text-sm font-medium text-gray-700">
-                  Weekly Avg
+                  میانگین هفتگی
                 </span>
               </div>
-              <div className="text-xl font-bold text-green-600">
+              <div className="text-xl font-bold text-gray-900">
                 {metrics.avgWeekly}g
               </div>
-              <div className="text-xs text-gray-600">Last 7 days</div>
+              <div className="text-xs text-gray-600">۷ روز گذشته</div>
             </div>
 
-            <div className="bg-blue-50 p-3 rounded-lg">
+            <div className="bg-gray-50 p-3 rounded-lg">
               <div className="flex items-center gap-2 mb-1">
-                <Target className="h-4 w-4 text-blue-600" />
+                <Target className="h-4 w-4 text-gray-700" />
                 <span className="text-sm font-medium text-gray-700">
-                  Adherence
+                  پایبندی
                 </span>
               </div>
-              <div className="text-xl font-bold text-blue-600">
+              <div className="text-xl font-bold text-gray-900">
                 {metrics.adherenceRate}%
               </div>
               <div className="text-xs text-gray-600">
-                {metrics.consistency}/30 days
+                {metrics.consistency}/۳۰ روز
               </div>
             </div>
 
-            <div className="bg-purple-50 p-3 rounded-lg">
+            <div className="bg-gray-50 p-3 rounded-lg">
               <div className="flex items-center gap-2 mb-1">
-                <Clock className="h-4 w-4 text-purple-600" />
+                <Clock className="h-4 w-4 text-gray-700" />
                 <span className="text-sm font-medium text-gray-700">
-                  Breakfast
+                  صبحانه
                 </span>
               </div>
-              <div className="text-xl font-bold text-purple-600">
+              <div className="text-xl font-bold text-gray-900">
                 {metrics.mealDistribution.breakfast}g
               </div>
-              <div className="text-xs text-gray-600">Morning protein</div>
+              <div className="text-xs text-gray-600">پروتئین صبح</div>
             </div>
           </div>
 
@@ -417,7 +415,7 @@ export const ProteinIntakeChart: React.FC<ProteinIntakeChartProps> = ({
       {/* AI Insights */}
       <AIInsightPanel
         insights={aiInsights}
-        title="Protein Optimization Insights"
+        title="بینش‌های بهینه‌سازی پروتئین"
       />
     </div>
   );

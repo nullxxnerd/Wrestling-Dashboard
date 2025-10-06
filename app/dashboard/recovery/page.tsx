@@ -39,16 +39,16 @@ export default function RecoveryPage() {
   // Sleep quality tracking
   const sleepQualityData = {
     title: {
-      text: "Sleep Quality & Duration",
+      text: "کیفیت خواب و مدت",
       textStyle: { fontSize: 14, fontWeight: "normal", color: "#1f2937" },
     },
     tooltip: {
       trigger: "axis",
       textStyle: { fontSize: 12 },
-      formatter: "{b}<br/>Sleep: {c0} hours<br/>Quality: {c1}/10",
+      formatter: "{b}<br/>خواب: {c0} ساعت<br/>کیفیت: {c1}/۱۰",
     },
     legend: {
-      data: ["Sleep Duration", "Sleep Quality"],
+      data: ["مدت خواب", "کیفیت خواب"],
       textStyle: { fontSize: 11, color: "#374151" },
     },
     xAxis: {
@@ -60,7 +60,7 @@ export default function RecoveryPage() {
     yAxis: [
       {
         type: "value",
-        name: "Hours",
+        name: "ساعت",
         min: 6,
         max: 10,
         nameTextStyle: { fontSize: 10, color: "#6b7280" },
@@ -69,7 +69,7 @@ export default function RecoveryPage() {
       },
       {
         type: "value",
-        name: "Quality (1-10)",
+        name: "کیفیت (۱-۱۰)",
         min: 1,
         max: 10,
         position: "right",
@@ -80,22 +80,22 @@ export default function RecoveryPage() {
     ],
     series: [
       {
-        name: "Sleep Duration",
+        name: "مدت خواب",
         type: "bar",
         yAxisIndex: 0,
         data: [
           7.5, 8.2, 7.8, 6.9, 8.5, 8.1, 7.2, 8.0, 7.9, 8.3, 7.6, 8.4, 7.8, 8.2,
         ],
-        itemStyle: { color: PRIMARY_BLUE },
+        itemStyle: { color: "#6B7280" },
         barWidth: "40%",
       },
       {
-        name: "Sleep Quality",
+        name: "کیفیت خواب",
         type: "line",
         yAxisIndex: 1,
         data: [7, 8, 6, 5, 9, 8, 6, 7, 8, 9, 7, 8, 7, 8],
-        itemStyle: { color: SUCCESS_GREEN },
-        lineStyle: { color: SUCCESS_GREEN, width: 3 },
+        itemStyle: { color: "#9CA3AF" },
+        lineStyle: { color: "#9CA3AF", width: 3 },
         symbol: "circle",
         symbolSize: 6,
       },
@@ -105,13 +105,13 @@ export default function RecoveryPage() {
   // Heart Rate Variability (HRV) tracking
   const hrvData = {
     title: {
-      text: "Heart Rate Variability (HRV)",
+      text: "تغییرپذیری ضربان قلب (HRV)",
       textStyle: { fontSize: 14, fontWeight: "normal", color: "#1f2937" },
     },
     tooltip: {
       trigger: "axis",
       textStyle: { fontSize: 12 },
-      formatter: "{b}<br/>HRV: {c} ms",
+      formatter: "{b}<br/>HRV: {c} میلی‌ثانیه",
     },
     xAxis: {
       type: "category",
@@ -121,7 +121,7 @@ export default function RecoveryPage() {
     },
     yAxis: {
       type: "value",
-      name: "HRV (ms)",
+      name: "HRV (میلی‌ثانیه)",
       min: 30,
       max: 60,
       nameTextStyle: { fontSize: 10, color: "#6b7280" },
@@ -134,18 +134,18 @@ export default function RecoveryPage() {
         name: "HRV",
         type: "line",
         data: [45, 48, 42, 38, 52, 49, 41, 46, 47, 51, 44, 50, 46, 49],
-        itemStyle: { color: ERROR_RED },
-        lineStyle: { color: ERROR_RED, width: 3 },
-        areaStyle: { color: `${ERROR_RED}15` },
+        itemStyle: { color: "#6B7280" },
+        lineStyle: { color: "#6B7280", width: 3 },
+        areaStyle: { color: "#6B728030" },
         symbol: "diamond",
         symbolSize: 6,
         markLine: {
           data: [
             {
               yAxis: 45,
-              name: "Baseline",
-              lineStyle: { color: SECONDARY_GRAY, type: "dashed" },
-              label: { color: SECONDARY_GRAY, fontSize: 10 },
+              name: "خط پایه",
+              lineStyle: { color: "#9CA3AF", type: "dashed" },
+              label: { color: "#9CA3AF", fontSize: 10 },
             },
           ],
         },
@@ -156,13 +156,13 @@ export default function RecoveryPage() {
   // Stress level tracking
   const stressLevelData = {
     title: {
-      text: "Daily Stress Levels",
+      text: "سطوح استرس روزانه",
       textStyle: { fontSize: 14, fontWeight: "normal", color: "#1f2937" },
     },
     tooltip: {
       trigger: "axis",
       textStyle: { fontSize: 12 },
-      formatter: "{b}<br/>Stress: {c}/10",
+      formatter: "{b}<br/>استرس: {c}/۱۰",
     },
     xAxis: {
       type: "category",
@@ -172,7 +172,7 @@ export default function RecoveryPage() {
     },
     yAxis: {
       type: "value",
-      name: "Stress Level (1-10)",
+      name: "سطح استرس (۱-۱۰)",
       min: 1,
       max: 10,
       nameTextStyle: { fontSize: 10, color: "#6b7280" },
@@ -182,11 +182,11 @@ export default function RecoveryPage() {
     },
     series: [
       {
-        name: "Stress Level",
+        name: "سطح استرس",
         type: "bar",
         data: [4, 3, 6, 7, 2, 3, 5, 4, 3, 2, 5, 3, 4, 3],
         itemStyle: {
-          color: "#059669", // Default green color
+          color: "#6B7280", // Default gray color
         },
         barWidth: "60%",
       },
@@ -196,7 +196,7 @@ export default function RecoveryPage() {
   // Muscle soreness tracking
   const muscleSorenessData = {
     title: {
-      text: "Muscle Soreness Assessment",
+      text: "ارزیابی درد عضلانی",
       textStyle: { fontSize: 14, fontWeight: "normal", color: "#1f2937" },
     },
     tooltip: {
@@ -204,7 +204,7 @@ export default function RecoveryPage() {
       textStyle: { fontSize: 12 },
     },
     legend: {
-      data: ["Upper Body", "Core", "Lower Body"],
+      data: ["بدن بالایی", "تنه", "بدن پایینی"],
       textStyle: { fontSize: 11, color: "#374151" },
     },
     xAxis: {
@@ -215,7 +215,7 @@ export default function RecoveryPage() {
     },
     yAxis: {
       type: "value",
-      name: "Soreness (1-10)",
+      name: "درد (۱-۱۰)",
       min: 0,
       max: 10,
       nameTextStyle: { fontSize: 10, color: "#6b7280" },
@@ -225,29 +225,29 @@ export default function RecoveryPage() {
     },
     series: [
       {
-        name: "Upper Body",
+        name: "بدن بالایی",
         type: "line",
         data: [3, 2, 5, 6, 1, 2, 4, 3, 2, 1, 4, 2, 3, 2],
-        itemStyle: { color: PRIMARY_BLUE },
-        lineStyle: { color: PRIMARY_BLUE, width: 2 },
+        itemStyle: { color: "#6B7280" },
+        lineStyle: { color: "#6B7280", width: 2 },
         symbol: "circle",
         symbolSize: 4,
       },
       {
-        name: "Core",
+        name: "تنه",
         type: "line",
         data: [2, 1, 3, 4, 0, 1, 3, 2, 1, 0, 3, 1, 2, 1],
-        itemStyle: { color: SUCCESS_GREEN },
-        lineStyle: { color: SUCCESS_GREEN, width: 2 },
+        itemStyle: { color: "#9CA3AF" },
+        lineStyle: { color: "#9CA3AF", width: 2 },
         symbol: "square",
         symbolSize: 4,
       },
       {
-        name: "Lower Body",
+        name: "بدن پایینی",
         type: "line",
         data: [4, 3, 6, 7, 2, 3, 5, 4, 3, 2, 5, 3, 4, 3],
-        itemStyle: { color: WARNING_ORANGE },
-        lineStyle: { color: WARNING_ORANGE, width: 2 },
+        itemStyle: { color: "#D1D5DB" },
+        lineStyle: { color: "#D1D5DB", width: 2 },
         symbol: "triangle",
         symbolSize: 5,
       },
@@ -257,7 +257,7 @@ export default function RecoveryPage() {
   // Recovery score radar chart
   const recoveryScoreData = {
     title: {
-      text: "Recovery Score Breakdown",
+      text: "تجزیه امتیاز بازیابی",
       textStyle: { fontSize: 14, fontWeight: "normal", color: "#1f2937" },
     },
     tooltip: {
@@ -266,16 +266,16 @@ export default function RecoveryPage() {
     },
     radar: {
       indicator: [
-        { name: "Sleep Quality", max: 10 },
+        { name: "کیفیت خواب", max: 10 },
         { name: "HRV", max: 10 },
         {
-          name: "Stress Level",
+          name: "سطح استرس",
           max: 10,
           axisLabel: { show: true, formatter: (value: number) => 10 - value },
         },
-        { name: "Energy Level", max: 10 },
-        { name: "Muscle Recovery", max: 10 },
-        { name: "Mental State", max: 10 },
+        { name: "سطح انرژی", max: 10 },
+        { name: "بازیابی عضلانی", max: 10 },
+        { name: "وضعیت ذهنی", max: 10 },
       ],
       radius: "70%",
       axisName: {
@@ -291,20 +291,20 @@ export default function RecoveryPage() {
     },
     series: [
       {
-        name: "Recovery Metrics",
+        name: "متریک‌های بازیابی",
         type: "radar",
         data: [
           {
             value: [8, 7, 8, 7, 6, 8], // Inverted stress level (10-3=7)
-            name: "Today",
-            itemStyle: { color: PRIMARY_BLUE },
-            areaStyle: { color: `${PRIMARY_BLUE}20` },
+            name: "امروز",
+            itemStyle: { color: "#6B7280" },
+            areaStyle: { color: "#6B728030" },
           },
           {
             value: [7, 6, 7, 6, 5, 7],
-            name: "7-Day Average",
-            itemStyle: { color: SECONDARY_GRAY },
-            areaStyle: { color: `${SECONDARY_GRAY}10` },
+            name: "میانگین ۷ روزه",
+            itemStyle: { color: "#9CA3AF" },
+            areaStyle: { color: "#9CA3AF10" },
           },
         ],
       },
@@ -316,90 +316,86 @@ export default function RecoveryPage() {
       {/* Header */}
       <div className="mb-8">
         <div className="flex items-center gap-3 mb-2">
-          <Activity className="h-8 w-8 text-blue-900" />
-          <h1 className="text-3xl font-bold text-gray-900">
-            Recovery Tracking
-          </h1>
+          <Activity className="h-8 w-8 text-gray-700" />
+          <h1 className="text-3xl font-bold text-gray-900">ردیابی بازیابی</h1>
         </div>
         <p className="text-gray-600">
-          Comprehensive recovery monitoring for optimal athletic performance
+          پایش جامع بازیابی برای عملکرد ورزشی بهینه
         </p>
       </div>
 
       {/* Key Recovery Metrics */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-        <Card className="border-gray-200 shadow-sm">
+        <Card className="border-gray-200 shadow-sm rounded-md">
           <CardContent className="p-6 bg-white">
             <div className="flex items-center gap-3">
-              <div className="p-2 bg-blue-50 rounded-lg">
-                <Moon className="h-6 w-6 text-blue-900" />
+              <div className="p-2 bg-gray-100 rounded-lg">
+                <Moon className="h-6 w-6 text-gray-700" />
               </div>
               <div>
-                <p className="text-sm font-medium text-gray-600">
-                  Sleep Quality
-                </p>
-                <p className="text-2xl font-bold text-gray-900">8.2/10</p>
-                <p className="text-xs text-green-600 flex items-center gap-1 mt-1">
+                <p className="text-sm font-medium text-gray-600">کیفیت خواب</p>
+                <p className="text-2xl font-bold text-gray-900">۸.۲/۱۰</p>
+                <p className="text-xs text-gray-700 flex items-center gap-1 mt-1">
                   <TrendingUp className="h-3 w-3" />
-                  +0.5 vs last week
+                  +۰.۵ در مقایسه با هفته گذشته
                 </p>
               </div>
             </div>
           </CardContent>
         </Card>
 
-        <Card className="border-gray-200 shadow-sm">
+        <Card className="border-gray-200 shadow-sm rounded-md">
           <CardContent className="p-6 bg-white">
             <div className="flex items-center gap-3">
-              <div className="p-2 bg-red-50 rounded-lg">
-                <Heart className="h-6 w-6 text-red-600" />
+              <div className="p-2 bg-gray-100 rounded-lg">
+                <Heart className="h-6 w-6 text-gray-700" />
               </div>
               <div>
                 <p className="text-sm font-medium text-gray-600">HRV</p>
-                <p className="text-2xl font-bold text-gray-900">49 ms</p>
-                <p className="text-xs text-green-600 flex items-center gap-1 mt-1">
+                <p className="text-2xl font-bold text-gray-900">
+                  ۴۹ میلی‌ثانیه
+                </p>
+                <p className="text-xs text-gray-700 flex items-center gap-1 mt-1">
                   <TrendingUp className="h-3 w-3" />
-                  +3 ms vs baseline
+                  +۳ میلی‌ثانیه در مقایسه با خط پایه
                 </p>
               </div>
             </div>
           </CardContent>
         </Card>
 
-        <Card className="border-gray-200 shadow-sm">
+        <Card className="border-gray-200 shadow-sm rounded-md">
           <CardContent className="p-6 bg-white">
             <div className="flex items-center gap-3">
-              <div className="p-2 bg-orange-50 rounded-lg">
-                <BrainCircuit className="h-6 w-6 text-orange-600" />
+              <div className="p-2 bg-gray-100 rounded-lg">
+                <BrainCircuit className="h-6 w-6 text-gray-700" />
               </div>
               <div>
-                <p className="text-sm font-medium text-gray-600">
-                  Stress Level
-                </p>
-                <p className="text-2xl font-bold text-gray-900">3/10</p>
-                <p className="text-xs text-green-600 flex items-center gap-1 mt-1">
+                <p className="text-sm font-medium text-gray-600">سطح استرس</p>
+                <p className="text-2xl font-bold text-gray-900">۳/۱۰</p>
+                <p className="text-xs text-gray-700 flex items-center gap-1 mt-1">
                   <CheckCircle className="h-3 w-3" />
-                  Optimal range
+                  محدوده بهینه
                 </p>
               </div>
             </div>
           </CardContent>
         </Card>
 
-        <Card className="border-gray-200 shadow-sm">
+        <Card className="border-gray-200 shadow-sm rounded-md">
           <CardContent className="p-6 bg-white">
             <div className="flex items-center gap-3">
-              <div className="p-2 bg-green-50 rounded-lg">
-                <Zap className="h-6 w-6 text-green-600" />
+              <div className="p-2 bg-gray-100 rounded-lg">
+                <Zap className="h-6 w-6 text-gray-700" />
               </div>
               <div>
                 <p className="text-sm font-medium text-gray-600">
-                  Recovery Score
+                  امتیاز بازیابی
                 </p>
-                <p className="text-2xl font-bold text-gray-900">87%</p>
-                <p className="text-xs text-green-600 flex items-center gap-1 mt-1">
+                <p className="text-2xl font-bold text-gray-900">۸۷%</p>
+                <p className="text-xs text-gray-700 flex items-center gap-1 mt-1">
                   <CheckCircle className="h-3 w-3" />
-                  Excellent
+                  عالی
                 </p>
               </div>
             </div>
@@ -449,16 +445,16 @@ export default function RecoveryPage() {
       {/* Stress & Soreness Section */}
       <div className="mb-8">
         <h2 className="text-xl font-semibold text-gray-800 mb-4">
-          Stress & Physical Recovery
+          استرس و بازیابی جسمی
         </h2>
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <Card className="border-gray-200 shadow-sm">
+          <Card className="border-gray-200 shadow-sm rounded-md">
             <CardHeader className="bg-gray-50">
               <CardTitle className="text-lg text-gray-800">
-                Stress Monitoring
+                پایش استرس
               </CardTitle>
               <CardDescription className="text-gray-600">
-                Daily perceived stress levels
+                سطوح استرس درک‌شده روزانه
               </CardDescription>
             </CardHeader>
             <CardContent className="bg-white">
@@ -469,13 +465,13 @@ export default function RecoveryPage() {
             </CardContent>
           </Card>
 
-          <Card className="border-gray-200 shadow-sm">
+          <Card className="border-gray-200 shadow-sm rounded-md">
             <CardHeader className="bg-gray-50">
               <CardTitle className="text-lg text-gray-800">
-                Muscle Soreness
+                درد عضلانی
               </CardTitle>
               <CardDescription className="text-gray-600">
-                Body region soreness assessment
+                ارزیابی درد مناطق بدن
               </CardDescription>
             </CardHeader>
             <CardContent className="bg-white">
@@ -491,15 +487,15 @@ export default function RecoveryPage() {
       {/* Recovery Score Overview */}
       <div className="mb-8">
         <h2 className="text-xl font-semibold text-gray-800 mb-4">
-          Overall Recovery Assessment
+          ارزیابی کلی بازیابی
         </h2>
-        <Card className="border-gray-200 shadow-sm">
+        <Card className="border-gray-200 shadow-sm rounded-md">
           <CardHeader className="bg-gray-50">
             <CardTitle className="text-lg text-gray-800">
-              Recovery Score Breakdown
+              تجزیه امتیاز بازیابی
             </CardTitle>
             <CardDescription className="text-gray-600">
-              Comprehensive recovery metrics comparison
+              مقایسه جامع معیارهای بازیابی
             </CardDescription>
           </CardHeader>
           <CardContent className="bg-white">
@@ -512,64 +508,61 @@ export default function RecoveryPage() {
       </div>
 
       {/* Recovery Recommendations */}
-      <Card className="mb-8 border-gray-200 shadow-sm">
+      <Card className="mb-8 border-gray-200 shadow-sm rounded-md">
         <CardHeader className="bg-gray-50">
           <CardTitle className="text-lg flex items-center gap-2 text-gray-800">
-            <Timer className="h-5 w-5" />
-            Recovery Recommendations
+            <Timer className="h-5 w-5 text-gray-700" />
+            توصیه‌های بازیابی
           </CardTitle>
           <CardDescription className="text-gray-600">
-            Personalized recovery strategies based on current metrics
+            استراتژی‌های بازیابی شخصی‌سازی‌شده بر اساس معیارهای فعلی
           </CardDescription>
         </CardHeader>
         <CardContent className="bg-white">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
             <div className="space-y-3">
-              <div className="flex items-start gap-3 p-3 bg-green-50 rounded-lg">
-                <CheckCircle className="h-5 w-5 text-green-600 mt-0.5" />
+              <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg">
+                <CheckCircle className="h-5 w-5 text-gray-700 mt-0.5" />
                 <div>
-                  <p className="font-medium text-green-800">
-                    Excellent Sleep Quality
-                  </p>
-                  <p className="text-sm text-green-600">
-                    Continue current sleep routine. Consider going to bed 30
-                    minutes earlier for competition preparation.
+                  <p className="font-medium text-gray-900">کیفیت خواب عالی</p>
+                  <p className="text-sm text-gray-700">
+                    روال خواب فعلی را ادامه دهید. برای آماده‌سازی مسابقات، ۳۰
+                    دقیقه زودتر به رختخواب بروید.
                   </p>
                 </div>
               </div>
-              <div className="flex items-start gap-3 p-3 bg-blue-50 rounded-lg">
-                <Heart className="h-5 w-5 text-blue-600 mt-0.5" />
+              <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg">
+                <Heart className="h-5 w-5 text-gray-700 mt-0.5" />
                 <div>
-                  <p className="font-medium text-blue-800">
-                    HRV Above Baseline
+                  <p className="font-medium text-gray-900">
+                    HRV بالاتر از خط پایه
                   </p>
-                  <p className="text-sm text-blue-600">
-                    Good autonomic recovery. Ready for moderate to high
-                    intensity training.
+                  <p className="text-sm text-gray-700">
+                    بازیابی خودکار خوب. آماده تمرینات با شدت متوسط تا بالا.
                   </p>
                 </div>
               </div>
             </div>
             <div className="space-y-3">
-              <div className="flex items-start gap-3 p-3 bg-orange-50 rounded-lg">
-                <AlertTriangle className="h-5 w-5 text-orange-600 mt-0.5" />
+              <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg">
+                <AlertTriangle className="h-5 w-5 text-gray-700 mt-0.5" />
                 <div>
-                  <p className="font-medium text-orange-800">
-                    Monitor Lower Body Soreness
+                  <p className="font-medium text-gray-900">
+                    درد بدن پایینی را پایش کنید
                   </p>
-                  <p className="text-sm text-orange-600">
-                    Consider additional stretching, foam rolling, or massage
-                    therapy for legs and glutes.
+                  <p className="text-sm text-gray-700">
+                    کشش اضافی، رولینگ فوم یا ماساژ درمانی برای پاها و باسن در
+                    نظر بگیرید.
                   </p>
                 </div>
               </div>
               <div className="flex items-start gap-3 p-3 bg-gray-50 rounded-lg">
-                <BrainCircuit className="h-5 w-5 text-gray-600 mt-0.5" />
+                <BrainCircuit className="h-5 w-5 text-gray-700 mt-0.5" />
                 <div>
-                  <p className="font-medium text-gray-800">Stress Management</p>
-                  <p className="text-sm text-gray-600">
-                    Maintain current stress management techniques. Consider
-                    meditation before competitions.
+                  <p className="font-medium text-gray-900">مدیریت استرس</p>
+                  <p className="text-sm text-gray-700">
+                    تکنیک‌های مدیریت استرس فعلی را حفظ کنید. مدیتیشن قبل از
+                    مسابقات را در نظر بگیرید.
                   </p>
                 </div>
               </div>

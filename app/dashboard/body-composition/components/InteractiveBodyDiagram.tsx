@@ -25,83 +25,83 @@ interface BodyPerformanceMetrics {
 const muscleGroupsData: MuscleGroupData[] = [
   {
     id: "chest",
-    name: "Chest & Pectorals",
+    name: "سینه و عضلات سینه‌ای",
     mass: 8.5,
     score: 85,
     fatPercentage: 12,
     strength: 90,
     color: "#FF6B6B",
-    description: "Essential for grappling and pushing movements in wrestling",
+    description: "ضروری برای حرکات grappling و هل دادن در کشتی",
   },
   {
     id: "shoulders",
-    name: "Shoulders & Deltoids",
+    name: "شانه‌ها و دلتوئید",
     mass: 3.2,
     score: 78,
     fatPercentage: 10,
     strength: 82,
     color: "#4ECDC4",
-    description: "Critical for overhead control and defensive positions",
+    description: "حیاتی برای کنترل سر بالا و موقعیت‌های دفاعی",
   },
   {
     id: "arms",
-    name: "Arms & Biceps",
+    name: "بازوها و دوسر بازو",
     mass: 5.8,
     score: 82,
     fatPercentage: 9,
     strength: 85,
     color: "#45B7D1",
-    description: "Key for gripping, pulling, and maintaining control",
+    description: "کلیدی برای گرفتن، کشیدن و حفظ کنترل",
   },
   {
     id: "forearms",
-    name: "Forearms",
+    name: "ساعد",
     mass: 2.1,
     score: 88,
     fatPercentage: 8,
     strength: 92,
     color: "#96CEB4",
-    description: "Crucial for grip strength and wrist control",
+    description: "حیاتی برای قدرت گرفتن و کنترل مچ دست",
   },
   {
     id: "core",
-    name: "Core & Abs",
+    name: "تنه و شکم",
     mass: 12.3,
     score: 91,
     fatPercentage: 6,
     strength: 95,
     color: "#FFEAA7",
-    description: "Foundation of all wrestling movements and stability",
+    description: "پایه همه حرکات کشتی و ثبات",
   },
   {
     id: "back",
-    name: "Back & Lats",
+    name: "پشت و لات",
     mass: 15.7,
     score: 86,
     fatPercentage: 11,
     strength: 88,
     color: "#DDA0DD",
-    description: "Essential for pulling, lifting, and postural control",
+    description: "ضروری برای کشیدن، بلند کردن و کنترل وضعیت بدن",
   },
   {
     id: "legs",
-    name: "Legs & Quadriceps",
+    name: "پاها و چهارسر ران",
     mass: 22.4,
     score: 89,
     fatPercentage: 13,
     strength: 93,
     color: "#98D8C8",
-    description: "Primary power source for takedowns and defensive stance",
+    description: "منبع اصلی قدرت برای گرفتن زمین و وضعیت دفاعی",
   },
   {
     id: "calves",
-    name: "Calves",
+    name: "ساق پا",
     mass: 4.2,
     score: 75,
     fatPercentage: 14,
     strength: 78,
     color: "#F7DC6F",
-    description: "Important for balance, agility, and explosive movements",
+    description: "مهم برای تعادل، چابکی و حرکات انفجاری",
   },
 ];
 
@@ -159,9 +159,9 @@ export function InteractiveBodyDiagram() {
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
-              <span>Interactive Body Performance Map</span>
+              <span>نقشه عملکرد بدنی تعاملی</span>
               <div className="text-sm text-gray-500 ml-auto">
-                Overall Score: {bodyPerformanceMetrics.overallScore}/100
+                امتیاز کلی: {bodyPerformanceMetrics.overallScore}/100
               </div>
             </CardTitle>
           </CardHeader>
@@ -336,24 +336,24 @@ export function InteractiveBodyDiagram() {
               {/* Legend */}
               <div className="p-3 bg-gray-50 rounded-lg w-full max-w-md">
                 <h4 className="text-sm font-semibold mb-2">
-                  Performance Score Legend:
+                  راهنمای امتیاز عملکرد:
                 </h4>
                 <div className="flex flex-wrap gap-4 text-xs">
                   <div className="flex items-center gap-1">
                     <div className="w-3 h-3 bg-green-500 rounded"></div>
-                    <span>Excellent (90-100)</span>
+                    <span>عالی (۹۰-۱۰۰)</span>
                   </div>
                   <div className="flex items-center gap-1">
                     <div className="w-3 h-3 bg-yellow-500 rounded"></div>
-                    <span>Good (80-89)</span>
+                    <span>خوب (۸۰-۸۹)</span>
                   </div>
                   <div className="flex items-center gap-1">
                     <div className="w-3 h-3 bg-orange-500 rounded"></div>
-                    <span>Fair (70-79)</span>
+                    <span>متوسط (۷۰-۷۹)</span>
                   </div>
                   <div className="flex items-center gap-1">
                     <div className="w-3 h-3 bg-red-500 rounded"></div>
-                    <span>Needs Work (&lt;70)</span>
+                    <span>نیاز به بهبود (&lt;۷۰)</span>
                   </div>
                 </div>
               </div>
@@ -367,13 +367,13 @@ export function InteractiveBodyDiagram() {
         {/* Overall Performance */}
         <Card>
           <CardHeader>
-            <CardTitle className="text-lg">Overall Performance</CardTitle>
+            <CardTitle className="text-lg">عملکرد کلی</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-3">
               <div>
                 <div className="flex justify-between text-sm">
-                  <span>Overall Score</span>
+                  <span>امتیاز کلی</span>
                   <span className="font-semibold">
                     {bodyPerformanceMetrics.overallScore}/100
                   </span>
@@ -387,7 +387,7 @@ export function InteractiveBodyDiagram() {
               </div>
               <div>
                 <div className="flex justify-between text-sm">
-                  <span>Balance Score</span>
+                  <span>امتیاز تعادل</span>
                   <span className="font-semibold">
                     {bodyPerformanceMetrics.balanceScore}/100
                   </span>
@@ -428,13 +428,13 @@ export function InteractiveBodyDiagram() {
 
                   <div className="grid grid-cols-2 gap-4 text-sm">
                     <div>
-                      <span className="text-gray-500">Mass:</span>
+                      <span className="text-gray-500">جرم:</span>
                       <div className="font-semibold">
                         {selectedMuscleData.mass} kg
                       </div>
                     </div>
                     <div>
-                      <span className="text-gray-500">Score:</span>
+                      <span className="text-gray-500">امتیاز:</span>
                       <div
                         className="font-semibold"
                         style={{
@@ -445,13 +445,13 @@ export function InteractiveBodyDiagram() {
                       </div>
                     </div>
                     <div>
-                      <span className="text-gray-500">Body Fat:</span>
+                      <span className="text-gray-500">چربی بدن:</span>
                       <div className="font-semibold">
                         {selectedMuscleData.fatPercentage}%
                       </div>
                     </div>
                     <div>
-                      <span className="text-gray-500">Strength:</span>
+                      <span className="text-gray-500">قدرت:</span>
                       <div className="font-semibold">
                         {selectedMuscleData.strength}/100
                       </div>
@@ -460,7 +460,7 @@ export function InteractiveBodyDiagram() {
 
                   <div className="pt-2">
                     <div className="flex justify-between text-sm mb-1">
-                      <span>Performance</span>
+                      <span>عملکرد</span>
                       <span>{selectedMuscleData.score}/100</span>
                     </div>
                     <div className="w-full bg-gray-200 rounded-full h-2">
@@ -484,7 +484,7 @@ export function InteractiveBodyDiagram() {
         {/* Quick Stats */}
         <Card>
           <CardHeader>
-            <CardTitle className="text-lg">Muscle Group Rankings</CardTitle>
+            <CardTitle className="text-lg">رتبه‌بندی گروه‌های عضلانی</CardTitle>
           </CardHeader>
           <CardContent>
             <div className="space-y-2">

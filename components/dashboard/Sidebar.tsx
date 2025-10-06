@@ -25,70 +25,70 @@ type NavItem = {
 
 const navItems: NavItem[] = [
   {
-    label: "Overview",
+    label: "نمای کلی",
     href: "/dashboard",
-    icon: <Activity className="h-4 w-4" />,
+    icon: <Activity className="h-4 w-4 text-gray-700" />,
     sections: [
-      { label: "Quick Stats" },
-      { label: "Performance Overview" },
-      { label: "Readiness & Recovery" },
+      { label: "آمار سریع" },
+      { label: "نمای عملکرد" },
+      { label: "آمادگی و بازیابی" },
     ],
   },
   {
-    label: "Body Composition",
+    label: "ترکیب بدنی",
     href: "/dashboard/body-composition",
-    icon: <HeartPulse className="h-4 w-4" />,
+    icon: <HeartPulse className="h-4 w-4 text-gray-700" />,
     sections: [
-      { label: "Interactive Diagram" },
-      { label: "Trends" },
-      { label: "Targets" },
+      { label: "نمودار تعاملی" },
+      { label: "روندها" },
+      { label: "اهداف" },
     ],
   },
   {
-    label: "Lifting",
+    label: "وزنه‌برداری",
     href: "/dashboard/lifting",
-    icon: <Dumbbell className="h-4 w-4" />,
+    icon: <Dumbbell className="h-4 w-4 text-gray-700" />,
     sections: [
-      { label: "Strength" },
-      { label: "Bodybuilding" },
-      { label: "Cardiovascular" },
-      { label: "Analytics" },
+      { label: "قدرت" },
+      { label: "بدنسازی" },
+      { label: "قلبی عروقی" },
+      { label: "تحلیل‌ها" },
     ],
   },
   {
-    label: "Calendar",
+    label: "تقویم",
     href: "/dashboard/calendar",
-    icon: <CalendarDays className="h-4 w-4" />,
+    icon: <CalendarDays className="h-4 w-4 text-gray-700" />,
     sections: [
-      { label: "My Schedule" },
-      { label: "Programs" },
-      { label: "Events" },
+      { label: "برنامه من" },
+      { label: "برنامه‌ها" },
+      { label: "رویدادها" },
     ],
   },
   {
     label: "Bloodwork",
     href: "/dashboard/bloodwork",
-    icon: <TestTube className="h-4 w-4" />,
+    icon: <TestTube className="h-4 w-4 text-gray-700" />,
     sections: [
-      { label: "Cell Counts" },
+      { label: "شمارش سلول‌ها" },
       { label: "Hemoglobin & Hematocrit" },
-      { label: "Trends & Zones" },
+      { label: "روندها و مناطق" },
     ],
   },
   {
-    label: "Recovery",
+    label: "بازیابی",
     href: "/dashboard/recovery",
-    icon: <Droplets className="h-4 w-4" />,
-    sections: [{ label: "Sleep" }, { label: "HRV" }, { label: "Hydration" }],
+    icon: <Droplets className="h-4 w-4 text-gray-700" />,
+    sections: [{ label: "خواب" }, { label: "HRV" }, { label: "آب‌رسانی" }],
   },
   {
-    label: "Supplements",
+    label: "مکمل‌ها",
     href: "/dashboard/supplements",
-    icon: <Pill className="h-4 w-4" />,
+    icon: <Pill className="h-4 w-4 text-gray-700" />,
     sections: [
-      { label: "Stack Overview" },
-      { label: "Adherence" },
-      { label: "Performance Correlation" },
+      { label: "نمای کلی پشته" },
+      { label: "پیروی" },
+      { label: "همبستگی عملکرد" },
     ],
   },
 ];
@@ -106,11 +106,9 @@ export default function Sidebar() {
 
   return (
     <aside className="hidden lg:block w-64 shrink-0">
-      <div className="border bg-white text-sidebar-foreground rounded-lg shadow-sm">
-        <div className="px-4 py-4 border-b">
-          <div className="text-sm font-semibold text-muted-foreground">
-            Dashboard
-          </div>
+      <div className="border border-gray-200 bg-white text-gray-900 rounded-md shadow-sm">
+        <div className="px-4 py-4 border-b border-gray-200">
+          <div className="text-sm font-semibold text-gray-700">داشبورد</div>
         </div>
 
         <nav className="p-3 space-y-3">
@@ -129,15 +127,15 @@ export default function Sidebar() {
                 <Accordion.Item
                   key={item.href}
                   value={value}
-                  className="rounded-lg border bg-background shadow-sm"
+                  className="rounded-md border border-gray-200 bg-white shadow-sm"
                 >
                   <Accordion.Header>
                     <Accordion.Trigger
                       className={cn(
-                        "flex w-full items-center gap-3 px-3 py-2 text-left text-sm transition-colors",
+                        "flex w-full items-center gap-3 px-3 py-2 text-right text-sm transition-colors flex-row-reverse",
                         active
-                          ? "bg-accent text-accent-foreground rounded-t-lg"
-                          : "hover:bg-accent hover:text-accent-foreground rounded-t-lg"
+                          ? "bg-gray-100 text-gray-900 rounded-t-md"
+                          : "hover:bg-gray-100 hover:text-gray-900 rounded-t-md"
                       )}
                       onClick={() => router.push(item.href)}
                     >
@@ -145,28 +143,29 @@ export default function Sidebar() {
                         className={cn(
                           "inline-flex h-6 w-6 items-center justify-center rounded-md border",
                           active
-                            ? "border-transparent bg-primary text-primary-foreground"
-                            : "border-border bg-background"
+                            ? "border-gray-300 bg-gray-100"
+                            : "border-gray-200 bg-white"
                         )}
                       >
+                        {/* Keep icon color constant regardless of active */}
                         {item.icon}
                       </span>
                       <span className="flex-1 min-w-0 truncate">
                         {item.label}
                       </span>
                       <ChevronDown
-                        className="h-4 w-4 text-muted-foreground transition-transform data-[state=open]:rotate-180"
+                        className="h-4 w-4 text-gray-700 transition-transform data-[state=open]:rotate-180"
                         aria-hidden
                       />
                     </Accordion.Trigger>
                   </Accordion.Header>
                   {item.sections?.length ? (
                     <Accordion.Content className="overflow-hidden data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up">
-                      <div className="px-3 pb-3 pt-2 grid grid-cols-1 gap-1.5">
+                      <div className="px-3 pb-3 pt-2 grid grid-cols-1 gap-1.5 text-right">
                         {item.sections.map((s, idx) => (
                           <div
                             key={idx}
-                            className="rounded-md text-xs text-muted-foreground px-2 py-1 hover:bg-accent hover:text-accent-foreground transition-colors"
+                            className="rounded-md text-xs text-gray-700 px-2 py-1 hover:bg-gray-100 hover:text-gray-900 transition-colors"
                           >
                             {s.label}
                           </div>

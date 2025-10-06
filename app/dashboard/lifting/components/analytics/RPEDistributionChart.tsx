@@ -8,7 +8,6 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { COLORS } from "../../utils";
 
 interface RPEDistributionChartProps {
   rpeData?: {
@@ -31,7 +30,7 @@ export default function RPEDistributionChart({
 }: RPEDistributionChartProps) {
   const option = {
     title: {
-      text: "RPE Distribution (Top Sets)",
+      text: "توزیع RPE (ست‌های برتر)",
       textStyle: { fontSize: 14, fontWeight: "normal" },
     },
     tooltip: {
@@ -54,27 +53,27 @@ export default function RPEDistributionChart({
           {
             value: rpeData.rpe6,
             name: "RPE 6",
-            itemStyle: { color: "#93c5fd" },
+            itemStyle: { color: "#F3F4F6" },
           },
           {
             value: rpeData.rpe7,
             name: "RPE 7",
-            itemStyle: { color: COLORS.SECONDARY_BLUE },
+            itemStyle: { color: "#E5E7EB" },
           },
           {
             value: rpeData.rpe8,
             name: "RPE 8",
-            itemStyle: { color: COLORS.WRESTLING_BLUE },
+            itemStyle: { color: "#D1D5DB" },
           },
           {
             value: rpeData.rpe9,
             name: "RPE 9",
-            itemStyle: { color: COLORS.WRESTLING_RED },
+            itemStyle: { color: "#9CA3AF" },
           },
           {
             value: rpeData.rpe10,
             name: "RPE 10",
-            itemStyle: { color: "#111827" },
+            itemStyle: { color: "#6B7280" },
           },
         ],
         label: { fontSize: 11 },
@@ -99,33 +98,33 @@ export default function RPEDistributionChart({
   const getIntensityRecommendation = (avgRPE: number) => {
     if (avgRPE >= 9)
       return {
-        message: "Very high intensity - consider deload week",
-        color: "text-red-600",
+        message: "شدت بسیار بالا - هفته استراحت در نظر بگیرید",
+        color: "text-gray-700",
       };
     if (avgRPE >= 8.5)
       return {
-        message: "High intensity - monitor recovery closely",
-        color: "text-orange-600",
+        message: "شدت بالا - بازیابی را به دقت نظارت کنید",
+        color: "text-gray-700",
       };
     if (avgRPE >= 7.5)
       return {
-        message: "Optimal intensity for strength gains",
-        color: "text-green-600",
+        message: "شدت بهینه برای افزایش قدرت",
+        color: "text-gray-700",
       };
     return {
-      message: "Moderate intensity - room for progression",
-      color: "text-blue-600",
+      message: "شدت متوسط - فضای پیشرفت وجود دارد",
+      color: "text-gray-700",
     };
   };
 
   const { message, color } = getIntensityRecommendation(parseFloat(averageRPE));
 
   return (
-    <Card>
+    <Card className="rounded-md border-gray-200">
       <CardHeader>
-        <CardTitle className="text-lg">Training Intensity Analysis</CardTitle>
+        <CardTitle className="text-lg">تحلیل شدت تمرین</CardTitle>
         <CardDescription>
-          RPE distribution of top sets - Average RPE: {averageRPE}
+          توزیع RPE ست‌های برتر - میانگین RPE: {averageRPE}
           <div className={`text-xs mt-1 ${color}`}>{message}</div>
         </CardDescription>
       </CardHeader>
@@ -133,28 +132,28 @@ export default function RPEDistributionChart({
         <ReactECharts option={option} style={{ height: "300px" }} />
         <div className="mt-4 grid grid-cols-2 gap-4 text-xs">
           <div>
-            <h4 className="font-semibold mb-2">RPE Guidelines:</h4>
+            <h4 className="font-semibold mb-2">راهنمای RPE:</h4>
             <ul className="space-y-1">
               <li>
-                <span className="font-medium">RPE 6-7:</span> Technique work
+                <span className="font-medium">RPE ۶-۷:</span> کار تکنیک
               </li>
               <li>
-                <span className="font-medium">RPE 8:</span> Volume training
+                <span className="font-medium">RPE ۸:</span> تمرین حجم
               </li>
               <li>
-                <span className="font-medium">RPE 9:</span> Strength work
+                <span className="font-medium">RPE ۹:</span> کار قدرت
               </li>
               <li>
-                <span className="font-medium">RPE 10:</span> Max effort
+                <span className="font-medium">RPE ۱۰:</span> حداکثر تلاش
               </li>
             </ul>
           </div>
           <div>
-            <h4 className="font-semibold mb-2">Weekly Distribution:</h4>
+            <h4 className="font-semibold mb-2">توزیع هفتگی:</h4>
             <ul className="space-y-1">
-              <li>High intensity (9-10): {rpeData.rpe9 + rpeData.rpe10}%</li>
-              <li>Moderate (7-8): {rpeData.rpe7 + rpeData.rpe8}%</li>
-              <li>Low intensity (6): {rpeData.rpe6}%</li>
+              <li>شدت بالا (۹-۱۰): {rpeData.rpe9 + rpeData.rpe10}%</li>
+              <li>متوسط (۷-۸): {rpeData.rpe7 + rpeData.rpe8}%</li>
+              <li>شدت پایین (۶): {rpeData.rpe6}%</li>
             </ul>
           </div>
         </div>

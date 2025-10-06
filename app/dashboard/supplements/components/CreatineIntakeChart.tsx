@@ -86,31 +86,31 @@ export const CreatineIntakeChart: React.FC<CreatineIntakeChartProps> = ({
     if (metrics.consistency >= 25) {
       specificInsights.push({
         type: "achievement",
-        title: "Optimal Loading Phase! 💪",
-        content: `You've maintained consistent creatine intake for ${metrics.consistency} days this month. Your muscles are fully saturated, maximizing power output potential.`,
+        title: "فاز بارگذاری بهینه! 💪",
+        content: `شما مصرف مداوم کراتین را برای ${metrics.consistency} روز این ماه حفظ کرده‌اید. عضلات شما کاملاً اشباع شده‌اند و پتانسیل خروجی قدرت حداکثر است.`,
         priority: "low",
         actionable: false,
-        relatedMetrics: ["Consistency", "Power Output"],
+        relatedMetrics: ["ثبات", "خروجی قدرت"],
       });
     }
 
     if (metrics.avgDaily < 3) {
       specificInsights.push({
         type: "warning",
-        title: "Sub-Optimal Dosing",
-        content: `Your average daily intake of ${metrics.avgDaily}g is below the recommended 3-5g range. Consider splitting doses throughout the day for better absorption.`,
+        title: "دوز زیر بهینه",
+        content: `میانگین مصرف روزانه شما ${metrics.avgDaily}g زیر محدوده توصیه‌شده ۳-۵g است. در نظر بگیرید دوزها را در طول روز تقسیم کنید تا جذب بهتری داشته باشید.`,
         priority: "high",
         actionable: true,
-        relatedMetrics: ["Daily Intake", "Absorption Rate"],
+        relatedMetrics: ["مصرف روزانه", "نرخ جذب"],
       });
     }
 
     if (metrics.trend === "up" && metrics.avgWeekly > target) {
       specificInsights.push({
         type: "optimization",
-        title: "Perfect Timing Strategy",
+        title: "استراتژی زمان‌بندی عالی",
         content:
-          "Your recent increase aligns with competition prep. Maintain this intake for peak performance, but monitor for any digestive discomfort.",
+          "افزایش اخیر شما با آماده‌سازی مسابقات همخوانی دارد. این مصرف را برای عملکرد اوج حفظ کنید، اما هر گونه ناراحتی گوارشی را پایش کنید.",
         priority: "medium",
         actionable: false,
       });
@@ -177,36 +177,34 @@ export const CreatineIntakeChart: React.FC<CreatineIntakeChartProps> = ({
           <div className="flex items-center justify-between">
             <div>
               <CardTitle className="text-lg flex items-center gap-2">
-                <Zap className="h-5 w-5 text-blue-600" />
-                Creatine Monohydrate Intake
+                <Zap className="h-5 w-5 text-gray-700" />
+                مصرف کراتین مونوهیدرات
               </CardTitle>
               <CardDescription>
-                Daily creatine tracking for power and strength optimization
+                ردیابی روزانه کراتین برای بهینه‌سازی قدرت و استقامت
               </CardDescription>
             </div>
             <div className="flex gap-2">
               <Badge
                 variant="outline"
-                className={`${
-                  metrics.trend === "up"
-                    ? "bg-green-50 text-green-700 border-green-200"
-                    : metrics.trend === "down"
-                    ? "bg-red-50 text-red-700 border-red-200"
-                    : "bg-gray-50 text-gray-700 border-gray-200"
-                }`}
+                className="bg-gray-50 text-gray-700 border-gray-200"
               >
                 {metrics.trend === "up"
                   ? "↗"
                   : metrics.trend === "down"
                   ? "↘"
                   : "→"}{" "}
-                {metrics.trend}
+                {metrics.trend === "up"
+                  ? "افزایشی"
+                  : metrics.trend === "down"
+                  ? "کاهشی"
+                  : "پایدار"}
               </Badge>
               <Badge
                 variant="outline"
-                className="bg-blue-50 text-blue-700 border-blue-200"
+                className="bg-gray-50 text-gray-700 border-gray-200"
               >
-                {metrics.adherenceRate}% adherence
+                {metrics.adherenceRate}% پایبندی
               </Badge>
             </div>
           </div>
@@ -214,56 +212,54 @@ export const CreatineIntakeChart: React.FC<CreatineIntakeChartProps> = ({
         <CardContent>
           {/* Metrics Overview */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
-            <div className="bg-blue-50 p-3 rounded-lg">
+            <div className="bg-gray-50 p-3 rounded-lg">
               <div className="flex items-center gap-2 mb-1">
-                <Calendar className="h-4 w-4 text-blue-600" />
+                <Calendar className="h-4 w-4 text-gray-700" />
                 <span className="text-sm font-medium text-gray-700">
-                  Daily Avg
+                  میانگین روزانه
                 </span>
               </div>
-              <div className="text-xl font-bold text-blue-600">
+              <div className="text-xl font-bold text-gray-900">
                 {metrics.avgDaily}g
               </div>
-              <div className="text-xs text-gray-600">Last 30 days</div>
+              <div className="text-xs text-gray-600">۳۰ روز گذشته</div>
             </div>
 
-            <div className="bg-green-50 p-3 rounded-lg">
+            <div className="bg-gray-50 p-3 rounded-lg">
               <div className="flex items-center gap-2 mb-1">
-                <TrendingUp className="h-4 w-4 text-green-600" />
+                <TrendingUp className="h-4 w-4 text-gray-700" />
                 <span className="text-sm font-medium text-gray-700">
-                  Weekly Avg
+                  میانگین هفتگی
                 </span>
               </div>
-              <div className="text-xl font-bold text-green-600">
+              <div className="text-xl font-bold text-gray-900">
                 {metrics.avgWeekly}g
               </div>
-              <div className="text-xs text-gray-600">Last 7 days</div>
+              <div className="text-xs text-gray-600">۷ روز گذشته</div>
             </div>
 
-            <div className="bg-purple-50 p-3 rounded-lg">
+            <div className="bg-gray-50 p-3 rounded-lg">
               <div className="flex items-center gap-2 mb-1">
-                <Target className="h-4 w-4 text-purple-600" />
-                <span className="text-sm font-medium text-gray-700">
-                  Consistency
-                </span>
+                <Target className="h-4 w-4 text-gray-700" />
+                <span className="text-sm font-medium text-gray-700">ثبات</span>
               </div>
-              <div className="text-xl font-bold text-purple-600">
-                {metrics.consistency}/30
+              <div className="text-xl font-bold text-gray-900">
+                {metrics.consistency}/۳۰
               </div>
-              <div className="text-xs text-gray-600">Days on target</div>
+              <div className="text-xs text-gray-600">روزهای هدف</div>
             </div>
 
-            <div className="bg-orange-50 p-3 rounded-lg">
+            <div className="bg-gray-50 p-3 rounded-lg">
               <div className="flex items-center gap-2 mb-1">
-                <Zap className="h-4 w-4 text-orange-600" />
+                <Zap className="h-4 w-4 text-gray-700" />
                 <span className="text-sm font-medium text-gray-700">
-                  Total Intake
+                  مصرف کل
                 </span>
               </div>
-              <div className="text-xl font-bold text-orange-600">
+              <div className="text-xl font-bold text-gray-900">
                 {Math.round(metrics.totalIntake)}g
               </div>
-              <div className="text-xs text-gray-600">This month</div>
+              <div className="text-xs text-gray-600">این ماه</div>
             </div>
           </div>
 
@@ -333,7 +329,7 @@ export const CreatineIntakeChart: React.FC<CreatineIntakeChartProps> = ({
       {/* AI Insights */}
       <AIInsightPanel
         insights={aiInsights}
-        title="Creatine Optimization Insights"
+        title="بینش‌های بهینه‌سازی کراتین"
       />
     </div>
   );

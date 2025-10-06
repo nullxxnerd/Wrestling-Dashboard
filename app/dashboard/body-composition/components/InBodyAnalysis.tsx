@@ -55,7 +55,7 @@ export const InBodyAnalysis: React.FC<InBodyAnalysisProps> = ({
   // Body water composition chart
   const bodyWaterChart: ChartOptions = {
     title: {
-      text: "Body Water Distribution",
+      text: "توزیع آب بدن",
       textStyle: { fontSize: 14, fontWeight: "normal", color: "#1f2937" },
     },
     tooltip: {
@@ -96,7 +96,7 @@ export const InBodyAnalysis: React.FC<InBodyAnalysisProps> = ({
   // Phase angle trend chart
   const phaseAngleTrend: ChartOptions = {
     title: {
-      text: "Phase Angle Trend (Cellular Health)",
+      text: "روند زاویه فاز (سلامت سلولی)",
       textStyle: { fontSize: 14, fontWeight: "normal", color: "#1f2937" },
     },
     tooltip: {
@@ -148,7 +148,7 @@ export const InBodyAnalysis: React.FC<InBodyAnalysisProps> = ({
   // Visceral fat trend
   const visceralFatTrend: ChartOptions = {
     title: {
-      text: "Visceral Fat Level Trend",
+      text: "روند سطح چربی احشایی",
       textStyle: { fontSize: 14, fontWeight: "normal", color: "#1f2937" },
     },
     tooltip: {
@@ -208,7 +208,7 @@ export const InBodyAnalysis: React.FC<InBodyAnalysisProps> = ({
   // BMR trend
   const bmrTrend: ChartOptions = {
     title: {
-      text: "Basal Metabolic Rate Progression",
+      text: "پیشرفت نرخ متابولیک پایه",
       textStyle: { fontSize: 14, fontWeight: "normal", color: "#1f2937" },
     },
     tooltip: {
@@ -328,74 +328,74 @@ export const InBodyAnalysis: React.FC<InBodyAnalysisProps> = ({
   return (
     <div className="space-y-8">
       <SectionHeader
-        title="InBody Analysis"
-        description="Comprehensive body composition analysis using bioelectrical impedance"
-        icon={<BarChart3 className="h-6 w-6" />}
+        title="تحلیل InBody"
+        description="تحلیل جامع ترکیب بدنی با استفاده از امپدانس bioelectrical"
+        icon={<BarChart3 className="h-6 w-6 text-gray-700" />}
       />
 
       {/* Key InBody Metrics */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         <MetricCard
-          title="Total Body Water"
+          title="کل آب بدن"
           value={inbodyData.totalBodyWater.toFixed(1)}
           unit="L"
           trend="up"
-          trendValue="+0.2L this week"
-          icon={<Droplets className="h-6 w-6" />}
+          trendValue="+0.2L این هفته"
+          icon={<Droplets className="h-6 w-6 text-gray-700" />}
         />
 
         <MetricCard
-          title="Visceral Fat Level"
+          title="سطح چربی احشایی"
           value={inbodyData.visceralFatLevel}
           trend="down"
-          trendValue="-0.3 this week"
-          icon={<Activity className="h-6 w-6" />}
+          trendValue="-0.3 این هفته"
+          icon={<Activity className="h-6 w-6 text-gray-700" />}
         />
 
         <MetricCard
-          title="Phase Angle"
+          title="زاویه فاز"
           value={inbodyData.phaseAngle.toFixed(1)}
           unit="°"
           trend="up"
-          trendValue="+0.2° this week"
-          icon={<Zap className="h-6 w-6" />}
+          trendValue="+0.2° این هفته"
+          icon={<Zap className="h-6 w-6 text-gray-700" />}
         />
 
         <MetricCard
-          title="BMR"
+          title="نرخ متابولیک پایه"
           value={inbodyData.basalMetabolicRate}
           unit="cal/day"
           trend="up"
-          trendValue="+15 cal this week"
-          icon={<Heart className="h-6 w-6" />}
+          trendValue="+15 cal این هفته"
+          icon={<Heart className="h-6 w-6 text-gray-700" />}
         />
       </div>
 
       {/* Advanced InBody Metrics */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
         <MetricCard
-          title="Protein Mass"
+          title="جرم پروتئین"
           value={inbodyData.proteinMass.toFixed(1)}
           unit="lbs"
           trend="up"
           trendValue="+0.1 lbs"
-          icon={<Activity className="h-5 w-5" />}
+          icon={<Activity className="h-5 w-5 text-gray-700" />}
         />
 
         <MetricCard
-          title="Mineral Mass"
+          title="جرم معدنی"
           value={inbodyData.mineralMass.toFixed(1)}
           unit="lbs"
           trend="stable"
-          icon={<Activity className="h-5 w-5" />}
+          icon={<Activity className="h-5 w-5 text-gray-700" />}
         />
 
         <MetricCard
           title="ECW/ICW Ratio"
           value={inbodyData.ecwIcwRatio.toFixed(3)}
           trend={inbodyData.ecwIcwRatio <= 0.38 ? "down" : "up"}
-          trendValue={inbodyData.ecwIcwRatio <= 0.38 ? "Optimal" : "Monitor"}
-          icon={<Droplets className="h-5 w-5" />}
+          trendValue={inbodyData.ecwIcwRatio <= 0.38 ? "بهینه" : "نظارت"}
+          icon={<Droplets className="h-5 w-5 text-gray-700" />}
         />
       </div>
 
