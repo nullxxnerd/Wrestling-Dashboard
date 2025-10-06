@@ -12,6 +12,7 @@ import {
   TestTube,
   ChevronDown,
   CalendarDays,
+  MessageCircle,
 } from "lucide-react";
 import * as Accordion from "@radix-ui/react-accordion";
 
@@ -89,6 +90,16 @@ const navItems: NavItem[] = [
       { label: "نمای کلی پشته" },
       { label: "پیروی" },
       { label: "همبستگی عملکرد" },
+    ],
+  },
+  {
+    label: "چت هوش مصنوعی",
+    href: "/dashboard/chat",
+    icon: <MessageCircle className="h-4 w-4 text-gray-700" />,
+    sections: [
+      { label: "مشاوره تمرین" },
+      { label: "راهنمای تغذیه" },
+      { label: "تحلیل عملکرد" },
     ],
   },
 ];
