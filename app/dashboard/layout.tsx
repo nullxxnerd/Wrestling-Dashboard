@@ -10,7 +10,7 @@ export default function DashboardLayout({
 }) {
   return (
     <div dir="rtl" className="mx-auto w-full">
-      <div className="mx-auto w-full max-8-xl px-2 sm:px-4">
+      <div className="mx-auto w-full max-8-xl ">
         {/* Mobile navigation header */}
         <div className="lg:hidden py-3">
           <MobileHeader />

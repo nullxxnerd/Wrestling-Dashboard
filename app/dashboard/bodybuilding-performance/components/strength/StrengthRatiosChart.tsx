@@ -29,7 +29,11 @@ export default function StrengthRatiosChart({
   bodyweightData = [198, 198.5, 199, 199.2, 199.5, 200],
   weeks = 6,
 }: StrengthRatiosChartProps) {
-  const weekLabels = generateWeekLabels(weeks);
+  const weekLabels = generateWeekLabels(weeks).map(
+    (_label, index) => `هفته ${index + 1}`
+  );
+
+  const fontFamily = "'Vazirmatn', sans-serif";
 
   const benchRatios = benchData.map((bench, i) =>
     calculateStrengthToBodyweightRatio(bench, bodyweightData[i])
@@ -43,34 +47,36 @@ export default function StrengthRatiosChart({
 
   const option = {
     title: {
-      text: "Strength to Bodyweight Ratios",
-      textStyle: { fontSize: 14, fontWeight: "normal" },
+      text: "نسبت قدرت به وزن بدن",
+      textStyle: { fontSize: 14, fontWeight: "normal", fontFamily },
     },
     tooltip: {
       trigger: "axis",
-      textStyle: { fontSize: 12 },
-      formatter: "{b}<br/>{a0}: {c0}x<br/>{a1}: {c1}x<br/>{a2}: {c2}x",
+      textStyle: { fontSize: 12, fontFamily },
+      formatter:
+        "{b}<br/>{a0}: {c0} برابر<br/>{a1}: {c1} برابر<br/>{a2}: {c2} برابر",
     },
     legend: {
-      data: ["Bench/BW", "Squat/BW", "Deadlift/BW"],
-      textStyle: { fontSize: 11 },
+      data: ["پرس سینه به وزن بدن", "اسکات به وزن بدن", "ددلیفت به وزن بدن"],
+      textStyle: { fontSize: 11, fontFamily },
     },
+    textStyle: { fontFamily },
     xAxis: {
       type: "category",
       data: weekLabels,
-      axisLabel: { fontSize: 10 },
+      axisLabel: { fontSize: 10, fontFamily },
     },
     yAxis: {
       type: "value",
-      name: "Ratio (x)",
+      name: "نسبت (برابر)",
       min: 1.4,
       max: 2.7,
-      nameTextStyle: { fontSize: 10 },
-      axisLabel: { fontSize: 10 },
+      nameTextStyle: { fontSize: 10, fontFamily },
+      axisLabel: { fontSize: 10, fontFamily },
     },
     series: [
       {
-        name: "Bench/BW",
+        name: "پرس سینه به وزن بدن",
         type: "line",
         data: benchRatios,
         itemStyle: { color: COLORS.WRESTLING_BLUE },
@@ -78,7 +84,7 @@ export default function StrengthRatiosChart({
         smooth: true,
       },
       {
-        name: "Squat/BW",
+        name: "اسکات به وزن بدن",
         type: "line",
         data: squatRatios,
         itemStyle: { color: COLORS.WRESTLING_RED },
@@ -86,7 +92,7 @@ export default function StrengthRatiosChart({
         smooth: true,
       },
       {
-        name: "Deadlift/BW",
+        name: "ددلیفت به وزن بدن",
         type: "line",
         data: deadliftRatios,
         itemStyle: { color: COLORS.WRESTLING_GREEN },
@@ -97,14 +103,14 @@ export default function StrengthRatiosChart({
   };
 
   return (
-    <Card>
+    <Card style={{ fontFamily }}>
       <CardHeader>
-        <CardTitle className="text-lg">Relative Strength Analysis</CardTitle>
+        <CardTitle className="text-lg">تحلیل قدرت نسبی</CardTitle>
         <CardDescription>
-          Strength-to-bodyweight ratios for power assessment
+          بررسی روند نسبت قدرت به وزن برای ارزیابی عملکرد
         </CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className="px-0">
         <ReactECharts option={option} style={{ height: "300px" }} />
       </CardContent>
     </Card>

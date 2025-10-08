@@ -189,7 +189,7 @@ export const ProductShowcase: React.FC = () => {
       <div className="max-w-7xl mx-auto space-y-8">
         {/* Overview - move to top */}
 
-        <div className="grid lg:grid-cols-2 gap-8 items-center bg-gray-50 rounded-xl p-6 lg:py-8 border border-slate-200">
+        <div className="grid lg:grid-cols-2 gap-8 items-center bg-gray-50 rounded-xl py-8 px-4 lg:px-8 border border-slate-200">
           <div className="order-2 lg:order-1 text-right" dir="rtl">
             <Kicker>نمای کلی عملکرد</Kicker>
             <Title blue="آمادگی مسابقه" black="در یک نگاه" />
@@ -215,10 +215,10 @@ export const ProductShowcase: React.FC = () => {
           </div>
         </div>
         {/* Bloodwork (Chart left, Description right) */}
-        <div className="grid lg:grid-cols-2 gap-8 items-center bg-gray-50 rounded-xl p-6 lg:py-8 border border-slate-200">
+        <div className="grid lg:grid-cols-2 gap-8 items-center bg-gray-50 rounded-xl py-8 px-4 lg:px-8 border border-slate-200">
           <div className="order-1 lg:order-2 text-right" dir="rtl">
             <Kicker>برای کشتی‌گیران و مربیان</Kicker>
-            <Title blue="خون‌سنجی دقیق" black="برای سلامت پایدار" />
+            <Title blue="خون‌سنجی دقیق" black="برای بشینه کردن عملکرد" />
             <p className="text-sm sm:text-base text-gray-700 mt-3 leading-7">
               پایش قند خون ناشتا و روندهای دوره‌ای کمک می‌کند تغذیه و بار تمرینی
               با وضعیت متابولیک هماهنگ شوند؛ کاهش ریسک افت عملکرد و افزایش کیفیت
@@ -252,7 +252,7 @@ export const ProductShowcase: React.FC = () => {
         </div>
 
         {/* Body Composition (Description left, Chart right) */}
-        <div className="grid lg:grid-cols-2 gap-8 items-center bg-gray-50 rounded-xl p-6 lg:py-8 border border-slate-200">
+        <div className="grid lg:grid-cols-2 gap-8 items-center bg-gray-50 rounded-xl py-8 px-4 lg:px-8 border border-slate-200">
           <div className="order-2 lg:order-2 p-4 border border-border rounded-lg bg-white">
             <ReactECharts
               option={powerToWeightPreview}
@@ -261,7 +261,7 @@ export const ProductShowcase: React.FC = () => {
           </div>
           <div className="order-1 lg:order-1 text-right" dir="rtl">
             <Kicker>آنالیز ترکیب بدنی</Kicker>
-            <Title blue="نسبت توان به وزن" black="برای ارزیابی مهارت کشتی" />
+            <Title blue="نسبت قدرت به وزن" black="برای ارزیابی مهارت کشتی" />
             <p className="text-sm sm:text-base text-gray-700 mt-3 leading-7">
               نسبت توان به وزن معیار کلیدی در کشتی است؛ توان بیشتر با وزن مؤثرتر
               یعنی جابه‌جایی سریع‌تر، اجرای تکنیک‌های انفجاری و کنترل بهتر در
@@ -279,7 +279,7 @@ export const ProductShowcase: React.FC = () => {
         </div>
 
         {/* Lifting (Chart left, Description right) */}
-        <div className="grid lg:grid-cols-2 gap-8 items-center bg-gray-50 rounded-xl p-6 lg:py-8 border border-slate-200">
+        <div className="grid lg:grid-cols-2 gap-8 items-center bg-gray-50 rounded-xl py-8 px-4 lg:px-8 border border-slate-200">
           <div className="order-1 lg:order-2 text-right" dir="rtl">
             <Kicker>قدرت و اجرای تمرین</Kicker>
             <Title blue="نسبت‌های قدرتی" black="برای تعادل اسکات/بنچ/ددلیفت" />
@@ -296,35 +296,8 @@ export const ProductShowcase: React.FC = () => {
               ]}
             />
           </div>
-          <div className="order-2 lg:order-1 p-4 border border-border rounded-lg bg-white">
+          <div className="order-2 lg:order-1  rounded-lg bg-white">
             <StrengthRatiosChart />
-          </div>
-        </div>
-
-        {/* Supplements (Description left, Chart right) */}
-        <div className="grid lg:grid-cols-2 gap-8 items-center bg-gray-50 rounded-xl p-6 lg:py-8 border border-slate-200">
-          <div className="order-2 lg:order-2 p-4 border border-border rounded-lg bg-white">
-            {/* نسخه کوچک برای شوکیس */}
-            <ReactECharts
-              option={miniAdherenceOption}
-              style={{ height: 200 }}
-            />
-          </div>
-          <div className="order-1 lg:order-1 text-right" dir="rtl">
-            <Kicker>تغذیه و مکمل‌ها</Kicker>
-            <Title blue="پروتکل هوشمند" black="برای پایبندی و اثرگذاری" />
-            <p className="text-sm sm:text-base text-gray-700 mt-3 leading-7">
-              پایش پایبندی به مکمل‌ها به همراه ارتباط آن با عملکرد، از هدررفت
-              هزینه جلوگیری می‌کند و نشان می‌دهد کدام مکمل واقعاً برای کشتی‌گیر
-              مفید است.
-            </p>
-            <Bullets
-              items={[
-                "نمایش همبستگی پایبندی با امتیاز عملکرد",
-                "یادآورها و زمان‌بندی مصرف برای رقابت",
-                "مقایسه پشته‌های مکمل در طول فصل",
-              ]}
-            />
           </div>
         </div>
       </div>

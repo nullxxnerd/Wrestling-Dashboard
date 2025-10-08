@@ -4,29 +4,29 @@ import { Button } from "@/components/ui/button";
 
 export const Hero: React.FC = () => {
   return (
-    <section className="py-24" dir="rtl">
-      <div className="max-w-6xl mx-auto px-4">
+    <section className="pt-4 lg:pt-24 lg:pb-12" dir="rtl">
+      <div className="max-w-7xl mx-auto px-4">
         <div className="flex flex-col-reverse items-center gap-8 sm:flex-row-reverse sm:items-center">
           {/* Text column */}
           <div className="w-full text-center sm:w-1/2 sm:text-right">
             <span className="inline-block mb-4 px-3 py-1 text-xs font-semibold rounded-full border border-border text-muted-foreground">
               پلتفرم هوشمند مدیریت کشتی
             </span>
-            <h1 className="text-4xl font-extrabold leading-tight tracking-tight">
+            <h1 className="text-3xl lg:text-4xl font-extrabold leading-tight tracking-tight">
               <span className="bg-gradient-to-l from-blue-600 to-red-700 bg-clip-text text-transparent">
                 تکنواسپورت
               </span>
               <span className="mx-2">—</span>
-              داشبورد
+
               <span className="mx-2 bg-gradient-to-l from-blue-700 to-red-700 bg-clip-text text-transparent">
-                تحلیل عملکرد
+                مدیریت عملکرد کشتی
               </span>
-              برای باشگاه‌ها و تیم‌های کشتی
             </h1>
-            <p className="mt-5 text-base sm:text-lg text-muted-foreground leading-8">
-              همه چیزِ مدیریت کشتی در یک‌جا: برنامه‌ریزی تمرین و دوره‌بندی، رصد
-              وزن و وزن‌کشی، نتایج مسابقات روی تشک، خون‌نگاری و مکمل‌ها، و
-              گزارش‌های تحلیلی برای تصمیم‌گیری سریع‌تر. با{" "}
+            <p className="mt-5 text-sm sm:text-lg text-muted-foreground leading-8">
+              پلتفرم ما مربیان و ورزشکاران را باهم پشتیبانی می‌کند؛ با گردآوری
+              داده‌های تمرین، وزن، مسابقات و سلامت در یک داشبورد هوشمند، مربی
+              دیدی یکپارچه و لحظه‌ای دارد تا تصمیم‌های سریع‌تر و مبتنی بر داده
+              بگیرد و مسیر پیشرفت هر کشتی‌گیر با دقت رصد شود.
               <span className="font-semibold bg-gradient-to-l from-blue-600 to-red-600 bg-clip-text text-transparent w-full">
                 تکنواسپورت
               </span>{" "}
@@ -45,7 +45,7 @@ export const Hero: React.FC = () => {
 
           {/* Image column */}
           <div className="w-full sm:w-1/3 flex justify-center sm:justify-end">
-            <div className="relative w-full max-w-xs sm:max-w-md">
+            <div className="relative w-full max-w-[12rem] sm:max-w-md">
               <Image
                 src="/landing.png"
                 alt="تصویر معرفی تکنواسپورت — داشبورد مدیریت کشتی"
