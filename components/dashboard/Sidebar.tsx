@@ -24,7 +24,7 @@ type NavItem = {
   sections: Section[];
 };
 
-const navItems: NavItem[] = [
+export const navItems: NavItem[] = [
   {
     label: "نمای کلی",
     href: "/dashboard",
@@ -46,8 +46,8 @@ const navItems: NavItem[] = [
     ],
   },
   {
-    label: "وزنه‌برداری",
-    href: "/dashboard/lifting",
+    label: "عملکرد بدنسازی",
+    href: "/dashboard/bodybuilding-performance",
     icon: <Dumbbell className="h-4 w-4 text-gray-700" />,
     sections: [
       { label: "قدرت" },
@@ -76,22 +76,22 @@ const navItems: NavItem[] = [
       { label: "روندها و مناطق" },
     ],
   },
-  {
-    label: "بازیابی",
-    href: "/dashboard/recovery",
-    icon: <Droplets className="h-4 w-4 text-gray-700" />,
-    sections: [{ label: "خواب" }, { label: "HRV" }, { label: "آب‌رسانی" }],
-  },
-  {
-    label: "مکمل‌ها",
-    href: "/dashboard/supplements",
-    icon: <Pill className="h-4 w-4 text-gray-700" />,
-    sections: [
-      { label: "نمای کلی پشته" },
-      { label: "پیروی" },
-      { label: "همبستگی عملکرد" },
-    ],
-  },
+  // {
+  //   label: "بازیابی",
+  //   href: "/dashboard/recovery",
+  //   icon: <Droplets className="h-4 w-4 text-gray-700" />,
+  //   sections: [{ label: "خواب" }, { label: "HRV" }, { label: "آب‌رسانی" }],
+  // },
+  // {
+  //   label: "مکمل‌ها",
+  //   href: "/dashboard/supplements",
+  //   icon: <Pill className="h-4 w-4 text-gray-700" />,
+  //   sections: [
+  //     { label: "نمای کلی پشته" },
+  //     { label: "پیروی" },
+  //     { label: "همبستگی عملکرد" },
+  //   ],
+  // },
   {
     label: "چت هوش مصنوعی",
     href: "/dashboard/chat",
@@ -117,7 +117,7 @@ export default function Sidebar() {
 
   return (
     <aside className="hidden lg:block w-64 shrink-0">
-      <div className="border border-gray-200 bg-white text-gray-900 rounded-md shadow-sm">
+      <div className="border border-gray-300 bg-white text-gray-900 rounded-lg ">
         <div className="px-4 py-4 border-b border-gray-200">
           <div className="text-sm font-semibold text-gray-700">داشبورد</div>
         </div>
@@ -127,7 +127,7 @@ export default function Sidebar() {
             type="single"
             collapsible
             className="space-y-3"
-            defaultValue={activeItem}
+            value={activeItem}
           >
             {navItems.map((item) => {
               const active =
@@ -138,14 +138,14 @@ export default function Sidebar() {
                 <Accordion.Item
                   key={item.href}
                   value={value}
-                  className="rounded-md border border-gray-200 bg-white shadow-sm"
+                  className="rounded-md  bg-white "
                 >
                   <Accordion.Header>
                     <Accordion.Trigger
                       className={cn(
                         "flex w-full items-center gap-3 px-3 py-2 text-right text-sm transition-colors",
                         active
-                          ? "bg-gray-100 text-gray-900 rounded-t-md"
+                          ? "bg-gray-100 text-gray-900 font-bold rounded-t-md"
                           : "hover:bg-gray-100 hover:text-gray-900 rounded-t-md"
                       )}
                       onClick={() => router.push(item.href)}
@@ -161,7 +161,12 @@ export default function Sidebar() {
                         {/* Keep icon color constant regardless of active */}
                         {item.icon}
                       </span>
-                      <span className="flex-1 min-w-0 truncate">
+                      <span
+                        className={cn(
+                          "flex-1 min-w-0 truncate",
+                          active && "font-bold"
+                        )}
+                      >
                         {item.label}
                       </span>
                       <ChevronDown
@@ -176,7 +181,7 @@ export default function Sidebar() {
                         {item.sections.map((s, idx) => (
                           <div
                             key={idx}
-                            className="rounded-md text-xs text-gray-700 px-2 py-1 hover:bg-gray-100 hover:text-gray-900 transition-colors"
+                            className="rounded-md text-sm text-gray-700 px-2 py-2 hover:bg-gray-100 hover:text-gray-900 transition-colors"
                           >
                             {s.label}
                           </div>

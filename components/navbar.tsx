@@ -18,7 +18,7 @@ export default function Navbar() {
 
   return (
     <nav className="bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60 border-b border-gray-200">
-      <div className="max-w-7xl mx-auto px-4" dir="rtl">
+      <div className="max-8-xl mx-auto px-4" dir="rtl">
         <div className="flex justify-between py-4">
           <div className="flex">
             <div className="flex-shrink-0 flex items-center">

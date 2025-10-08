@@ -5,8 +5,8 @@ import ReactECharts from "echarts-for-react";
 
 // Import charts directly from dashboard to showcase real features
 import GlucoseChart from "@/app/dashboard/bloodwork/components/GlucoseChart";
-import PerformanceScore from "@/app/dashboard/lifting/components/PerformanceScore";
-import { StrengthRatiosChart } from "@/app/dashboard/lifting/components/strength";
+import PerformanceScore from "@/app/dashboard/bodybuilding-performance/components/PerformanceScore";
+import { StrengthRatiosChart } from "@/app/dashboard/bodybuilding-performance/components/strength";
 import { SupplementStackOverview } from "@/app/dashboard/supplements/components/SupplementStackOverview";
 
 const WRESTLING_BLUE = "#1e40af"; // Deep wrestling blue

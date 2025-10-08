@@ -172,7 +172,7 @@
 /* Custom max width larger than Tailwind's 7xl */
 @layer utilities {
   .max-8-xl {
-    max-width: 96rem; /* 1536px, larger than 7xl (80rem) */
+    max-width: 96rem !important; /* 1536px, larger than 7xl (80rem) */
   }
 
   /* Accordion animations for Radix UI */

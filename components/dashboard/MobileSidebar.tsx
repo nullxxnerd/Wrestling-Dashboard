@@ -49,7 +49,7 @@ const navItems: NavItem[] = [
   },
   {
     label: "وزنه‌برداری",
-    href: "/dashboard/lifting",
+    href: "/dashboard/bodybuilding-performance",
     icon: <Dumbbell className="h-5 w-5" />,
     sections: [
       { label: "قدرت" },
@@ -78,22 +78,22 @@ const navItems: NavItem[] = [
       { label: "روندها و مناطق" },
     ],
   },
-  {
-    label: "بازیابی",
-    href: "/dashboard/recovery",
-    icon: <Droplets className="h-5 w-5" />,
-    sections: [{ label: "خواب" }, { label: "HRV" }, { label: "آب‌رسانی" }],
-  },
-  {
-    label: "مکمل‌ها",
-    href: "/dashboard/supplements",
-    icon: <Pill className="h-5 w-5" />,
-    sections: [
-      { label: "نمای کلی پشته" },
-      { label: "پیروی" },
-      { label: "همبستگی عملکرد" },
-    ],
-  },
+  // {
+  //   label: "بازیابی",
+  //   href: "/dashboard/recovery",
+  //   icon: <Droplets className="h-5 w-5" />,
+  //   sections: [{ label: "خواب" }, { label: "HRV" }, { label: "آب‌رسانی" }],
+  // },
+  // {
+  //   label: "مکمل‌ها",
+  //   href: "/dashboard/supplements",
+  //   icon: <Pill className="h-5 w-5" />,
+  //   sections: [
+  //     { label: "نمای کلی پشته" },
+  //     { label: "پیروی" },
+  //     { label: "همبستگی عملکرد" },
+  //   ],
+  // },
 ];
 
 export default function MobileSidebar() {

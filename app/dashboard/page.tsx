@@ -243,7 +243,7 @@ export default function Home() {
                 <span className="truncate">Blood Work — آنالیز</span>
               </Button>
             </Link>
-            <Link href="/lifting" className="block">
+            <Link href="/bodybuilding-performance" className="block">
               <Button
                 variant="outline"
                 className="w-full justify-start text-sm p-2 sm:p-3"
