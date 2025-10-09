@@ -1,5 +1,6 @@
-import "./globals.css";
+import type { Metadata } from "next";
 import { Geist, Geist_Mono, Vazirmatn } from "next/font/google";
+import Navbar from "@/components/navbar";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -17,20 +18,24 @@ const vazirmatn = Vazirmatn({
   subsets: ["latin", "arabic"],
 });
 
-export const metadata = {
-  title: "Wrestling MVP",
-  description: "App root",
+export const metadata: Metadata = {
+  title: "Wrestling MVP Dashboard",
+  description: "Performance analytics dashboard for wrestling athletes",
 };
 
-export default function AppLayout({ children }: { children: React.ReactNode }) {
-  // App root must supply html and body tags per Next.js 15 requirements.
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <body
+    <div className="scroll-smooth">
+      <div
         className={`${geistSans.variable} ${geistMono.variable} ${vazirmatn.variable} vazirmatn-body antialiased bg-gray-50`}
       >
-        {children}
-      </body>
-    </html>
+        <Navbar />
+        <main className="min-h-screen   mx-auto">{children}</main>
+      </div>
+    </div>
   );
 }

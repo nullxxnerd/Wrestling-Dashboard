@@ -12,10 +12,10 @@ export default function DashboardLayout({
     <div dir="rtl" className="mx-auto w-full">
       <div className="mx-auto w-full max-8-xl ">
         {/* Mobile navigation header */}
-        <div className="lg:hidden py-3">
+        <div className="lg:hidden py-2 bg-blue-100">
           <MobileHeader />
         </div>
-        <div className="flex flex-row items-center justify-between pb-3 pt-8">
+        <div className="flex flex-col gap-y-4 lg:flex-row items-center justify-between pb-3 pt-8">
           <Breadcrumbs />
 
           <WrestlerSelect />

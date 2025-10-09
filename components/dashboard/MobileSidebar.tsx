@@ -3,98 +3,20 @@
 import { useState, useEffect, useRef } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
-import {
-  Activity,
-  Dumbbell,
-  Droplets,
-  HeartPulse,
-  Pill,
-  TestTube,
-  CalendarDays,
-  Menu,
-  X,
-  ChevronRight,
-  Home,
-} from "lucide-react";
+import { Menu, X, ChevronRight, Home } from "lucide-react";
 import * as Sheet from "@radix-ui/react-dialog";
 
-type Section = { label: string };
+// Reuse navItems and its types from the desktop Sidebar so both stay in sync
+import { navItems as sharedNavItems } from "./Sidebar";
+
 type NavItem = {
   label: string;
   href: string;
   icon: React.ReactNode;
-  sections: Section[];
+  sections: { label: string }[];
 };
 
-const navItems: NavItem[] = [
-  {
-    label: "نمای کلی",
-    href: "/dashboard",
-    icon: <Activity className="h-5 w-5" />,
-    sections: [
-      { label: "آمار سریع" },
-      { label: "نمای عملکرد" },
-      { label: "آمادگی و بازیابی" },
-    ],
-  },
-  {
-    label: "ترکیب بدنی",
-    href: "/dashboard/body-composition",
-    icon: <HeartPulse className="h-5 w-5" />,
-    sections: [
-      { label: "نمودار تعاملی" },
-      { label: "روندها" },
-      { label: "اهداف" },
-    ],
-  },
-  {
-    label: "وزنه‌برداری",
-    href: "/dashboard/bodybuilding-performance",
-    icon: <Dumbbell className="h-5 w-5" />,
-    sections: [
-      { label: "قدرت" },
-      { label: "بدنسازی" },
-      { label: "قلبی عروقی" },
-      { label: "تحلیل‌ها" },
-    ],
-  },
-  {
-    label: "تقویم",
-    href: "/dashboard/calendar",
-    icon: <CalendarDays className="h-5 w-5" />,
-    sections: [
-      { label: "برنامه من" },
-      { label: "برنامه‌ها" },
-      { label: "رویدادها" },
-    ],
-  },
-  {
-    label: "آزمایش خون",
-    href: "/dashboard/bloodwork",
-    icon: <TestTube className="h-5 w-5" />,
-    sections: [
-      { label: "شمارش سلول‌ها" },
-      { label: "Hemoglobin & Hematocrit" },
-      { label: "روندها و مناطق" },
-    ],
-  },
-  // {
-  //   label: "بازیابی",
-  //   href: "/dashboard/recovery",
-  //   icon: <Droplets className="h-5 w-5" />,
-  //   sections: [{ label: "خواب" }, { label: "HRV" }, { label: "آب‌رسانی" }],
-  // },
-  // {
-  //   label: "مکمل‌ها",
-  //   href: "/dashboard/supplements",
-  //   icon: <Pill className="h-5 w-5" />,
-  //   sections: [
-  //     { label: "نمای کلی پشته" },
-  //     { label: "پیروی" },
-  //     { label: "همبستگی عملکرد" },
-  //   ],
-  // },
-];
+const navItems: NavItem[] = sharedNavItems as unknown as NavItem[];
 
 export default function MobileSidebar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -208,7 +130,10 @@ export default function MobileSidebar() {
             onInteractOutside={() => setIsOpen(false)}
           >
             {/* Header */}
-            <div className="flex items-center justify-between border-b bg-gradient-to-r from-gray-50 to-gray-100/50 px-4 py-4">
+            <div
+              className="flex items-center justify-between border-b bg-gradient-to-r from-gray-50 to-gray-100/50 px-4 py-4"
+              dir="rtl"
+            >
               <div className="flex items-center gap-3">
                 <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-primary to-primary/80 text-primary-foreground shadow-sm">
                   <Home className="h-4 w-4" />

@@ -27,7 +27,7 @@ export default function Home() {
   // Quick overview chart - responsive configuration
   const overviewData = {
     title: {
-      text: "نمای کلی عملکرد - 7 روز اخیر",
+      text: "نمای کلی عملکرد عضلات - هفتهٔ اخیر",
       textStyle: {
         fontSize: 14,
       },
@@ -38,22 +38,17 @@ export default function Home() {
       trigger: "axis",
       textStyle: { fontSize: 12 },
     },
-    legend: {
-      data: ["این هفته"],
-      textStyle: { fontSize: 11 },
-      bottom: 5,
-    },
+
     radar: {
       center: ["50%", "55%"],
       radius: "60%",
       indicator: [
-        { name: "دوشنبه", max: 100, nameGap: 10 },
-        { name: "سه‌شنبه", max: 100, nameGap: 10 },
-        { name: "چهارشنبه", max: 100, nameGap: 10 },
-        { name: "پنج‌شنبه", max: 100, nameGap: 10 },
-        { name: "جمعه", max: 100, nameGap: 10 },
-        { name: "شنبه", max: 100, nameGap: 10 },
-        { name: "یک‌شنبه", max: 100, nameGap: 10 },
+        { name: "کمر", max: 100, nameGap: 10 },
+        { name: "سینه", max: 100, nameGap: 10 },
+        { name: "پاها", max: 100, nameGap: 10 },
+        { name: "بازوها", max: 100, nameGap: 10 },
+        { name: "شانه‌ها", max: 100, nameGap: 10 },
+        { name: "میان‌تنه", max: 100, nameGap: 10 },
       ],
       nameTextStyle: {
         fontSize: 10,
@@ -67,7 +62,8 @@ export default function Home() {
         type: "radar",
         data: [
           {
-            value: [90, 85, 88, 92, 87, 85, 75],
+            // Values correspond to: پشت, سینه, پاها, بازوها, شانه‌ها, میان‌تنه
+            value: [92, 85, 78, 48, 80, 55],
             name: "این هفته",
             itemStyle: { color: WRESTLING_BLUE },
             areaStyle: { color: `${WRESTLING_BLUE}30` },
