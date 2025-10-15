@@ -75,13 +75,16 @@ export default function Home() {
 
   return (
     <div className="container mx-auto px-1 sm:px-4 py-4 sm:py-6 lg:py-8 max-w-full overflow-x-hidden">
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 gap-4">
+      <div
+        id="overview-header"
+        className="flex flex-col sm:flex-row sm:items-center sm:justify-between mb-6 gap-4"
+      >
         <div className="min-w-0 flex-1">
           <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 truncate">
             نمای کلی معیارها
           </h1>
           <p className="text-sm sm:text-base text-gray-700 mt-1 sm:mt-2">
-            عملکرد، تغذیه و بازیابی را بصورت خلاصه ببینید
+            عملکرد، و بازیابی را بصورت خلاصه ببینید
           </p>
         </div>
         <div className="flex flex-wrap gap-2 sm:flex-nowrap">
@@ -101,7 +104,10 @@ export default function Home() {
       </div>
 
       {/* Quick Stats */}
-      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-3 lg:gap-4 mb-6 lg:mb-8">
+      <div
+        id="overview-quick-stats"
+        className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 sm:gap-3 lg:gap-4 mb-6 lg:mb-8"
+      >
         <Card className="min-w-0 rounded-md border border-gray-200">
           <CardHeader className="pb-1 sm:pb-2">
             <CardTitle className="text-xs sm:text-sm font-medium flex items-center gap-1 sm:gap-2 truncate">
@@ -196,7 +202,10 @@ export default function Home() {
       {/* Interactive Body Performance Section removed for a more compact layout */}
 
       {/* Main Dashboard Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-6">
+      <div
+        id="overview-performance"
+        className="grid grid-cols-1 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-6"
+      >
         {/* Performance Overview */}
         <Card className="lg:col-span-2 min-w-0 rounded-md border border-gray-200">
           <CardHeader className="pb-3 sm:pb-6">
@@ -246,15 +255,6 @@ export default function Home() {
               >
                 <BarChart3 className="ml-2 h-3 w-3 sm:h-4 sm:w-4 shrink-0" />
                 <span className="truncate">Lifting — معیارها</span>
-              </Button>
-            </Link>
-            <Link href="/supplements" className="block">
-              <Button
-                variant="outline"
-                className="w-full justify-start text-sm p-2 sm:p-3"
-              >
-                <Droplets className="ml-2 h-3 w-3 sm:h-4 sm:w-4 shrink-0" />
-                <span className="truncate">پیگیری مکمل‌ها</span>
               </Button>
             </Link>
           </CardContent>
@@ -396,6 +396,7 @@ export default function Home() {
           </CardContent>
         </Card>
       </div>
+      <div id="overview-recovery" />
     </div>
   );
 }

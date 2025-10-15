@@ -16,7 +16,7 @@ import {
 } from "lucide-react";
 import * as Accordion from "@radix-ui/react-accordion";
 
-type Section = { label: string };
+type Section = { label: string; id: string };
 type NavItem = {
   label: string;
   href: string;
@@ -30,9 +30,9 @@ export const navItems: NavItem[] = [
     href: "/dashboard",
     icon: <Activity className="h-4 w-4 text-gray-700" />,
     sections: [
-      { label: "آمار سریع" },
-      { label: "نمای عملکرد" },
-      { label: "آمادگی و بازیابی" },
+      { label: "آمار سریع", id: "overview-quick-stats" },
+      { label: "نمای عملکرد", id: "overview-performance" },
+      { label: "آمادگی و بازیابی", id: "overview-recovery" },
     ],
   },
   {
@@ -40,9 +40,9 @@ export const navItems: NavItem[] = [
     href: "/dashboard/body-composition",
     icon: <HeartPulse className="h-4 w-4 text-gray-700" />,
     sections: [
-      { label: "نمودار تعاملی" },
-      { label: "روندها" },
-      { label: "اهداف" },
+      { label: "نمودار تعاملی", id: "interactive-chart" },
+      { label: "روندها", id: "trends" },
+      { label: "اهداف", id: "goals" },
     ],
   },
   {
@@ -50,10 +50,10 @@ export const navItems: NavItem[] = [
     href: "/dashboard/bodybuilding-performance",
     icon: <Dumbbell className="h-4 w-4 text-gray-700" />,
     sections: [
-      { label: "قدرت" },
-      { label: "بدنسازی" },
-      { label: "قلبی عروقی" },
-      { label: "تحلیل‌ها" },
+      { label: "قدرت", id: "strength" },
+      { label: "بدنسازی", id: "bodybuilding" },
+      { label: "قلبی عروقی", id: "cardio" },
+      { label: "تحلیل‌ها", id: "analytics" },
     ],
   },
   {
@@ -61,9 +61,9 @@ export const navItems: NavItem[] = [
     href: "/dashboard/calendar",
     icon: <CalendarDays className="h-4 w-4 text-gray-700" />,
     sections: [
-      { label: "برنامه من" },
-      { label: "برنامه‌ها" },
-      { label: "رویدادها" },
+      { label: "برنامه من", id: "my-program" },
+      { label: "برنامه‌ها", id: "programs" },
+      { label: "رویدادها", id: "events" },
     ],
   },
   {
@@ -71,9 +71,9 @@ export const navItems: NavItem[] = [
     href: "/dashboard/bloodwork",
     icon: <TestTube className="h-4 w-4 text-gray-700" />,
     sections: [
-      { label: "شمارش سلول‌ها" },
-      { label: "Hemoglobin & Hematocrit" },
-      { label: "روندها و مناطق" },
+      { label: "شمارش سلول‌ها", id: "cbc" },
+      { label: "Hemoglobin & Hematocrit", id: "hemoglobin-hematocrit" },
+      { label: "روندها و مناطق", id: "trends-and-zones" },
     ],
   },
   // {
@@ -97,9 +97,9 @@ export const navItems: NavItem[] = [
     href: "/dashboard/chat",
     icon: <MessageCircle className="h-4 w-4 text-gray-700" />,
     sections: [
-      { label: "مشاوره تمرین" },
-      { label: "راهنمای تغذیه" },
-      { label: "تحلیل عملکرد" },
+      { label: "مشاوره تمرین", id: "training-advice" },
+      { label: "راهنمای تغذیه", id: "nutrition-guidance" },
+      { label: "تحلیل عملکرد", id: "performance-analysis" },
     ],
   },
 ];
@@ -179,12 +179,25 @@ export default function Sidebar() {
                     <Accordion.Content className="overflow-hidden data-[state=open]:animate-accordion-down data-[state=closed]:animate-accordion-up">
                       <div className="px-3 pb-3 pt-2 grid grid-cols-1 gap-1.5 text-right">
                         {item.sections.map((s, idx) => (
-                          <div
+                          <button
                             key={idx}
-                            className="rounded-md text-sm text-gray-700 px-2 py-2 hover:bg-gray-100 hover:text-gray-900 transition-colors"
+                            onClick={async () => {
+                              const hash = `#${s.id}`;
+                              // navigate to route + hash
+                              await router.push(`${item.href}${hash}`);
+                              // if already on the page, try to scroll to the element
+                              try {
+                                const el = document.getElementById(s.id);
+                                if (el)
+                                  el.scrollIntoView({ behavior: "smooth" });
+                              } catch {
+                                // noop
+                              }
+                            }}
+                            className="w-full text-right rounded-md text-sm text-gray-700 px-2 py-2 hover:bg-gray-100 hover:text-gray-900 transition-colors"
                           >
                             {s.label}
-                          </div>
+                          </button>
                         ))}
                       </div>
                     </Accordion.Content>

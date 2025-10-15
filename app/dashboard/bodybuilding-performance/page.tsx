@@ -37,7 +37,10 @@ import {
 export default function LiftingPage() {
   return (
     <div className="container mx-auto px-4 py-8">
-      <div className="flex items-start justify-between mb-8">
+      <div
+        id="overview-header"
+        className="flex items-start justify-between mb-8"
+      >
         <div>
           <h1 className="text-3xl font-bold text-gray-900">
             آمار وزنه‌برداری و عملکرد
@@ -63,7 +66,7 @@ export default function LiftingPage() {
       </div>
 
       {/* Performance Overview Section */}
-      <div className="mb-8">
+      <div id="overview-performance" className="mb-8">
         <h2 className="text-2xl font-semibold text-gray-800 mb-6">
           نمای کلی عملکرد
         </h2>
@@ -71,7 +74,7 @@ export default function LiftingPage() {
       </div>
 
       {/* Strength Training Section */}
-      <div className="mb-8">
+      <div id="strength" className="mb-8">
         <h2 className="text-2xl font-semibold text-gray-800 mb-6">
           متریک‌های تمرین قدرتی
         </h2>
@@ -85,7 +88,7 @@ export default function LiftingPage() {
       </div>
 
       {/* Cardiovascular Section */}
-      <div className="mb-8">
+      <div id="cardio" className="mb-8">
         <h2 className="text-2xl font-semibold text-gray-800 mb-6">
           عملکرد قلبی عروقی
         </h2>
@@ -98,7 +101,7 @@ export default function LiftingPage() {
       </div>
 
       {/* Advanced Analytics Section */}
-      <div className="mb-8">
+      <div id="analytics" className="mb-8">
         <h2 className="text-2xl font-semibold text-gray-800 mb-6">
           آمار تمرینی
         </h2>
@@ -111,7 +114,7 @@ export default function LiftingPage() {
       </div>
 
       {/* Bodybuilding Metrics Section */}
-      <div className="mb-8">
+      <div id="bodybuilding" className="mb-8">
         <h2 className="text-2xl font-semibold text-gray-800 mb-6">
           متریک‌های بدنسازی و توسعه
         </h2>

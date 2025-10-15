@@ -42,7 +42,7 @@ export default function ChatPage() {
 
   return (
     <div className="flex flex-col h-[calc(100vh-200px)] max-w-4xl mx-auto">
-      <div className="mb-4">
+      <div id="overview-header" className="mb-4">
         <h1 className="text-xl font-bold text-gray-900 mb-1">
           دستیار هوش مصنوعی
         </h1>
@@ -52,7 +52,7 @@ export default function ChatPage() {
       </div>
 
       {/* Messages Container */}
-      <div className="flex-1 overflow-y-auto mb-3">
+      <div id="training-advice" className="flex-1 overflow-y-auto mb-3">
         {messages.length === 0 ? (
           <ChatWelcome />
         ) : (
@@ -65,7 +65,10 @@ export default function ChatPage() {
       </div>
 
       {/* Input Area */}
-      <ChatInput onSendMessage={handleSendMessage} isLoading={isLoading} />
+      <div id="nutrition-guidance">
+        <ChatInput onSendMessage={handleSendMessage} isLoading={isLoading} />
+      </div>
+      <div id="performance-analysis" />
     </div>
   );
 }

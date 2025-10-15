@@ -89,7 +89,7 @@ export default function CalendarPage() {
 
   return (
     <div className="flex flex-col gap-4">
-      <div className="flex items-center justify-between">
+      <div id="overview-header" className="flex items-center justify-between">
         <div className="flex items-center gap-2">
           <CalendarIcon className="h-5 w-5 text-gray-700" />
           <h1 className="text-xl sm:text-2xl font-semibold">تقویم تمرین</h1>
@@ -103,32 +103,35 @@ export default function CalendarPage() {
         </Button>
       </div>
 
-      <Card className="min-h-[70vh] rounded-md border-gray-200">
+      <Card id="my-program" className="min-h-[70vh] rounded-md border-gray-200">
         <CardHeader className="pb-2">
           <CardTitle className="text-base sm:text-lg">
             برنامه بدنسازی شما
           </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="h-[65vh] sm:h-[75vh]">
-            <FullCalendar
-              plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
-              initialView="dayGridMonth"
-              headerToolbar={{
-                left: "prev,next today",
-                center: "title",
-                right: "dayGridMonth,timeGridWeek,timeGridDay",
-              }}
-              height="100%"
-              events={events}
-              dateClick={(arg) => openForDate(arg.dateStr)}
-              eventClick={(info) => {
-                const dateStr = info.event.startStr.slice(0, 10);
-                openForDate(dateStr);
-              }}
-              dayMaxEvents={2}
-            />
+          <div id="programs">
+            <div className="h-[65vh] sm:h-[75vh]">
+              <FullCalendar
+                plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
+                initialView="dayGridMonth"
+                headerToolbar={{
+                  left: "prev,next today",
+                  center: "title",
+                  right: "dayGridMonth,timeGridWeek,timeGridDay",
+                }}
+                height="100%"
+                events={events}
+                dateClick={(arg) => openForDate(arg.dateStr)}
+                eventClick={(info) => {
+                  const dateStr = info.event.startStr.slice(0, 10);
+                  openForDate(dateStr);
+                }}
+                dayMaxEvents={2}
+              />
+            </div>
           </div>
+          <div id="events" />
         </CardContent>
       </Card>
 

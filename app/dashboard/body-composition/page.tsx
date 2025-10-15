@@ -89,7 +89,7 @@ export default function BodyCompositionPage() {
         {/* Header + Preview */}
         <div className="mb-6 sm:mb-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6 items-start">
-            <div>
+            <div id="overview-header">
               <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-2">
                 <Scale className="h-6 w-6 sm:h-8 sm:w-8 text-gray-700" />
                 <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 leading-tight">
@@ -112,7 +112,7 @@ export default function BodyCompositionPage() {
         </div>
 
         {/* Goals and Targets Section */}
-        <div className="mb-6 sm:mb-8 lg:mb-12">
+        <div id="goals" className="mb-6 sm:mb-8 lg:mb-12">
           <GoalsTargets
             goals={bodyCompData.goals}
             onUpdateGoals={handleUpdateGoals}
@@ -120,12 +120,12 @@ export default function BodyCompositionPage() {
         </div>
 
         {/* Interactive Body Performance Diagram */}
-        <div className="mb-6 sm:mb-8 lg:mb-12">
+        <div id="interactive-chart" className="mb-6 sm:mb-8 lg:mb-12">
           <InteractiveBodyDiagram />
         </div>
 
         {/* InBody Analysis Section */}
-        <div className="mb-6 sm:mb-8 lg:mb-12">
+        <div id="inbody-analysis" className="mb-6 sm:mb-8 lg:mb-12">
           <InBodyAnalysis
             inbodyData={latestInBody}
             historicalData={bodyCompData.inbody}
@@ -133,7 +133,7 @@ export default function BodyCompositionPage() {
         </div>
 
         {/* Segmental Muscle Analysis Section */}
-        <div className="mb-6 sm:mb-8 lg:mb-12">
+        <div id="trends" className="mb-6 sm:mb-8 lg:mb-12">
           <MuscleMassAnalysis
             segmentalData={latestSegmental}
             historicalData={bodyCompData.segmental}
@@ -141,7 +141,7 @@ export default function BodyCompositionPage() {
         </div>
 
         {/* Advanced Charts and Analytics Section */}
-        <div className="mb-6 sm:mb-8 lg:mb-12">
+        <div id="advanced-charts" className="mb-6 sm:mb-8 lg:mb-12">
           <AdvancedCharts
             advancedData={latestAdvanced}
             trendData={bodyCompData.trends}
