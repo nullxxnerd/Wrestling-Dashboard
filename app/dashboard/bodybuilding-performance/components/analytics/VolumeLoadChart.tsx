@@ -8,7 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { generateWeekLabels } from "../../utils";
+import { generateWeekLabels, COLORS } from "../../utils";
 
 interface VolumeLoadChartProps {
   benchVolume?: number[];
@@ -60,21 +60,21 @@ export default function VolumeLoadChart({
         stack: "total",
         emphasis: { focus: "series" },
         data: benchVolume,
-        itemStyle: { color: "#6B7280" },
+        itemStyle: { color: COLORS.WRESTLING_BLUE },
       },
       {
         name: "اسکوات",
         type: "bar",
         stack: "total",
         data: squatVolume,
-        itemStyle: { color: "#9CA3AF" },
+        itemStyle: { color: COLORS.WRESTLING_RED },
       },
       {
         name: "ددلیفت",
         type: "bar",
         stack: "total",
         data: deadliftVolume,
-        itemStyle: { color: "#D1D5DB" },
+        itemStyle: { color: COLORS.WRESTLING_BLUE },
       },
     ],
   };

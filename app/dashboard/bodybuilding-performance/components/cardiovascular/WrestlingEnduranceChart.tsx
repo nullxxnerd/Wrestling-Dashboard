@@ -23,13 +23,13 @@ export default function WrestlingEnduranceChart({
 
   const option = {
     title: {
-      text: "Wrestling Endurance Test",
+      text: "آزمون استقامت کشتی",
       textStyle: { fontSize: 14, fontWeight: "normal" },
     },
     tooltip: {
       trigger: "axis",
       textStyle: { fontSize: 12 },
-      formatter: "{b}<br/>Beep Test Level: {c}",
+      formatter: "{b}<br/>سطح بیپ تست: {c}",
     },
     xAxis: {
       type: "category",
@@ -73,13 +73,13 @@ export default function WrestlingEnduranceChart({
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-lg">Wrestling Endurance Test</CardTitle>
+        <CardTitle className="text-lg">آزمون استقامت کشتی</CardTitle>
         <CardDescription>
-          Sport-specific fitness benchmark - Current Level: {currentLevel}
+          معیار تناسب اندام مخصوص ورزش - سطح فعلی: {currentLevel}
           <span className={`ml-2 font-semibold ${color}`}>({rating})</span>
           {improvement > 0 && (
             <span className="text-green-600 ml-2">
-              (+{improvement.toFixed(1)} levels improved)
+              (+{improvement.toFixed(1)} سطح ارتقا یافته)
             </span>
           )}
         </CardDescription>

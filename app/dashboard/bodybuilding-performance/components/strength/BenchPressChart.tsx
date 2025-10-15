@@ -31,12 +31,12 @@ export default function BenchPressChart({
 
   const option = {
     title: {
-      text: `Bench Press Max - Last ${timeframe} Days`,
+      text: `حداکثر پرس سینه - ${timeframe} روز اخیر`,
       textStyle: { fontSize: 14, fontWeight: "normal" },
     },
     tooltip: {
       trigger: "axis",
-      formatter: "{b}<br/>Max: {c} lbs",
+      formatter: "{b}<br/>حداکثر: {c} lbs",
       textStyle: { fontSize: 12 },
     },
     xAxis: {
@@ -77,12 +77,12 @@ export default function BenchPressChart({
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-lg">Bench Press Progression</CardTitle>
+        <CardTitle className="text-lg">روند پرس سینه</CardTitle>
         <CardDescription>
-          Daily maximum lifts - Current PR: {currentMax} lbs
+          حداکثرهای روزانه - رکورد فعلی: {currentMax} lbs
           {improvement > 0 && (
             <span className="text-green-600 ml-2">
-              (+{improvement} lbs this week)
+              (+{improvement} lbs این هفته)
             </span>
           )}
         </CardDescription>

@@ -65,17 +65,17 @@ export default function TrainingFrequencyChart({
 
   const option = {
     title: {
-      text: "Training Frequency Analysis",
+      text: "تحلیل فرکانس تمرین",
       textStyle: { fontSize: 14, fontWeight: "normal" },
     },
     tooltip: {
       trigger: "axis",
       axisPointer: { type: "shadow" },
       textStyle: { fontSize: 12 },
-      formatter: "{b}<br/>Current: {c0}x/week<br/>Optimal: {c1}x/week",
+      formatter: "{b}<br/>فعلی: {c0} بار/هفته<br/>بهینه: {c1} بار/هفته",
     },
     legend: {
-      data: ["Current Frequency", "Optimal Frequency"],
+      data: ["فرکانس فعلی", "فرکانس بهینه"],
       textStyle: { fontSize: 11 },
     },
     xAxis: {
@@ -85,7 +85,7 @@ export default function TrainingFrequencyChart({
     },
     yAxis: {
       type: "value",
-      name: "Sessions/Week",
+      name: "جلسه/هفته",
       min: 0,
       max: 5,
       nameTextStyle: { fontSize: 10 },
@@ -93,7 +93,7 @@ export default function TrainingFrequencyChart({
     },
     series: [
       {
-        name: "Current Frequency",
+        name: "فرکانس فعلی",
         type: "bar",
         data: currentFrequency.map((freq, index) => ({
           value: freq,
@@ -109,7 +109,7 @@ export default function TrainingFrequencyChart({
         barGap: 0,
       },
       {
-        name: "Optimal Frequency",
+        name: "فرکانس بهینه",
         type: "bar",
         data: optimalFrequency,
         itemStyle: {
@@ -140,14 +140,12 @@ export default function TrainingFrequencyChart({
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-lg">
-          Training Frequency Optimization
-        </CardTitle>
+        <CardTitle className="text-lg">بهینه‌سازی فرکانس تمرین</CardTitle>
         <CardDescription>
-          Current vs optimal training frequency by muscle group
+          مقایسه فرکانس فعلی و بهینه تمرین بر اساس گروه عضلانی
           <div className={`text-sm mt-1 ${overallGrade.color}`}>
-            Frequency Efficiency: {overallGrade.grade} (
-            {averageEfficiency.toFixed(0)}%)
+            کارایی فرکانس: {overallGrade.grade} ({averageEfficiency.toFixed(0)}
+            %)
           </div>
         </CardDescription>
       </CardHeader>
@@ -155,7 +153,9 @@ export default function TrainingFrequencyChart({
         <ReactECharts option={option} style={{ height: "300px" }} />
         <div className="mt-4 grid grid-cols-2 gap-4 text-sm">
           <div>
-            <h4 className="font-semibold text-green-600 mb-2">Well Trained:</h4>
+            <h4 className="font-semibold text-green-600 mb-2">
+              خوب تمرین شده:
+            </h4>
             <ul className="text-xs space-y-1">
               {frequencyData
                 .filter((d) => d.sessionsPerWeek >= d.optimalFrequency)
@@ -168,7 +168,7 @@ export default function TrainingFrequencyChart({
           </div>
           <div>
             <h4 className="font-semibold text-red-600 mb-2">
-              Needs More Volume:
+              نیاز به جلسات بیشتر:
             </h4>
             <ul className="text-xs space-y-1">
               {frequencyData
@@ -176,8 +176,8 @@ export default function TrainingFrequencyChart({
                 .map((d) => (
                   <li key={d.muscleGroup}>
                     {d.muscleGroup}: +
-                    {(d.optimalFrequency - d.sessionsPerWeek).toFixed(1)}x
-                    needed
+                    {(d.optimalFrequency - d.sessionsPerWeek).toFixed(1)} بار
+                    مورد نیاز
                   </li>
                 ))}
             </ul>

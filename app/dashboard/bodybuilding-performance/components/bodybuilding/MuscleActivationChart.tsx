@@ -42,13 +42,13 @@ export default function MuscleActivationChart({
 
   const option = {
     title: {
-      text: "Muscle Activation Efficiency",
+      text: "بازده فعال‌سازی عضلانی",
       textStyle: { fontSize: 14, fontWeight: "normal" },
     },
     tooltip: {
       trigger: "axis",
       axisPointer: { type: "shadow" },
-      formatter: "{b}<br/>Activation: {c}%",
+      formatter: "{b}<br/>فعال‌سازی: {c}%",
       textStyle: { fontSize: 12 },
     },
     xAxis: {
@@ -60,7 +60,7 @@ export default function MuscleActivationChart({
     },
     yAxis: {
       type: "value",
-      name: "Activation (%)",
+      name: "درصد فعال‌سازی",
       min: 60,
       max: 100,
       nameTextStyle: { fontSize: 10 },
@@ -68,7 +68,7 @@ export default function MuscleActivationChart({
     },
     series: [
       {
-        name: "Muscle Activation",
+        name: "فعالیـت عضلانی",
         type: "bar",
         data: activationValues.map((value) => ({
           value,
@@ -84,7 +84,7 @@ export default function MuscleActivationChart({
           },
         })),
         markLine: {
-          data: [{ yAxis: 85, name: "Optimal Threshold" }],
+          data: [{ yAxis: 85, name: "آستانه بهینه" }],
           lineStyle: { color: COLORS.WRESTLING_GREEN, type: "dashed" },
         },
       },
@@ -112,12 +112,12 @@ export default function MuscleActivationChart({
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-lg">Neuromuscular Efficiency</CardTitle>
+        <CardTitle className="text-lg">کارایی عصبی-عضلانی</CardTitle>
         <CardDescription>
-          Muscle activation scores during compound movements
+          نمرات فعال‌سازی عضلات در حرکات چندمفصلی
           <div className={`text-sm mt-1 ${overallGrade.color}`}>
-            Overall Grade: {overallGrade.grade} ({averageActivation.toFixed(1)}%
-            average)
+            رتبه کلی: {overallGrade.grade} ({averageActivation.toFixed(1)}%
+            میانگین)
           </div>
         </CardDescription>
       </CardHeader>
@@ -126,7 +126,7 @@ export default function MuscleActivationChart({
         <div className="mt-4 grid grid-cols-2 gap-4 text-sm">
           <div>
             <h4 className="font-semibold text-green-600 mb-2">
-              Strongest Activation:
+              بیشترین فعال‌سازی:
             </h4>
             <div className="capitalize">
               {strongestMuscle}:{" "}
@@ -137,9 +137,7 @@ export default function MuscleActivationChart({
             </div>
           </div>
           <div>
-            <h4 className="font-semibold text-red-600 mb-2">
-              Needs Improvement:
-            </h4>
+            <h4 className="font-semibold text-red-600 mb-2">نیاز به بهبود:</h4>
             <div className="capitalize">
               {weakestMuscle}:{" "}
               {activationData[weakestMuscle as keyof typeof activationData]}%
@@ -150,8 +148,8 @@ export default function MuscleActivationChart({
           </div>
         </div>
         <div className="mt-3 text-xs text-gray-600">
-          <strong>Improvement Tips:</strong> Use slow eccentrics, pause reps,
-          and pre-exhaustion for weak muscle groups
+          <strong>نکات بهبود:</strong> از اکسنتریک آهسته، تکرارهای مکث‌دار و
+          پیش‌خستگی برای گروه‌های ضعیف استفاده کنید
         </div>
       </CardContent>
     </Card>

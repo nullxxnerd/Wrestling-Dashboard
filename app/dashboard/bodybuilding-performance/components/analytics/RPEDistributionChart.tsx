@@ -8,6 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { COLORS } from "../../utils";
 
 interface RPEDistributionChartProps {
   rpeData?: {
@@ -53,27 +54,27 @@ export default function RPEDistributionChart({
           {
             value: rpeData.rpe6,
             name: "RPE 6",
-            itemStyle: { color: "#F3F4F6" },
+            itemStyle: { color: COLORS.WRESTLING_BLUE + "33" },
           },
           {
             value: rpeData.rpe7,
             name: "RPE 7",
-            itemStyle: { color: "#E5E7EB" },
+            itemStyle: { color: COLORS.WRESTLING_BLUE },
           },
           {
             value: rpeData.rpe8,
             name: "RPE 8",
-            itemStyle: { color: "#D1D5DB" },
+            itemStyle: { color: COLORS.WRESTLING_RED + "66" },
           },
           {
             value: rpeData.rpe9,
             name: "RPE 9",
-            itemStyle: { color: "#9CA3AF" },
+            itemStyle: { color: COLORS.WRESTLING_RED },
           },
           {
             value: rpeData.rpe10,
             name: "RPE 10",
-            itemStyle: { color: "#6B7280" },
+            itemStyle: { color: COLORS.WRESTLING_RED + "99" },
           },
         ],
         label: { fontSize: 11 },
@@ -122,9 +123,9 @@ export default function RPEDistributionChart({
   return (
     <Card className="rounded-md border-gray-200">
       <CardHeader>
-        <CardTitle className="text-lg">تحلیل شدت تمرین</CardTitle>
+        <CardTitle className="text-lg">توزیع RPE ست‌های برتر</CardTitle>
         <CardDescription>
-          توزیع RPE ست‌های برتر - میانگین RPE: {averageRPE}
+          میانگین RPE: {averageRPE}
           <div className={`text-xs mt-1 ${color}`}>{message}</div>
         </CardDescription>
       </CardHeader>

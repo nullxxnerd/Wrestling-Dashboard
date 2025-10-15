@@ -42,7 +42,7 @@ export default function ProgressiveOverloadChart({
 
   const option = {
     title: {
-      text: `Progressive Overload: ${selectedExercise.exercise}`,
+      text: `افزایش تدریجی بار: ${selectedExercise.exercise}`,
       textStyle: { fontSize: 14, fontWeight: "normal" },
     },
     tooltip: {
@@ -50,7 +50,7 @@ export default function ProgressiveOverloadChart({
       textStyle: { fontSize: 12 },
     },
     legend: {
-      data: ["Max Weight (lbs)", "Volume Load", "Avg Intensity (%)"],
+      data: ["حداکثر وزن (lbs)", "حجم تمرین", "میانگین شدت (%)"],
       textStyle: { fontSize: 11 },
     },
     xAxis: {
@@ -76,7 +76,7 @@ export default function ProgressiveOverloadChart({
     ],
     series: [
       {
-        name: "Max Weight (lbs)",
+        name: "حداکثر وزن (lbs)",
         type: "line",
         yAxisIndex: 0,
         data: selectedExercise.weight,
@@ -85,14 +85,14 @@ export default function ProgressiveOverloadChart({
         smooth: true,
       },
       {
-        name: "Volume Load",
+        name: "حجم تمرین",
         type: "bar",
         yAxisIndex: 1,
         data: selectedExercise.volume.map((v) => v / 100), // Scale down for display
         itemStyle: { color: COLORS.WRESTLING_BLUE, opacity: 0.7 },
       },
       {
-        name: "Avg Intensity (%)",
+        name: "میانگین شدت (%)",
         type: "line",
         yAxisIndex: 1,
         data: selectedExercise.intensity,
@@ -121,11 +121,11 @@ export default function ProgressiveOverloadChart({
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-lg">Progressive Overload Tracking</CardTitle>
+        <CardTitle className="text-lg">ردیابی افزایش تدریجی بار</CardTitle>
         <CardDescription>
-          Multi-dimensional progression analysis for {selectedExercise.exercise}
+          تحلیل چند‌بعدی پیشرفت برای {selectedExercise.exercise}
           <div className="text-sm text-green-600 mt-1">
-            Weight: +{weightProgression}% | Volume: +{volumeProgression}%
+            وزن: +{weightProgression}% | حجم: +{volumeProgression}%
           </div>
         </CardDescription>
       </CardHeader>
@@ -133,7 +133,7 @@ export default function ProgressiveOverloadChart({
         <ReactECharts option={option} style={{ height: "300px" }} />
         <div className="mt-4 grid grid-cols-3 gap-4 text-sm">
           <div className="text-center">
-            <div className="font-semibold text-red-600">Weight Progression</div>
+            <div className="font-semibold text-red-600">روند وزن</div>
             <div className="text-lg">+{weightProgression}%</div>
             <div className="text-xs text-gray-500">
               {selectedExercise.weight[0]} →{" "}
@@ -141,7 +141,7 @@ export default function ProgressiveOverloadChart({
             </div>
           </div>
           <div className="text-center">
-            <div className="font-semibold text-blue-600">Volume Growth</div>
+            <div className="font-semibold text-blue-600">افزایش حجم</div>
             <div className="text-lg">+{volumeProgression}%</div>
             <div className="text-xs text-gray-500">
               {(selectedExercise.volume[0] / 1000).toFixed(1)}K →{" "}
@@ -153,7 +153,7 @@ export default function ProgressiveOverloadChart({
             </div>
           </div>
           <div className="text-center">
-            <div className="font-semibold text-green-600">Intensity Trend</div>
+            <div className="font-semibold text-green-600">روند شدت</div>
             <div className="text-lg">
               {
                 selectedExercise.intensity[
@@ -166,9 +166,8 @@ export default function ProgressiveOverloadChart({
           </div>
         </div>
         <div className="mt-3 text-xs text-gray-600">
-          <strong>Note:</strong> Volume displayed as hundreds for chart scaling.
-          Progressive overload achieved through weight, volume, and intensity
-          increases.
+          <strong>نکته:</strong> حجم به‌صورت صدگان برای مقیاس‌بندی نمایش داده
+          شده است. افزایش تدریجی بار از طریق افزایش وزن، حجم و شدت حاصل می‌شود.
         </div>
       </CardContent>
     </Card>

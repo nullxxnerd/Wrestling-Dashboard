@@ -1,6 +1,7 @@
 "use client";
 
 import ReactECharts from "echarts-for-react";
+import { COLORS } from "../../utils";
 import {
   Card,
   CardContent,
@@ -19,14 +20,14 @@ interface IntensityDistributionChartProps {
 
 export default function IntensityDistributionChart({
   repRangeData = {
-    strength: 22,
-    hypertrophy: 58,
-    endurance: 20,
+    strength: 50,
+    hypertrophy: 45,
+    endurance: 5,
   },
 }: IntensityDistributionChartProps) {
   const option = {
     title: {
-      text: "توزیع شدت تمرین",
+      text: "تحلیل شدت تمرین",
       textStyle: { fontSize: 14, fontWeight: "normal" },
     },
     tooltip: {
@@ -48,18 +49,18 @@ export default function IntensityDistributionChart({
         data: [
           {
             value: repRangeData.strength,
-            name: "قدرت (۱-۵ تکرار)",
-            itemStyle: { color: "#6B7280" },
+            name: "شدت بالا (۹-۱۰)",
+            itemStyle: { color: COLORS.WRESTLING_RED },
           },
           {
             value: repRangeData.hypertrophy,
-            name: "هیپرتروفی (۶-۱۲ تکرار)",
-            itemStyle: { color: "#9CA3AF" },
+            name: "متوسط (۷-۸)",
+            itemStyle: { color: COLORS.WRESTLING_BLUE },
           },
           {
             value: repRangeData.endurance,
-            name: "تحمل (۱۳+ تکرار)",
-            itemStyle: { color: "#D1D5DB" },
+            name: "شدت پایین (۶)",
+            itemStyle: { color: COLORS.WRESTLING_BLUE + "66" },
           },
         ],
         label: { fontSize: 11 },

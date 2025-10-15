@@ -31,12 +31,12 @@ export default function SquatChart({
 
   const option = {
     title: {
-      text: `Squat Progression - Last ${timeframe} Days`,
+      text: `روند اسکوات - ${timeframe} روز اخیر`,
       textStyle: { fontSize: 14, fontWeight: "normal" },
     },
     tooltip: {
       trigger: "axis",
-      formatter: "{b}<br/>Max: {c} lbs",
+      formatter: "{b}<br/>حداکثر: {c} lbs",
       textStyle: { fontSize: 12 },
     },
     xAxis: {
@@ -80,13 +80,12 @@ export default function SquatChart({
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-lg">Squat Progression</CardTitle>
+        <CardTitle className="text-lg">روند اسکوات</CardTitle>
         <CardDescription>
-          Daily squat maximums for lower body power - Current PR: {currentMax}{" "}
-          lbs
+          حداکثرهای روزانه اسکوات - رکورد فعلی: {currentMax} lbs
           {improvement > 0 && (
             <span className="text-green-600 ml-2">
-              (+{improvement} lbs this week)
+              (+{improvement} lbs این هفته)
             </span>
           )}
         </CardDescription>

@@ -105,7 +105,7 @@ export default function StrengthRatiosChart({
   return (
     <Card style={{ fontFamily }}>
       <CardHeader>
-        <CardTitle className="text-lg">تحلیل قدرت نسبی</CardTitle>
+        <CardTitle className="text-lg">تحلیل نسبت قدرت به وزن</CardTitle>
         <CardDescription>
           بررسی روند نسبت قدرت به وزن برای ارزیابی عملکرد
         </CardDescription>

@@ -23,7 +23,7 @@ export default function VO2MaxChart({
 }: VO2MaxChartProps) {
   const option = {
     title: {
-      text: "VO2 Max Progression",
+      text: "روند VO2 Max",
       textStyle: { fontSize: 14, fontWeight: "normal" },
     },
     tooltip: {
@@ -79,13 +79,13 @@ export default function VO2MaxChart({
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-lg">VO2 Max Development</CardTitle>
+        <CardTitle className="text-lg">پیشرفت VO2 Max</CardTitle>
         <CardDescription>
-          Aerobic capacity progression - Current: {currentVO2} mL/kg/min
+          پیشرفت ظرفیت هوازی - فعلی: {currentVO2} mL/kg/min
           <span className={`ml-2 font-semibold ${color}`}>({category})</span>
           {improvement > 0 && (
             <span className="text-green-600 ml-2">
-              (+{improvement.toFixed(1)} this month)
+              (+{improvement.toFixed(1)} این ماه)
             </span>
           )}
         </CardDescription>

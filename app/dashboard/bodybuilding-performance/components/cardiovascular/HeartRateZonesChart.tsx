@@ -31,7 +31,7 @@ export default function HeartRateZonesChart({
 }: HeartRateZonesChartProps) {
   const option = {
     title: {
-      text: "Heart Rate Training Zones",
+      text: "مناطق تمرینی ضربان قلب",
       textStyle: { fontSize: 14, fontWeight: "normal" },
     },
     tooltip: {
@@ -46,34 +46,34 @@ export default function HeartRateZonesChart({
     },
     series: [
       {
-        name: "Training Time",
+        name: "زمان تمرین",
         type: "pie",
         radius: ["40%", "70%"],
         center: ["60%", "50%"],
         data: [
           {
             value: zones.zone1,
-            name: "Zone 1 (Recovery)",
+            name: "منطقه 1 (بازیابی)",
             itemStyle: { color: COLORS.SECONDARY_GREEN },
           },
           {
             value: zones.zone2,
-            name: "Zone 2 (Aerobic)",
+            name: "منطقه 2 (هوازی)",
             itemStyle: { color: COLORS.SECONDARY_BLUE },
           },
           {
             value: zones.zone3,
-            name: "Zone 3 (Tempo)",
+            name: "منطقه 3 (تمپو)",
             itemStyle: { color: COLORS.ORANGE },
           },
           {
             value: zones.zone4,
-            name: "Zone 4 (Threshold)",
+            name: "منطقه 4 (آستانه)",
             itemStyle: { color: COLORS.SECONDARY_RED },
           },
           {
             value: zones.zone5,
-            name: "Zone 5 (Anaerobic)",
+            name: "منطقه 5 (بی‌هوازی)",
             itemStyle: { color: COLORS.PURPLE },
           },
         ],
@@ -101,13 +101,11 @@ export default function HeartRateZonesChart({
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-lg">
-          Heart Rate Training Distribution
-        </CardTitle>
+        <CardTitle className="text-lg">توزیع تمرین ضربان قلب</CardTitle>
         <CardDescription>
-          Time spent in different heart rate zones this week
+          زمان صرف‌شده در مناطق مختلف ضربان قلب این هفته
           <div className="text-xs text-gray-500 mt-1">
-            Zone 2 focus recommended for endurance athletes
+            تمرکز منطقه 2 برای ورزشکاران استقامتی توصیه می‌شود
           </div>
         </CardDescription>
       </CardHeader>
@@ -127,7 +125,7 @@ export default function HeartRateZonesChart({
                     isOptimal ? "text-green-600" : "text-yellow-600"
                   }`}
                 >
-                  Zone {index + 1}
+                  منطقه {index + 1}
                 </div>
                 <div>{percentage}%</div>
                 <div className="text-gray-500">{rec.ideal}</div>

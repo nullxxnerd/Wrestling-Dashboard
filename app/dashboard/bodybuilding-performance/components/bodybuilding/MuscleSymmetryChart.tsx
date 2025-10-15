@@ -33,22 +33,22 @@ export default function MuscleSymmetryChart({
 
   const option = {
     title: {
-      text: "Muscle Symmetry Analysis",
+      text: "تحلیل تقارن عضلانی",
       textStyle: { fontSize: 14, fontWeight: "normal" },
     },
     tooltip: {
       trigger: "axis",
       textStyle: { fontSize: 12 },
-      formatter: "{b}<br/>{a0}: {c0} inches<br/>{a1}: {c1} inches",
+      formatter: "{b}<br/>{a0}: {c0} اینچ<br/>{a1}: {c1} اینچ",
     },
     legend: {
       data: [
-        "Left Bicep",
-        "Right Bicep",
-        "Left Quad",
-        "Right Quad",
-        "Left Calf",
-        "Right Calf",
+        "بازو چپ",
+        "بازو راست",
+        "ران چپ",
+        "ران راست",
+        "ساق چپ",
+        "ساق راست",
       ],
       textStyle: { fontSize: 11 },
       type: "scroll",
@@ -61,7 +61,7 @@ export default function MuscleSymmetryChart({
     },
     yAxis: {
       type: "value",
-      name: "Circumference (inches)",
+      name: "محیط (اینچ)",
       nameTextStyle: { fontSize: 10 },
       axisLabel: { fontSize: 10 },
     },
@@ -141,16 +141,16 @@ export default function MuscleSymmetryChart({
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-lg">Bilateral Muscle Development</CardTitle>
+        <CardTitle className="text-lg">توسعه عضلات دوطرفه</CardTitle>
         <CardDescription>
-          Tracking left-right muscle symmetry for balanced development
+          ردیابی تقارن چپ-راست برای توسعه متعادل
         </CardDescription>
       </CardHeader>
       <CardContent>
         <ReactECharts option={option} style={{ height: "300px" }} />
         <div className="mt-4 grid grid-cols-3 gap-4 text-sm">
           <div className="text-center">
-            <div className="font-semibold text-blue-600">Bicep Asymmetry</div>
+            <div className="font-semibold text-blue-600">عدم تقارن بازو</div>
             <div className="text-lg">{asymmetries.bicep.toFixed(1)}%</div>
             <div
               className={`text-xs ${
@@ -161,7 +161,7 @@ export default function MuscleSymmetryChart({
             </div>
           </div>
           <div className="text-center">
-            <div className="font-semibold text-red-600">Quad Asymmetry</div>
+            <div className="font-semibold text-red-600">عدم تقارن ران</div>
             <div className="text-lg">{asymmetries.quad.toFixed(1)}%</div>
             <div
               className={`text-xs ${
@@ -172,7 +172,7 @@ export default function MuscleSymmetryChart({
             </div>
           </div>
           <div className="text-center">
-            <div className="font-semibold text-green-600">Calf Asymmetry</div>
+            <div className="font-semibold text-green-600">عدم تقارن ساق</div>
             <div className="text-lg">{asymmetries.calf.toFixed(1)}%</div>
             <div
               className={`text-xs ${
@@ -184,8 +184,8 @@ export default function MuscleSymmetryChart({
           </div>
         </div>
         <div className="mt-3 text-xs text-gray-600">
-          <strong>Guidelines:</strong> &lt;2% excellent, 2-5% good, 5-8% fair,
-          &gt;8% needs corrective work
+          <strong>راهنما:</strong> &lt;2% عالی، 2-5% خوب، 5-8% متوسط، &gt;8%
+          نیاز به اصلاح
         </div>
       </CardContent>
     </Card>

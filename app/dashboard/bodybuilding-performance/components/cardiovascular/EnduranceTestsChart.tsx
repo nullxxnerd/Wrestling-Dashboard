@@ -27,16 +27,17 @@ export default function EnduranceTestsChart({
 
   const option = {
     title: {
-      text: "Endurance Performance Tests",
+      text: "آزمون‌های عملکرد استقامتی",
       textStyle: { fontSize: 14, fontWeight: "normal" },
     },
     tooltip: {
       trigger: "axis",
       textStyle: { fontSize: 12 },
-      formatter: "{b}<br/>{a0}: {c0} min<br/>{a1}: {c1} sec<br/>{a2}: {c2} min",
+      formatter:
+        "{b}<br/>{a0}: {c0} دقیقه<br/>{a1}: {c1} ثانیه<br/>{a2}: {c2} دقیقه",
     },
     legend: {
-      data: ["2-Mile Run (min)", "Sprint 40yd (sec)", "Rowing 2K (min)"],
+      data: ["دو 2 مایلی (دقیقه)", "اسپرینت 40yd (ثانیه)", "روئینگ 2K (دقیقه)"],
       textStyle: { fontSize: 11 },
     },
     xAxis: {
@@ -87,13 +88,13 @@ export default function EnduranceTestsChart({
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-lg">Endurance Performance Tests</CardTitle>
+        <CardTitle className="text-lg">آزمون‌های استقامتی</CardTitle>
         <CardDescription>
-          Time-based endurance and speed progression
+          پیشرفت استقامت و سرعت بر اساس زمان
           <div className="text-xs text-green-600 mt-1">
-            Run: -{improvements.run.toFixed(1)}min | Sprint: -
-            {improvements.sprint.toFixed(1)}s | Row: -
-            {improvements.rowing.toFixed(1)}min
+            دو: -{improvements.run.toFixed(1)} دقیقه | اسپرینت: -
+            {improvements.sprint.toFixed(1)} ثانیه | روئینگ: -
+            {improvements.rowing.toFixed(1)} دقیقه
           </div>
         </CardDescription>
       </CardHeader>

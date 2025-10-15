@@ -31,12 +31,12 @@ export default function DeadliftChart({
 
   const option = {
     title: {
-      text: `Deadlift Progression - Last ${timeframe} Days`,
+      text: `روند ددلیفت - ${timeframe} روز اخیر`,
       textStyle: { fontSize: 14, fontWeight: "normal" },
     },
     tooltip: {
       trigger: "axis",
-      formatter: "{b}<br/>Max: {c} lbs",
+      formatter: "{b}<br/>حداکثر: {c} lbs",
       textStyle: { fontSize: 12 },
     },
     xAxis: {
@@ -80,13 +80,12 @@ export default function DeadliftChart({
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-lg">Deadlift Progression</CardTitle>
+        <CardTitle className="text-lg">روند ددلیفت</CardTitle>
         <CardDescription>
-          Daily deadlift maximums for posterior chain - Current PR: {currentMax}{" "}
-          lbs
+          حداکثرهای روزانه ددلیفت - رکورد فعلی: {currentMax} lbs
           {improvement > 0 && (
             <span className="text-green-600 ml-2">
-              (+{improvement} lbs this week)
+              (+{improvement} lbs این هفته)
             </span>
           )}
         </CardDescription>

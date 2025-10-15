@@ -29,7 +29,7 @@ export default function AccessoryLiftsChart({
 
   const option = {
     title: {
-      text: "Accessory Lift Progression",
+      text: "روند حرکات تکمیلی",
       textStyle: { fontSize: 14, fontWeight: "normal" },
     },
     tooltip: {
@@ -39,7 +39,12 @@ export default function AccessoryLiftsChart({
         "{b}<br/>{a0}: {c0} lbs<br/>{a1}: {c1} lbs<br/>{a2}: {c2} lbs<br/>{a3}: {c3} lbs",
     },
     legend: {
-      data: ["Overhead Press", "Close-Grip Bench", "Bent Row", "Romanian DL"],
+      data: [
+        "پرس بالای سر",
+        "پرس با گرفتن نزدیک",
+        "روئینگ خم",
+        "ددلیفت رومانیایی",
+      ],
       textStyle: { fontSize: 11 },
       top: 30,
     },
@@ -93,10 +98,8 @@ export default function AccessoryLiftsChart({
   return (
     <Card>
       <CardHeader>
-        <CardTitle className="text-lg">Accessory Movements</CardTitle>
-        <CardDescription>
-          Supporting lift progression for balanced development
-        </CardDescription>
+        <CardTitle className="text-lg">حرکات تکمیلی</CardTitle>
+        <CardDescription>پیشرفت حرکات کمکی برای توسعه متوازن</CardDescription>
       </CardHeader>
       <CardContent>
         <ReactECharts option={option} style={{ height: "300px" }} />
