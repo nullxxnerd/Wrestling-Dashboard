@@ -4,6 +4,7 @@ import { useState, useEffect, useRef } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Menu, X, ChevronRight, Home } from "lucide-react";
+import Image from "next/image";
 import * as Sheet from "@radix-ui/react-dialog";
 
 // Reuse navItems and its types from the desktop Sidebar so both stay in sync
@@ -107,10 +108,18 @@ export default function MobileSidebar() {
       <div className="lg:hidden">
         <button
           onClick={() => setIsOpen(true)}
-          className="inline-flex items-center justify-center rounded-lg p-2.5 text-gray-600 hover:bg-gray-100 hover:text-gray-800 focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all duration-200 active:scale-95"
+          className="inline-flex items-center justify-center gap-2 rounded-full px-3 py-1.5 bg-white/90 shadow-sm text-gray-700 hover:shadow-md hover:bg-white focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all duration-200 active:scale-95"
           aria-label="Open navigation menu"
         >
-          <Menu className="h-6 w-6" />
+          <Image
+            src="/icon.png"
+            alt="لوگو"
+            width={24}
+            height={24}
+            className="rounded-sm"
+          />
+          <span className="text-sm font-medium">منو</span>
+          <Menu className="h-5 w-5 text-gray-600" />
         </button>
       </div>
 

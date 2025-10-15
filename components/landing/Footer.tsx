@@ -79,7 +79,7 @@ export const Footer: React.FC = () => {
                 alt="لوگوی بیزینس اینسایت"
                 width={30}
                 height={30}
-                className="rounded-md border border-primary/20"
+                className="rounded-md"
                 priority
               />
               <div className="text-lg font-semibold text-foreground">

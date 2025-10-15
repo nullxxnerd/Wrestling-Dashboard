@@ -18,7 +18,7 @@ export default function Navbar() {
 
   return (
     <nav className="bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/60 border-b border-gray-200">
-      <div className="max-w-7xl mx-auto px-4" dir="rtl">
+      <div className="max-8-xl mx-auto px-4" dir="rtl">
         <div className="flex justify-between py-4">
           <div className="flex">
             <div className="flex-shrink-0 flex items-center">
@@ -63,10 +63,10 @@ export default function Navbar() {
           <div className="flex items-center gap-2">
             <Link
               href="/dashboard"
-              className="hidden md:inline-flex items-center gap-2 rounded-md bg-black text-white px-4 py-2 text-sm font-medium shadow-sm hover:bg-black/90 active:bg-black/80 transition-colors"
+              className="hidden md:inline-flex items-center gap-3 rounded-full bg-gradient-to-r from-primary to-primary/90 text-white px-4 py-2 text-sm font-medium shadow-lg hover:from-primary/90 hover:to-primary/70 active:scale-95 transition-all"
             >
-              برو به داشبورد
-              <ArrowRight className="h-5 w-5 rotate-180" />
+              <span className="whitespace-nowrap">برو به داشبورد</span>
+              <ArrowRight className="h-4 w-4 rotate-180" />
             </Link>
             {/* Mobile sidebar */}
             <div className="md:hidden flex items-center">

@@ -2,6 +2,7 @@ import Sidebar from "@/components/dashboard/Sidebar";
 import MobileHeader from "@/components/dashboard/MobileHeader";
 import Breadcrumbs from "@/components/dashboard/Breadcrumbs";
 import WrestlerSelect from "@/components/dashboard/WrestlerSelect";
+import Navbar from "@/components/navbar";
 
 export default function DashboardLayout({
   children,
@@ -10,6 +11,10 @@ export default function DashboardLayout({
 }) {
   return (
     <div dir="rtl" className="mx-auto w-full">
+      <div className="hidden lg:block">
+        <Navbar />
+      </div>
+
       <div className="mx-auto w-full max-8-xl ">
         {/* Mobile navigation header */}
         <div className="lg:hidden py-2 bg-blue-100">

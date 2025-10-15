@@ -27,7 +27,7 @@ const Section: React.FC<{
         opacity: 1,
         y: 0,
         transition: {
-          duration: 0.6,
+          duration: 1,
           ease: [0.22, 1, 0.36, 1],
           delay,
         },
@@ -43,22 +43,22 @@ export default function Page() {
     <div className="bg-gradient-to-b from-background/60 via-background/50 to-background/70">
       <main className="max-w-7xl mx-auto px-4" dir="rtl">
         {/* Task: Add clean landing animation to Hero */}
-        <Section id="hero" delay={0}>
+        <Section id="hero" delay={0.2}>
           <Hero />
         </Section>
 
         {/* Task: Animate Features section items on reveal */}
-        <Section id="features" delay={0.05}>
+        <Section id="features" delay={0.15}>
           <Features />
         </Section>
 
         {/* Task: Smooth fade-up for ProductShowcase on scroll */}
-        <Section id="product" delay={0.08}>
+        <Section id="product" delay={0.2}>
           <ProductShowcase />
         </Section>
 
         {/* Task: Intro animation for Pricing cards */}
-        <Section id="pricing" delay={0.1}>
+        <Section id="pricing" delay={0.2}>
           <Pricing />
         </Section>
       </main>
