@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -29,7 +29,8 @@ type Exercise = {
   };
 };
 
-export default function TrainingProgramPage() {
+// Main content component that uses useSearchParams
+function TrainingProgramContent() {
   const searchParams = useSearchParams();
   const date =
     searchParams.get("date") || new Date().toISOString().slice(0, 10);
@@ -475,5 +476,23 @@ export default function TrainingProgramPage() {
         </CardContent>
       </Card>
     </div>
+  );
+}
+
+// Main page component with Suspense wrapper
+export default function TrainingProgramPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="container mx-auto px-3 sm:px-6 py-6 sm:py-8 flex items-center justify-center min-h-[400px]">
+          <div className="text-center">
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
+            <p className="text-gray-600">در حال بارگذاری برنامه تمرینی...</p>
+          </div>
+        </div>
+      }
+    >
+      <TrainingProgramContent />
+    </Suspense>
   );
 }
